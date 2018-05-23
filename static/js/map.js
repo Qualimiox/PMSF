@@ -688,6 +688,7 @@ function gymLabel(item) {
     var latitude = item['latitude']
     var longitude = item['longitude']
     var name = item['name']
+    var url = item['url']
     var members = item['pokemon']
 
     var raidSpawned = item['raid_level'] != null
@@ -775,6 +776,7 @@ function gymLabel(item) {
             '<b style="color:rgba(' + gymColor[teamId] + ')">' + i8ln(teamName) + '</b><br>' +
             '<img height="70px" style="padding: 5px;" src="static/forts/' + teamName + '_large.png">' +
             raidIcon +
+            '<img height="70px" style="padding: 5px;" src="' + url + '">' +
             '</div>' +
             nameStr +
             raidStr +
@@ -803,6 +805,7 @@ function gymLabel(item) {
             '<b style="color:rgba(' + gymColor[teamId] + ')">' + i8ln('Team') + ' ' + i8ln(teamName) + '</b><br>' +
             '<img height="70px" style="padding: 5px;" src="static/forts/' + teamName + '_large.png">' +
             raidIcon +
+            '<img height="70px" style="padding: 5px;" src="' + url + '">' +
             '</div>' +
             nameStr +
             raidStr +
@@ -3306,6 +3309,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             '<div>' +
             '<img height="60px" style="padding: 5px;" src="static/forts/' + gymTypes[result.team_id] + '_large.png">' +
             raidIcon +
+            '<img height="70px" style="padding: 5px;" src="' + result.url + '">' +
             '</div>' +
             raidStr +
             gymLevelStr +
