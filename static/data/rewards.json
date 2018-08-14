@@ -1,15 +1,15 @@
 {
   "1": {
     "cat": "Pokémon",
-    "name": "Bulbasaur"
+    "name": "Bisasam"
   },
   "4": {
     "cat": "Pokémon",
-    "name": "Charmander"
+    "name": "Glumanda"
   },
   "7": {
     "cat": "Pokémon",
-    "name": "Squirtle"
+    "name": "Schiggy"
   },
   "37": {
     "cat": "Pokémon",
@@ -17,19 +17,19 @@
   },
   "56": {
     "cat": "Pokémon",
-    "name": "Mankey"
+    "name": "Menki"
   },
   "60": {
     "cat": "Pokémon",
-    "name": "Poliwag"
+    "name": "Quapsel"
   },
   "66": {
     "cat": "Pokémon",
-    "name": "Machop"
+    "name": "Machollo"
   },
   "92": {
     "cat": "Pokémon",
-    "name": "Gastly"
+    "name": "Nebulak"
   },
   "95": {
     "cat": "Pokémon",
@@ -37,35 +37,35 @@
   },
   "100": {
     "cat": "Pokémon",
-    "name": "Voltorb"
+    "name": "Voltobal"
   },
   "102": {
     "cat": "Pokémon",
-    "name": "Exeggcute"
+    "name": "Owei"
   },
   "113": {
     "cat": "Pokémon",
-    "name": "Chansey"
+    "name": "Chaneira"
   },
   "124": {
     "cat": "Pokémon",
-    "name": "Jynx"
+    "name": "Rossana"
   },
   "125": {
     "cat": "Pokémon",
-    "name": "Electabuzz"
+    "name": "Elektek"
   },
   "126": {
     "cat": "Pokémon",
     "name": "Magmar"
-  },	
+  },
   "129": {
     "cat": "Pokémon",
-    "name": "Magikarp"
+    "name": "Karpador"
   },
   "133": {
     "cat": "Pokémon",
-    "name": "Eevee"
+    "name": "Evoli"
   },
   "147": {
     "cat": "Pokémon",
@@ -77,11 +77,11 @@
   },
   "179": {
     "cat": "Pokémon",
-    "name": "Mareep"
+    "name": "Voltilamm"
   },
   "200": {
     "cat": "Pokémon",
-    "name": "Misdreavus"
+    "name": "Traunfugil"
   },
   "203": {
     "cat": "Pokémon",
@@ -93,7 +93,7 @@
   },
   "228": {
     "cat": "Pokémon",
-    "name": "Houndour"
+    "name": "Hunduster"
   },
   "246": {
     "cat": "Pokémon",
@@ -101,122 +101,122 @@
   },
   "309": {
     "cat": "Pokémon",
-    "name": "Electrike"
+    "name": "Frizelbliz"
   },
   "327": {
     "cat": "Pokémon",
-    "name": "Spinda"
+    "name": "Pandir"
   },
   "999": {
     "cat": "Pokémon",
     "name": "?? Encounter"
   },
   "1000": {
-    "cat": "Rare Candies",
-    "name": "1 Rare Candy"
+    "cat": "Sonderbonbons",
+    "name": "1 Sonderbonbon"
   },
   "1004": {
-    "cat": "Rare Candies",
-    "name": "3 Rare Candies"
+    "cat": "Sonderbonbons",
+    "name": "3 Sonderbonbons"
   },
   "1102": {
-    "cat": "Stardust",
-    "name": "200 Stardust"
+    "cat": "Sternenstaub",
+    "name": "200 Sternenstaub"
   },
   "1103": {
-    "cat": "Stardust",
-    "name": "500 Stardust"
+    "cat": "Sternenstaub",
+    "name": "500 Sternenstaub"
   },
   "1104": {
-    "cat": "Stardust",
-    "name": "1000 Stardust"
+    "cat": "Sternenstaub",
+    "name": "1000 Sternenstaub"
   },
   "1105": {
-    "cat": "Stardust",
-    "name": "1500 Stardust"
+    "cat": "Sternenstaub",
+    "name": "1500 Sternenstaub"
   },
   "1106": {
-    "cat": "Stardust",
-    "name": "2000 Stardust"
+    "cat": "Sternenstaub",
+    "name": "2000 Sternenstaub"
   },
   "1201": {
-    "cat": "Pokéballs",
-    "name": "5 PokéBalls"
+    "cat": "Pokébälle",
+    "name": "5 Pokébälle"
   },
   "1202": {
-    "cat": "Pokéballs",
-    "name": "10 PokéBalls"
+    "cat": "Pokébälle",
+    "name": "10 Pokébälle"
   },
   "1204": {
-    "cat": "Pokéballs",
-    "name": "5 Great Balls"
+    "cat": "Pokébälle",
+    "name": "5 Superbälle"
   },
   "1206": {
-    "cat": "Pokéballs",
-    "name": "2 Ultra Balls"
+    "cat": "Pokébälle",
+    "name": "2 Hyperbälle"
   },
   "1208": {
-    "cat": "Pokéballs",
-    "name": "5 Ultra Balls"
+    "cat": "Pokébälle",
+    "name": "5 Hyperbälle"
   },
   "1301": {
-    "cat": "Berries",
-    "name": "2 Golden Razzberries"
+    "cat": "Beeren",
+    "name": "2 Goldene Himmihbeeren"
   },
   "1302": {
-    "cat": "Berries",
-    "name": "1 Pinap Berry"
+    "cat": "Beeren",
+    "name": "1 Sananabeere"
   },
   "1303": {
-    "cat": "Berries",
-    "name": "2 Pinap Berries"
+    "cat": "Beeren",
+    "name": "2 Sananabeeren"
   },
   "1306": {
-    "cat": "Berries",
-    "name": "3 Pinap Berries"
+    "cat": "Beeren",
+    "name": "3 Sananabeeren"
   },
   "1310": {
-    "cat": "Berries",
-    "name": "10 Nanab Berries"
+    "cat": "Beeren",
+    "name": "10 Nanabbeeren"
   },
   "1311": {
-    "cat": "Berries",
-    "name": "3 Razz Berries"
+    "cat": "Beeren",
+    "name": "3 Himmihbeeren"
   },
   "1315": {
-    "cat": "Berries",
-    "name": "6 Razz Berries"
+    "cat": "Beeren",
+    "name": "6 Himmihbeeren"
   },
   "1401": {
-    "cat": "Potions & Revives",
-    "name": "1 Revive"
+    "cat": "Tränke & Beleber",
+    "name": "1 Beleber"
   },
   "1402": {
-    "cat": "Potions & Revives",
-    "name": "2 Revives"
+    "cat": "Tränke & Beleber",
+    "name": "2 Beleber"
   },
   "1403": {
-    "cat": "Potions & Revives",
-    "name": "4 Revives"
+    "cat": "Tränke & Beleber",
+    "name": "4 Beleber"
   },
   "1404": {
-    "cat": "Potions & Revives",
-    "name": "6 Revives"
+    "cat": "Tränke & Beleber",
+    "name": "6 Beleber"
   },
   "1405": {
-    "cat": "Potions & Revives",
-    "name": "1 Max Revive"
+    "cat": "Tränke & Beleber",
+    "name": "1 Top-Beleber"
   },
   "1407": {
-    "cat": "Potions & Revives",
-    "name": "5 Potions"
+    "cat": "Tränke & Beleber",
+    "name": "5 Tränke"
   },
   "1408": {
-    "cat": "Potions & Revives",
-    "name": "3 Super Potions"
+    "cat": "Tränke & Beleber",
+    "name": "3 Supertränke"
   },
   "1409": {
-    "cat": "Potions & Revives",
-    "name": "3 Hyper Potions"
+    "cat": "Tränke & Beleber",
+    "name": "3 Hypertränke"
   }
 }

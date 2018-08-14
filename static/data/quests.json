@@ -1,146 +1,146 @@
 {
   "1": {
-    "cat": "Gym/Raid",
-    "name": "Battle in a Gym."
+    "cat": "Arenen/Raids",
+    "name": "Kämpfe in einer Arena."
   },
   "3": {
-    "cat": "Gym/Raid",
-    "name": "Battle in a Gym 5 times"
+    "cat": "Arenen/Raids",
+    "name": "Kämpfe 5-Mal in einer Arena."
   },
   "5": {
-    "cat": "Gym/Raid",
-    "name": "Win 3 Gym battles."
+    "cat": "Arenen/Raids",
+    "name": "Gewinne 3 Arenenkämpfe."
   },
   "6": {
-    "cat": "Gym/Raid",
-    "name": "Win 5 Gym battles."
+    "cat": "Arenen/Raids",
+    "name": "Gewinne 5 Arenenkämpfe."
   },
   "7": {
-    "cat": "Gym/Raid",
-    "name": "Battle in a raid"
+    "cat": "Arenen/Raids",
+    "name": "Kämpfe in einem Raid."
   },
   "8": {
-    "cat": "Gym/Raid",
-    "name": "Win a raid."
+    "cat": "Arenen/Raids",
+    "name": "Gewinne einen Raid."
   },
   "9": {
-    "cat": "Gym/Raid",
-    "name": "Win 3 raids."
+    "cat": "Arenen/Raids",
+    "name": "Gewinne 3 Raids."
   },
   "10": {
-    "cat": "Gym/Raid",
-    "name": "Use a Super effective charge attack 7 times."
+    "cat": "Arenen/Raids",
+    "name": "Setze eine sehr effektive Lade-Attacke in 7 Arenakämpfen ein."
   },
   "12": {
-    "cat": "Gym/Raid",
-    "name": "Win a level 3 or higher raid."
+    "cat": "Arenen/Raids",
+    "name": "Gewinne einen Level-3-Raid oder höher."
   },
   "118": {
-    "cat": "Catch",
-    "name": "Catch 10 Pokémon."
+    "cat": "Fangen",
+    "name": "Fange 10 Pokémon."
   },
   "119": {
-    "cat": "Catch",
-    "name": "Catch 5 Pokémon with Weather Boost."
+    "cat": "Fangen",
+    "name": "Fange 5 Pokémon mit Wetterverstärkung."
   },
   "120": {
-    "cat": "Catch",
-    "name": "Catch 10 Pokémon with Weather Boost."
+    "cat": "Fangen",
+    "name": "Fange 10 Pokémon mit Wetterverstärkung."
   },
   "121": {
-    "cat": "Catch",
-    "name": "Catch a Ditto."
+    "cat": "Fangen",
+    "name": "Fange ein Ditto."
   },
   "122": {
-    "cat": "Catch",
-    "name": "Catch a Dragon-type Pokemon"
+    "cat": "Fangen",
+    "name": "Fange ein Pokémon vom Typ Drache."
   },
   "123": {
-    "cat": "Catch",
-    "name": "Catch 5 Electric-type Pokemon"
+    "cat": "Fangen",
+    "name": "Fange 5 Pokémon vom Typ Elektro."
   },
   "124": {
-    "cat": "Catch",
-    "name": "Catch a Meowth or Growlithe"
+    "cat": "Fangen",
+    "name": "Fange ein Mauzi oder Fukano."
   },
   "125": {
-    "cat": "Catch",
-    "name": "Catch a skitty or poochyena"
+    "cat": "Fangen",
+    "name": "Fange ein Eneco oder Fiffyen."
   },
   "126": {
-    "cat": "Catch",
-    "name": "Use 5 berries to help catch a pokemon"
+    "cat": "Fangen",
+    "name": "Verwende 5 Beeren beim Fangen von Pokémon."
   },
   "255": {
-    "cat": "Evolve",
-    "name": "Evolve a Pokémon."
+    "cat": "Entwickeln",
+    "name": "Entwickle ein Pokémon."
   },
   "267": {
-    "cat": "Evolve",
-    "name": "Evolve a Meowth."
+    "cat": "Entwickeln",
+    "name": "Entwickle ein Mauzi."
   },
   "370": {
-    "cat": "Throw",
-    "name": "Make 5 Nice Throws."
+    "cat": "Werfen",
+    "name": "Lande 5 gute Würfe."
   },
   "371": {
-    "cat": "Throw",
-    "name": "Make 2 Nice Curveball Throws in a row."
+    "cat": "Werfen",
+    "name": "Lande 2 gute Curveball-Würfe hintereinander."
   },
   "372": {
-    "cat": "Throw",
-    "name": "Make 3 Nice Throws in a row."
+    "cat": "Werfen",
+    "name": "Lande 3 gute Würfe hintereinander."
   },
   "376": {
-    "cat": "Throw",
-    "name": "Make 3 Great Throws."
+    "cat": "Werfen",
+    "name": "Lande 3 großartige Würfe."
   },
   "377": {
-    "cat": "Throw",
-    "name": "Make 3 Great Curveball Throws."
+    "cat": "Werfen",
+    "name": "Lande 3 großartige Curveball-Würfe."
   },
   "379": {
-    "cat": "Throw",
-    "name": "Make 3 Great Throws in a row."
+    "cat": "Werfen",
+    "name": "Lande 3 großartige Cuverball-Würfe hintereinander."
   },
   "385": {
-    "cat": "Throw",
-    "name": "Make an Excellent Throw."
+    "cat": "Werfen",
+    "name": "Lande einen fabelhaften Wurf."
   },
   "387": {
-    "cat": "Throw",
-    "name": "Make 3 Excellent Throws in a row."
+    "cat": "Werfen",
+    "name": "Lande 3 fabelhafte Würfe hintereinander."
   },
   "391": {
-    "cat": "Throw",
-    "name": "Land 3 Curveball Throws in a row."
+    "cat": "Werfen",
+    "name": "Lande 3 Curveball-Würfe hintereinander."
   },
   "392": {
-    "cat": "Throw",
-    "name": "Make 5 Curveball Throws in a row."
+    "cat": "Werfen",
+    "name": "Lande 5 Curveball-Würfe hintereinander."
   },
   "596": {
-    "cat": "Miscellaneous",
-    "name": "Hatch an Egg."
+    "cat": "Verschiedenes",
+    "name": "Brüte ein Ei aus."
   },
   "597": {
-    "cat": "Miscellaneous",
-    "name": "Hatch 3 Eggs."
+    "cat": "Verschiedenes",
+    "name": "Brüte 3 Eier aus."
   },
   "598": {
-    "cat": "Miscellaneous",
-    "name": "Hatch 5 Eggs."
+    "cat": "Verschiedenes",
+    "name": "Brüte 5 Eier aus."
   },
   "599": {
-    "cat": "Miscellaneous",
-    "name": "Power up Pokémon 5 times."
+    "cat": "Verschiedenes",
+    "name": "Verwende 5 Power-Ups bei Pokémon."
   },
   "600": {
-    "cat": "Miscellaneous",
-    "name": "Power up a Pokémon."
+    "cat": "Verschiedenes",
+    "name": "Verwende ein Power-Up bei Pokémon."
   },
   "602": {
-    "cat": "Miscellaneous",
-    "name": "Transfer 10 Pokémon."
+    "cat": "Verschiedenes",
+    "name": "Verschicke 10 Pokémon."
   }
 }

@@ -210,11 +210,12 @@ if ( $action === "raid" ) {
         http_response_code( 401 );
         die();
     }
-    $pokestopId = ! empty( $_POST['pokestopId'] ) ? $_POST['pokestopId'] : '';
-    $questId    = $_POST['questId'] == "NULL" ? 0 : $_POST['questId'];
-    $rewardId   = $_POST['rewardId'] == "NULL" ? 0 : $_POST['rewardId'];
-    $pokestop         = $db->get( "pokestops", [ 'name', 'lat', 'lon', 'external_id' ], [ 'external_id' => $pokestopId ] );
-    $loggedUser = ! empty( $_SESSION['user']->user ) ? $_SESSION['user']->user : 'NOLOGIN';
+    $pokestopId    = ! empty( $_POST['pokestopId'] ) ? $_POST['pokestopId'] : '';
+    $questId       = $_POST['questId'] == "NULL" ? 0 : $_POST['questId'];
+    $rewardId      = $_POST['rewardId'] == "NULL" ? 0 : $_POST['rewardId'];
+    $pokestop      = $db->get( "pokestops", [ 'name', 'lat', 'lon', 'external_id' ], [ 'external_id' => $pokestopId ] );
+    $pokestopImage = $db->get( "pokestops", [ 'url' ], [ 'external_id' => $pokestopId ] );
+    $loggedUser    = ! empty( $_SESSION['user']->user ) ? $_SESSION['user']->user : 'Anonymous';
     if ( ! empty( $pokestopId ) && ! empty( $questId ) && ! empty( $rewardId ) ) {
         $cols  = [
             'quest_id' => $questId,
@@ -227,19 +228,22 @@ if ( $action === "raid" ) {
         $db->update( "pokestops", $cols, $where );
     }
     if ( $sendQuestWebhook === true ) {
+        $quests     = json_decode( file_get_contents( "static/dist/data/quests.min.json" ), true );
+        $rewards    = json_decode( file_get_contents( "static/dist/data/rewards.min.json" ), true );
+        $questText  = $quests[$questId]['name'];
+        $rewardText = $rewards[$rewardId]['name'];
+        $pmsfDir    = "https://pokekarte.de/map";
+        $avatarUrl  = $pmsfDir . "/static/rewards/reward_" . $rewardId . ".png";
+//        $avatarUrl  = "https://pokekarte.de/map/static/rewards/reward_" . $rewardId . ".png";
 	$questwebhook = [
-	    'message' => [
-		'latitude'                          => $pokestop['lat'],
-		'longitude'                         => $pokestop['lon'],
-		'pokestop_id'                       => $pokestopId,
-                'name'                              => $pokestop['name'],
-		'quest_id'                          => $cols['quest_id'],
-		'reward_id'                         => $cols['reward_id'],
-	    ],
-	    'type'    => 'quest'
+		"username"                          => $rewardText,
+                "avatar_url"                        => $avatarUrl,
+		"content"                           => "",
+//		"content"                           => "**Belohnung: **" . $rewardText . "\n**Quest: **" . $questText . "\nLink: http://maps.google.com/maps?q=" . $pokestop['lat'] . "," . $pokestop['lon'],
+		"embeds"                            => [[ "url" => "http://maps.google.com/maps?q=" . $pokestop['lat'] . "," . $pokestop['lon'], "thumbnail" => $pokestopImage, "image" => [ "url" => "https://maps.googleapis.com/maps/api/staticmap?center=" . $pokestop['lat'] . "," . $pokestop['lon'] . "&markers=color:red%7C" . $pokestop['lat'] . "," . $pokestop['lon'] . "&maptype=roadmap&size=250x125&zoom=13&key=" . $gmapsKey ], "description" => "Pokéstop: " . $pokestop['name'] . "\nGemeldet von " . $loggedUser . ".", "title" => $questText ]],
 	];
 	foreach ( $questWebhookUrl as $url ) {
-            sendToWebhook($url, array($questwebhook));
+            sendToWebhook($url, $questwebhook);
 	}
     }
 
@@ -273,7 +277,7 @@ if ( $action === "raid" ) {
         $cols     = [
             'name'        => $pokestopName,
             'updated'     => time(),
-            'edited_by'    => $loggedUser 
+            'edited_by'    => $loggedUser
         ];
         $where    = [
             'external_id' => $pokestopId
@@ -477,7 +481,7 @@ if ( $action === "raid" ) {
             'lon'                 => $lng,
             'updated'             => time(),
             'source'              => 1,
-            'submitted_by'        => $loggedUser 
+            'submitted_by'        => $loggedUser
         ];
         $db->insert( "communities", $cols );
         if ( $noDiscordSubmitLogChannel === false ) {
