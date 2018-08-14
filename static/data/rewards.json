@@ -159,6 +159,10 @@
     "cat": "Pokébälle",
     "name": "5 Hyperbälle"
   },
+  "1209": {
+    "cat": "Pokébälle",
+    "name": "10 Hyperbälle"
+  },  
   "1301": {
     "cat": "Beeren",
     "name": "2 Goldene Himmihbeeren"
@@ -176,8 +180,8 @@
     "name": "3 Sananabeeren"
   },
   "1309": {
-    "cat": "Berries",
-    "name": "5 Nanab Berries"
+    "cat": "Beeren",
+    "name": "5 Nanabbeeren"
   },
   "1310": {
     "cat": "Beeren",
