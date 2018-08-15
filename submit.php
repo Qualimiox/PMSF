@@ -245,6 +245,36 @@ if ( $action === "raid" ) {
 	foreach ( $questWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
 	}
+    //Chansey
+    if ($rewardId == 113) {
+        foreach ( $questChanseyWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }
+    //Dratini
+    if ($rewardId == 147) {
+        foreach ( $questDratiniWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }
+    //Larvitar
+    if ($rewardId == 246) {
+        foreach ( $questLarvitarWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }      
+    //Pandir
+    if ($rewardId == 327) {
+        foreach ( $questPandirWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }
+    //Rare Candies
+    if ($rewardId >= 1000 and rewardId <= 1004) {
+        foreach ( $questCandyWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }  
     }
 
 } elseif ( $action === "nest" ) {
