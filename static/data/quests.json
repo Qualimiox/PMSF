@@ -7,6 +7,10 @@
     "cat": "Arenen/Raids",
     "name": "Kämpfe 5-Mal in einer Arena."
   },
+  "4": {
+    "cat": "Gym/Raid",
+    "name": "Win a Gym battle."
+  },
   "5": {
     "cat": "Arenen/Raids",
     "name": "Gewinne 3 Arenenkämpfe."
@@ -29,6 +33,10 @@
   },
   "10": {
     "cat": "Arenen/Raids",
+    "name": "Setze eine sehr effektive Lade-Attacke in einem Arenakampf ein."
+  },
+  "11": {
+    "cat": "Gym/Raid",
     "name": "Setze eine sehr effektive Lade-Attacke in 7 Arenakämpfen ein."
   },
   "12": {
