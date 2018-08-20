@@ -107,6 +107,10 @@
     "cat": "Werfen",
     "name": "Lande 3 großartige Curveball-Würfe."
   },
+  "378": {
+    "cat": "Throw",
+    "name": "Make 3 Great Curveball Throws in a row."
+  },
   "379": {
     "cat": "Werfen",
     "name": "Lande 3 großartige Cuverball-Würfe hintereinander."
@@ -152,7 +156,31 @@
     "name": "Verschicke 10 Pokémon."
   },
   "605": {
-    "cat": "Miscellaneous",
+    "cat": "Verschiedenes",
     "name": "Drehe 10 Pokéstops oder Arenen."
+  },
+  "701": {
+    "cat": "Verschiedenes",
+    "name": "Entwickle 3 Sonnkern oder Natu."
+  },
+  "702": {
+    "cat": "Johto Festival",
+    "name": "Lande 3 großartige Curveball-Würfe hintereinander."
+  },
+  "703": {
+    "cat": "Johto Festival",
+    "name": "Lande 3 fabelhafte Wurfe."
+  },
+  "704": {
+    "cat": "Johto Festival",
+    "name": "Fange 5 Pokémon vom Typ Wasser."
+  },
+  "705": {
+    "cat": "Johto Festival",
+    "name": "Fange 3 Sonnkern."
+  },
+  "706": {
+    "cat": "Johto Festival",
+    "name": "Gewinne einen Raid."	
   }
 }
