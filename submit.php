@@ -270,13 +270,13 @@ if ( $action === "raid" ) {
         }
     }
     //New Shinies
-    if ($rewardId == 209 or rewardId == 228) {
+    if ($rewardId == 209 || $rewardId == 228) {
         foreach ( $questShinyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
     }      
     //Rare Candies
-    if ($rewardId >= 1000 and rewardId <= 1004) {
+    if ($rewardId >= 1000 && $rewardId <= 1004) {
         foreach ( $questCandyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
