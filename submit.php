@@ -270,7 +270,7 @@ if ( $action === "raid" ) {
         }
     }
     //New Shinies
-    if ($rewardId == 209 || $rewardId == 228) {
+    if ($rewardId == 209 || $rewardId == 228 || $rewardId == 204) {
         foreach ( $questShinyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
