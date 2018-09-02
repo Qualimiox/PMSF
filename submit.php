@@ -273,7 +273,7 @@ if ( $action === "raid" ) {
         }
     }
     //New Shinies
-    if ($rewardId == 209 || $rewardId == 228 || $rewardId == 204) {
+    if ($rewardId == 58) {
         foreach ( $questShinyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
@@ -283,7 +283,13 @@ if ( $action === "raid" ) {
         foreach ( $questCandyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
-    }  
+    }
+    //Rare Candies
+    if ($rewardId == 1300) {
+        foreach ( $questBerryWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }      
     }
     if ( $sendQuestWebhook === true && $webhookSystem === 'pokealarm' ) {
         $quests = json_decode( file_get_contents( "static/dist/data/quests.min.json" ), true);

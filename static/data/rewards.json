@@ -15,17 +15,21 @@
     "cat": "Pokémon",
     "name": "Vulpix"
   },
+  "38": {
+    "cat": "Pokémon",
+    "name": "Vulnona"
+  },
   "56": {
     "cat": "Pokémon",
     "name": "Menki"
   },
+  "58": {
+    "cat": "Pokémon",
+    "name": "Fukano"
+  },
   "60": {
     "cat": "Pokémon",
     "name": "Quapsel"
-  },
-  "61": {
-    "cat": "Pokémon",
-    "name": "Poliwirl"
   },
   "66": {
     "cat": "Pokémon",
@@ -47,17 +51,13 @@
     "cat": "Pokémon",
     "name": "Owei"
   },
+  "109": {
+    "cat": "Pokémon",
+    "name": "Smogon"
+  },  
   "113": {
     "cat": "Pokémon",
     "name": "Chaneira"
-  },
-  "117": {
-    "cat": "Pokémon",
-    "name": "Seadra"
-  },
-   "123": {
-    "cat": "Pokémon",
-    "name": "Scyther"
   },
   "124": {
     "cat": "Pokémon",
@@ -79,10 +79,6 @@
     "cat": "Pokémon",
     "name": "Evoli"
   },
-  "137": {
-    "cat": "Pokémon",
-    "name": "Porygon"
-  },
   "147": {
     "cat": "Pokémon",
     "name": "Dratini"
@@ -103,10 +99,6 @@
     "cat": "Pokémon",
     "name": "Girafarig"
   },
-   "204": {
-    "cat": "Pokémon",
-    "name": "Tannza"
-  },
   "209": {
     "cat": "Pokémon",
     "name": "Snubbull"
@@ -115,9 +107,9 @@
     "cat": "Pokémon",
     "name": "Hunduster"
   },
-  "241": {
+  "231": {
     "cat": "Pokémon",
-    "name": "Miltank"
+    "name": "Phanpy"
   },
   "246": {
     "cat": "Pokémon",
@@ -126,6 +118,14 @@
   "309": {
     "cat": "Pokémon",
     "name": "Frizelbliz"
+  },
+  "315": {
+    "cat": "Pokémon",
+    "name": "Roselia"
+  },
+  "322": {
+    "cat": "Pokémon",
+    "name": "Numel"
   },
   "327": {
     "cat": "Pokémon",
@@ -255,24 +255,8 @@
     "cat": "Tränke & Beleber",
     "name": "3 Hypertränke"
   },
-  "1500": {
-    "cat": "Johto Festival",
-    "name": "Metallmantel"
-  },
-  "1501": {
-    "cat": "Johto Festival",
-    "name": "Drachenhaut"
-  },
-  "1502": {
-    "cat": "Johto Festival",
-    "name": "Upgrade"
-  },
-  "1503": {
-    "cat": "Johto Festival",
-    "name": "Sonnenstein"
-  },
-  "1504": {
-    "cat": "Johto Festival",
-    "name": "King-Stein"
+  "1300": {
+    "cat": "Beeren",
+    "name": "1 Silberne Sananabeere"
   }
 }

@@ -3,10 +3,6 @@
     "cat": "Arenen/Raids",
     "name": "Kämpfe in einer Arena."
   },
-  "3": {
-    "cat": "Arenen/Raids",
-    "name": "Kämpfe 5-Mal in einer Arena."
-  },
   "4": {
     "cat": "Arenen/Raids",
     "name": "Gewinne einen Arenenkampf."
@@ -19,29 +15,9 @@
     "cat": "Arenen/Raids",
     "name": "Gewinne 5 Arenenkämpfe."
   },
-  "7": {
-    "cat": "Arenen/Raids",
-    "name": "Kämpfe in einem Raid."
-  },
-  "8": {
-    "cat": "Arenen/Raids",
-    "name": "Gewinne einen Raid."
-  },
-  "9": {
-    "cat": "Arenen/Raids",
-    "name": "Gewinne 3 Raids."
-  },
-  "10": {
-    "cat": "Arenen/Raids",
-    "name": "Setze eine sehr effektive Lade-Attacke in einem Arenakampf ein."
-  },
-  "11": {
-    "cat": "Arenen/Raids",
-    "name": "Setze eine sehr effektive Lade-Attacke in 7 Arenakämpfen ein."
-  },
   "12": {
     "cat": "Arenen/Raids",
-    "name": "Gewinne einen Level-3-Raid oder höher."
+    "name": "Setze eine sehr effektive Lade-Attacke in 7 Arenakämpfen ein."
   },
   "118": {
     "cat": "Fangen",
@@ -51,33 +27,25 @@
     "cat": "Fangen",
     "name": "Fange 5 Pokémon mit Wetterverstärkung."
   },
-  "120": {
-    "cat": "Fangen",
-    "name": "Fange 10 Pokémon mit Wetterverstärkung."
-  },
-  "121": {
-    "cat": "Fangen",
-    "name": "Fange ein Ditto."
-  },
   "122": {
     "cat": "Fangen",
     "name": "Fange ein Pokémon vom Typ Drache."
   },
-  "123": {
-    "cat": "Fangen",
-    "name": "Fange 5 Pokémon vom Typ Elektro."
-  },
   "124": {
     "cat": "Fangen",
-    "name": "Fange ein Mauzi oder Fukano."
+    "name": "Fange 5 Pokémon vom Typ Feuer."
   },
-  "125": {
+  "127": {
     "cat": "Fangen",
-    "name": "Fange ein Eneco oder Fiffyen."
+    "name": "Fange ein Rattfratz oder Pikachu"
   },
-  "126": {
+  "128": {
     "cat": "Fangen",
     "name": "Verwende 5 Beeren beim Fangen von Pokémon."
+  },
+  "129": {
+    "cat": "Fangen",
+    "name": "Verwende 10 Beeren beim Fangen von Pokémon."
   },
   "255": {
     "cat": "Entwickeln",
@@ -85,51 +53,27 @@
   },
   "267": {
     "cat": "Entwickeln",
-    "name": "Entwickle ein Mauzi."
+    "name": "Entwickle 5 Pokémon vom Typ Feuer."
   },
   "370": {
     "cat": "Werfen",
     "name": "Lande 5 gute Würfe."
   },
-  "371": {
-    "cat": "Werfen",
-    "name": "Lande 2 gute Curveball-Würfe hintereinander."
-  },
-  "372": {
-    "cat": "Werfen",
-    "name": "Lande 3 gute Würfe hintereinander."
-  },
   "376": {
     "cat": "Werfen",
     "name": "Lande 3 großartige Würfe."
   },
-  "377": {
-    "cat": "Werfen",
-    "name": "Lande 3 großartige Curveball-Würfe."
-  },
   "378": {
-    "cat": "Throw",
-    "name": "Make 3 Great Curveball Throws in a row."
-  },
+    "cat": "Werfen",
+    "name": "Lande einen großartigen Curveball-Wurf."
+  },  
   "379": {
     "cat": "Werfen",
-    "name": "Lande 3 großartige Cuverball-Würfe hintereinander."
-  },
-  "385": {
-    "cat": "Werfen",
-    "name": "Lande einen fabelhaften Wurf."
+    "name": "Lande 3 großartige Würfe hintereinander."
   },
   "387": {
     "cat": "Werfen",
     "name": "Lande 3 fabelhafte Würfe hintereinander."
-  },
-  "391": {
-    "cat": "Werfen",
-    "name": "Lande 3 Curveball-Würfe hintereinander."
-  },
-  "392": {
-    "cat": "Werfen",
-    "name": "Lande 5 Curveball-Würfe hintereinander."
   },
   "596": {
     "cat": "Verschiedenes",
@@ -143,44 +87,24 @@
     "cat": "Verschiedenes",
     "name": "Brüte 5 Eier aus."
   },
-  "599": {
-    "cat": "Verschiedenes",
-    "name": "Verwende 5 Power-Ups bei Pokémon."
-  },
   "600": {
     "cat": "Verschiedenes",
-    "name": "Verwende ein Power-Up bei Pokémon."
+    "name": "Verwende 3 Power-Ups bei Pokémon."
   },
-  "602": {
+  "601": {
+    "cat": "Verschiedenes",
+    "name": "Verwende 5 Power-Ups bei Pokémon."
+  },  
+  "605": {
     "cat": "Verschiedenes",
     "name": "Verschicke 10 Pokémon."
   },
-  "605": {
+  "610": {
     "cat": "Verschiedenes",
-    "name": "Drehe 10 Pokéstops oder Arenen."
+    "name": "Versende 5 Geschenke."
   },
-  "701": {
-    "cat": "Johto Festival",
-    "name": "Entwickle 3 Sonnkern oder Natu."
-  },
-  "702": {
-    "cat": "Johto Festival",
-    "name": "Lande 4 großartige Curveball-Würfe hintereinander."
-  },
-  "703": {
-    "cat": "Johto Festival",
-    "name": "Lande 3 fabelhafte Wurfe."
-  },
-  "704": {
-    "cat": "Johto Festival",
-    "name": "Fange 5 Pokémon vom Typ Wasser."
-  },
-  "705": {
-    "cat": "Johto Festival",
-    "name": "Fange 3 Sonnkern."
-  },
-  "706": {
-    "cat": "Johto Festival",
-    "name": "Gewinne einen Raid."	
+  "615": {
+    "cat": "Verschiedenes",
+    "name": "Erhalte ein Bonbon durch Laufen mit deinem Kumpel."
   }
 }
