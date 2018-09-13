@@ -28,21 +28,21 @@ if ( $action === "raid" ) {
     $gymId      = ! empty( $_POST['gymId'] ) ? $_POST['gymId'] : 0;
     $eggTime    = ! empty( $_POST['eggTime'] ) ? $_POST['eggTime'] : 0;
     $monTime    = ! empty( $_POST['monTime'] ) ? $_POST['monTime'] : 0;
-    if ( $eggTime > 60 ) {
-        $eggTime = 60;
+    if ( $eggTime > 15 ) {
+        $eggTime = 15;
     }
-    if ( $monTime > 45 ) {
-        $monTime = 45;
+    if ( $monTime > 90 ) {
+        $monTime = 90;
     }
     if ( $eggTime < 0 ) {
         $eggTime = 0;
     }
     if ( $monTime < 0 ) {
-        $monTime = 45;
+        $monTime = 90;
     }
 
 // brimful of asha on the:
-    $forty_five = 45 * 60;
+    $forty_five = 90 * 60;
     $hour       = 3600;
 
 //$db->debug();
@@ -435,6 +435,28 @@ if ( $action === "raid" ) {
 	$db->insert( "forts", $cols );
         if ( $noDiscordSubmitLogChannel === false ) {
             $data = array("content" => '```Converted portal with id "' . $portalId . '." New Gym: "' . $portalName['name'] . '". ```', "username" => $loggedUser);
+            sendToWebhook($discordSubmitLogChannelUrl, ($data));
+        }
+    }
+} elseif ( $action === "markportal" ) {
+    if ( $noPortals === true ) {
+        http_response_code( 401 );
+        die();
+    }
+    $portalId   = ! empty( $_POST['portalid'] ) ? $_POST['portalid'] : '';
+    $loggedUser = ! empty( $_SESSION['user']->user ) ? $_SESSION['user']->user : 'NOLOGIN';
+    $portalName = $db->get( "ingress_portals", [ 'name' ], [ 'external_id' => $portalId ] );
+    if ( ! empty( $portalId ) ) {
+        $cols     = [
+            'updated'      => time(),
+            'checked'      => 1
+        ];
+        $where    = [
+            'external_id' => $portalId
+        ];
+	$db->update( "ingress_portals", $cols, $where );
+        if ( $noDiscordSubmitLogChannel === false ) {
+            $data = array("content" => '```Marked portal with id "' . $portalId . '." As no Pokestop or Gym. PortalName: "' . $portalName['name'] . '". ```', "username" => $loggedUser);
             sendToWebhook($discordSubmitLogChannelUrl, ($data));
         }
     }
