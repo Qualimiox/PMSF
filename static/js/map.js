@@ -166,9 +166,24 @@ var notifyText = 'disappears at <dist> (<udist>)'
 // Functions
 //
 if (location.search.indexOf('login=true') > 0) {
-    setTimeout(function () { window.location = '/' }, 500)
+    $('#nav').load(window.location.href + '#nav')
+    window.location.href = '/'
 }
-
+if (location.search.indexOf('login=false') > 0) {
+    openAccessDeniedModal()
+}
+function openAccessDeniedModal(event) { // eslint-disable-line no-unused-vars
+    $('.ui-dialog').remove()
+    $('.accessdenied-modal').clone().dialog({
+        modal: true,
+        maxHeight: 600,
+        buttons: {},
+        title: i8ln('Your access is denied'),
+        classes: {
+            'ui-dialog': 'ui-dialog raid-widget-popup'
+        }
+    })
+}
 function formatDate(date) {
     var monthNames = [
         'January', 'February', 'March',
@@ -1684,10 +1699,21 @@ function communityLabel(item) {
 }
 
 function setupPortalMarker(item) {
+    var ts = Math.round(new Date().getTime() / 1000)
+    var yesterday = ts - (24 * 3600)
     if (item.checked === '1') {
         var circle = {
             path: google.maps.SymbolPath.CIRCLE,
             fillColor: 'red',
+            fillOpacity: 0.4,
+            scale: 15,
+            strokeColor: 'white',
+            strokeWeight: 1
+        }
+    } else if (item.imported > yesterday) {
+        circle = {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: 'green',
             fillOpacity: 0.4,
             scale: 15,
             strokeColor: 'white',
@@ -1724,10 +1750,12 @@ function setupPortalMarker(item) {
 
 function portalLabel(item) {
     var updated = formatDate(new Date(item.updated * 1000))
+    var imported = formatDate(new Date(item.imported * 1000))
     var str = '<img src="' + item.url + '" align"middle" style="width:175px;height:auto;margin-left:25px;"/>' +
         '<center><h4><div>' + item.name + '</div></h4></center>' +
         '<center><div>Convert this portal<i class="fa fa-refresh convert-portal" style="margin-top: 2px; margin-left: 5px; vertical-align: middle; font-size: 1.5em;" onclick="openConvertPortalModal(event);" data-id="' + item.external_id + '"></i></div></center>' +
-        '<center><div>Last updated: ' + updated + '</div></center>'
+        '<center><div>Last updated: ' + updated + '</div></center>' +
+        '<center><div>Date imported: ' + imported + '</div></center>'
     if (!noDeletePortal) {
         str += '<i class="fa fa-trash-o delete-portal" onclick="deletePortal(event);" data-id="' + item.external_id + '"></i>'
     }
@@ -2170,7 +2198,7 @@ function searchForItem(lat, lon, term, type, field) {
                         html += '<span class="i-icon"><span class="pokemon-icon n' + element.pokemon_id + '" ></span></span>'
                     } else if (sr.hasClass('reward-results')) {
                         html += '<span style="background:url(static/rewards/reward_' + element.reward_id + '.png) no-repeat;" class="i-icon" ></span>'
-                    } else if (sr.hasClass('gym-results') || ('pokestop-results')) {
+                    } else if (sr.hasClass('gym-results') || ('pokestop-results') || ('portal-results')) {
                         html += '<span style="background:url(' + element.url + ') no-repeat;" class="i-icon" ></span>'
                     }
                     html += '<div class="cont">'
@@ -2957,7 +2985,52 @@ function generateRaidModal() {
 
 function generateTimerLists() {
     var html = '<select name="egg_time" class="egg_time" style="display:none;">' +
-        '<option value="15" selected>15</option>' +
+        '<option value="60" selected>60</option>' +
+        '<option value="59">59</option>' +
+        '<option value="58">58</option>' +
+        '<option value="57">57</option>' +
+        '<option value="56">56</option>' +
+        '<option value="55">55</option>' +
+        '<option value="54">54</option>' +
+        '<option value="53">53</option>' +
+        '<option value="52">52</option>' +
+        '<option value="51">51</option>' +
+        '<option value="50">50</option>' +
+        '<option value="49">49</option>' +
+        '<option value="48">48</option>' +
+        '<option value="47">47</option>' +
+        '<option value="46">46</option>' +
+        '<option value="45">45</option>' +
+        '<option value="44">44</option>' +
+        '<option value="43">43</option>' +
+        '<option value="42">42</option>' +
+        '<option value="41">41</option>' +
+        '<option value="40">40</option>' +
+        '<option value="39">39</option>' +
+        '<option value="38">38</option>' +
+        '<option value="37">37</option>' +
+        '<option value="36">36</option>' +
+        '<option value="35">35</option>' +
+        '<option value="34">34</option>' +
+        '<option value="33">33</option>' +
+        '<option value="32">32</option>' +
+        '<option value="31">31</option>' +
+        '<option value="30">30</option>' +
+        '<option value="29">29</option>' +
+        '<option value="28">28</option>' +
+        '<option value="27">27</option>' +
+        '<option value="26">26</option>' +
+        '<option value="25">25</option>' +
+        '<option value="24">24</option>' +
+        '<option value="23">23</option>' +
+        '<option value="22">22</option>' +
+        '<option value="21">21</option>' +
+        '<option value="20">20</option>' +
+        '<option value="19">19</option>' +
+        '<option value="18">18</option>' +
+        '<option value="17">17</option>' +
+        '<option value="16">16</option>' +
+        '<option value="15">15</option>' +
         '<option value="14">14</option>' +
         '<option value="13">13</option>' +
         '<option value="12">12</option>' +
@@ -2974,52 +3047,7 @@ function generateTimerLists() {
         '<option value="1">1</option>' +
         '</select>' +
         '<select name="mon_time" class="mon_time" style="display:none;">' +
-        '<option value="90" selected>90</option>' +
-        '<option value="89">89</option>' +
-        '<option value="88">88</option>' +
-        '<option value="87">87</option>' +
-        '<option value="86">86</option>' +
-        '<option value="85">85</option>' +
-        '<option value="84">84</option>' +
-        '<option value="83">83</option>' +
-        '<option value="82">82</option>' +
-        '<option value="81">81</option>' +
-        '<option value="80">80</option>' +
-        '<option value="79">79</option>' +
-        '<option value="78">78</option>' +
-        '<option value="77">77</option>' +
-        '<option value="76">76</option>' +
-        '<option value="75">75</option>' +
-        '<option value="74">74</option>' +
-        '<option value="73">73</option>' +
-        '<option value="72">72</option>' +
-        '<option value="71">71</option>' +
-        '<option value="70">70</option>' +
-        '<option value="69">69</option>' +
-        '<option value="68">68</option>' +
-        '<option value="67">67</option>' +
-        '<option value="66">66</option>' +
-        '<option value="65">65</option>' +
-        '<option value="64">64</option>' +
-        '<option value="63">63</option>' +
-        '<option value="62">62</option>' +
-        '<option value="61">61</option>' +
-        '<option value="60">60</option>' +
-        '<option value="59">59</option>' +
-        '<option value="58">58</option>' +
-        '<option value="57">57</option>' +
-        '<option value="56">56</option>' +
-        '<option value="55">55</option>' +
-        '<option value="54">54</option>' +
-        '<option value="53">53</option>' +
-        '<option value="52">52</option>' +
-        '<option value="51">51</option>' +
-        '<option value="50">50</option>' +
-        '<option value="49">49</option>' +
-        '<option value="48">48</option>' +
-        '<option value="47">47</option>' +
-        '<option value="46">46</option>' +
-        '<option value="45">45</option>' +
+        '<option value="45" selected>45</option>' +
         '<option value="44">44</option>' +
         '<option value="43">43</option>' +
         '<option value="42">42</option>' +
@@ -3087,7 +3115,7 @@ function openSearchModal(event) { // eslint-disable-line no-unused-vars
         width: width,
         buttons: {},
         open: function (event, ui) {
-            jQuery('input[name="gym-search"], input[name="pokestop-search"], input[name="reward-search"], input[name="nest-search"]').bind('input', function () {
+            jQuery('input[name="gym-search"], input[name="pokestop-search"], input[name="reward-search"], input[name="nest-search"], input[name="portals-search"]').bind('input', function () {
                 searchAjax($(this))
             })
             $('.search-widget-popup #search-tabs').tabs()
