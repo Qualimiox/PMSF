@@ -30,6 +30,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "clean": "^4.0.2",
+    "discord.js": "^11.4.2",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.14.0",
@@ -57,7 +58,9 @@
     "grunt-usemin": "latest",
     "jit-grunt": "^0.10.0",
     "long": "^3.2.0",
+    "mysql": "^2.16.0",
     "node-sass": "^4.9.3",
+    "ontime": "0.0.6",
     "phplint": "^1.7.4",
     "push.js": "^1.0.4"
   }

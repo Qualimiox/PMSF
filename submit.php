@@ -350,7 +350,6 @@ if ( $action === "raid" ) {
                 sendToWebhook($url, array($questwebhook));
 	    }
         }
-    }
 } elseif ( $action === "nest" ) {
     if ( $noManualNests === true || $noNests === true ) {
         http_response_code( 401 );
