@@ -272,8 +272,14 @@ if ( $action === "raid" ) {
             sendToWebhook($url, $questwebhook);
         }
     }
+	//Feebas
+    if ($rewardId == 349) {
+        foreach ( $questFeebasWebhookUrl as $url ) {
+            sendToWebhook($url, $questwebhook);
+        }
+    }
     //New Shinies
-    if ($rewardId == 58) {
+    if ($rewardId == 98) {
         foreach ( $questShinyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }

@@ -3,6 +3,10 @@
     "cat": "Arenen/Raids",
     "name": "Kämpfe in einer Arena."
   },
+  "2": {
+    "cat": "Arenen/Raids",
+    "name": "Kämpfe 5 Mal in einer Arena."
+  },  
   "4": {
     "cat": "Arenen/Raids",
     "name": "Gewinne einen Arenenkampf."
@@ -10,10 +14,6 @@
   "5": {
     "cat": "Arenen/Raids",
     "name": "Gewinne 3 Arenenkämpfe."
-  },
-  "6": {
-    "cat": "Arenen/Raids",
-    "name": "Gewinne 5 Arenenkämpfe."
   },
   "12": {
     "cat": "Arenen/Raids",
@@ -33,11 +33,7 @@
   },
   "124": {
     "cat": "Fangen",
-    "name": "Fange 5 Pokémon vom Typ Feuer."
-  },
-  "127": {
-    "cat": "Fangen",
-    "name": "Fange ein Rattfratz oder Pikachu"
+    "name": "Fange 5 Pokémon vom Typ Wasser."
   },
   "128": {
     "cat": "Fangen",
@@ -53,12 +49,16 @@
   },
   "267": {
     "cat": "Entwickeln",
-    "name": "Entwickle 5 Pokémon vom Typ Feuer."
+    "name": "Entwickle 10 Pokémon vom Typ Wasser."
   },
   "370": {
     "cat": "Werfen",
     "name": "Lande 5 gute Würfe."
   },
+  "375": {
+    "cat": "Werfen",
+    "name": "Lande 2 gute Curveball-Würfe."
+  },  
   "376": {
     "cat": "Werfen",
     "name": "Lande 3 großartige Würfe."
@@ -80,15 +80,19 @@
     "name": "Lande 3 fabelhafte Würfe hintereinander."
   },
   "596": {
-    "cat": "Verschiedenes",
+    "cat": "Brüten",
     "name": "Brüte ein Ei aus."
   },
   "597": {
-    "cat": "Verschiedenes",
+    "cat": "Brüten",
+    "name": "Brüte 2 Eier aus."
+  },  
+  "598": {
+    "cat": "Brüten",
     "name": "Brüte 3 Eier aus."
   },
-  "598": {
-    "cat": "Verschiedenes",
+  "599": {
+    "cat": "Brüten",
     "name": "Brüte 5 Eier aus."
   },
   "600": {
@@ -101,7 +105,7 @@
   },  
   "605": {
     "cat": "Verschiedenes",
-    "name": "Verschicke 10 Pokémon."
+    "name": "Tausche ein Pokémon."
   },
   "610": {
     "cat": "Verschiedenes",

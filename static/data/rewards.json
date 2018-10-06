@@ -15,17 +15,9 @@
     "cat": "Pokémon:",
     "name": "Vulpix"
   },
-  "38": {
-    "cat": "Pokémon",
-    "name": "Vulnona"
-  },
   "56": {
     "cat": "Pokémon",
     "name": "Menki"
-  },
-  "58": {
-    "cat": "Pokémon",
-    "name": "Fukano"
   },
   "60": {
     "cat": "Pokémon",
@@ -43,6 +35,10 @@
     "cat": "Pokémon:",
     "name": "Onix"
   },
+  "98": {
+    "cat": "Pokémon:",
+    "name": "Krabby"
+  },  
   "100": {
     "cat": "Pokémon",
     "name": "Voltobal"
@@ -68,9 +64,9 @@
     "name": "Elektek"
   },
   "126": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Magmar"
-  },
+  },  
   "129": {
     "cat": "Pokémon",
     "name": "Karpador"
@@ -83,54 +79,26 @@
     "cat": "Pokémon:",
     "name": "Dratini"
   },
-  "171": {
+  "224": {
     "cat": "Pokémon:",
-    "name": "Lanturn"
-  },
-  "179": {
-    "cat": "Pokémon",
-    "name": "Voltilamm"
-  },
-  "200": {
-    "cat": "Pokémon",
-    "name": "Traunfugil"
-  },
-  "203": {
-    "cat": "Pokémon:",
-    "name": "Girafarig"
-  },
-  "209": {
-    "cat": "Pokémon:",
-    "name": "Snubbull"
-  },
-  "228": {
-    "cat": "Pokémon",
-    "name": "Hunduster"
-  },
-  "231": {
-    "cat": "Pokémon:",
-    "name": "Phanpy"
-  },
+    "name": "Octillery"
+  },  
   "246": {
     "cat": "Pokémon:",
     "name": "Larvitar"
-  },
-  "309": {
-    "cat": "Pokémon",
-    "name": "Frizelbliz"
   },
   "315": {
     "cat": "Pokémon:",
     "name": "Roselia"
   },
-  "322": {
-    "cat": "Pokémon:",
-    "name": "Numel"
-  },
   "327": {
     "cat": "Pokémon",
     "name": "Pandir"
   },
+  "349": {
+    "cat": "Pokémon:",
+    "name": "Barschwa"
+  },  
   "999": {
     "cat": "Pokémon:",
     "name": "?? Encounter"
