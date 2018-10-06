@@ -38,6 +38,10 @@
   "98": {
     "cat": "Pokémon:",
     "name": "Krabby"
+  },
+  "100": {
+    "cat": "Pokémon:",
+    "name": "Krabby"
   },  
   "100": {
     "cat": "Pokémon",
@@ -79,17 +83,21 @@
     "cat": "Pokémon:",
     "name": "Dratini"
   },
+  "203": {
+    "cat": "Pokémon:",
+    "name": "Girafarig"
+  },
   "224": {
     "cat": "Pokémon:",
     "name": "Octillery"
-  },  
+  },
   "246": {
     "cat": "Pokémon:",
     "name": "Larvitar"
-  },
-  "315": {
+  }, 
+  "320": {
     "cat": "Pokémon:",
-    "name": "Roselia"
+    "name": "Wailmer"
   },
   "327": {
     "cat": "Pokémon",

@@ -27,6 +27,14 @@
     "cat": "Fangen",
     "name": "Fange 5 Pokémon mit Wetterverstärkung."
   },
+  "120": {
+    "cat": "Fangen",
+    "name": "Fange 10 Pokémon vom Typ Psycho."
+  },
+  "121": {
+    "cat": "Fangen",
+    "name": "Fange 5 Abra oder Traumato"
+  },
   "122": {
     "cat": "Fangen",
     "name": "Fange ein Pokémon vom Typ Drache."
@@ -47,6 +55,10 @@
     "cat": "Entwickeln",
     "name": "Entwickle ein Pokémon."
   },
+  "256": {
+    "cat": "Entwickeln",
+    "name": "Entwickle 3 Flegmon oder Owei"
+  },  
   "267": {
     "cat": "Entwickeln",
     "name": "Entwickle 10 Pokémon vom Typ Wasser."
