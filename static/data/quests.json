@@ -43,9 +43,10 @@
     "cat": "Fangen",
     "name": "Fange 5 Pokémon vom Typ Wasser."
   },
-  "128": {
-    "cat": "Fangen",
-    "name": "Verwende 5 Beeren beim Fangen von Pokémon."
+
+  "125": {
+    "cat": "Catch",
+    "name": "Use 5 Pinap Berries while catching Pokémon"
   },
   "129": {
     "cat": "Fangen",

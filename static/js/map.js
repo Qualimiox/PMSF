@@ -142,13 +142,16 @@ var genderType = ['♂', '♀', '⚲']
 var forms = ['unset', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?', i8ln('Normal'), i8ln('Sunny'), i8ln('Rainy'), i8ln('Snowy'), i8ln('Normal'), i8ln('Attack'), i8ln('Defense'), i8ln('Speed')]
 var cpMultiplier = [0.094, 0.16639787, 0.21573247, 0.25572005, 0.29024988, 0.3210876, 0.34921268, 0.37523559, 0.39956728, 0.42250001, 0.44310755, 0.46279839, 0.48168495, 0.49985844, 0.51739395, 0.53435433, 0.55079269, 0.56675452, 0.58227891, 0.59740001, 0.61215729, 0.62656713, 0.64065295, 0.65443563, 0.667934, 0.68116492, 0.69414365, 0.70688421, 0.71939909, 0.7317, 0.73776948, 0.74378943, 0.74976104, 0.75568551, 0.76156384, 0.76739717, 0.7731865, 0.77893275, 0.7846369, 0.79030001]
 
+var weatherLayerGroup = new L.LayerGroup()
 var weatherArray = []
 var weatherPolys = []
 var weatherMarkers = []
 var weatherColors
 
 var S2
-
+var exLayerGroup = new L.LayerGroup()
+var gymLayerGroup = new L.LayerGroup()
+var stopLayerGroup = new L.LayerGroup()
 /*
  text place holders:
  <pkm> - pokemon name
@@ -254,7 +257,8 @@ function initMap() { // eslint-disable-line no-unused-vars
         zoom: zoom == null ? Store.get('zoomLevel') : zoom,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        zoomControl: false
+        zoomControl: false,
+        layers: [weatherLayerGroup, exLayerGroup, gymLayerGroup, stopLayerGroup]
     })
 
     setTileLayer(Store.get('map_style'))
@@ -298,6 +302,8 @@ function initMap() { // eslint-disable-line no-unused-vars
         }
     })
 
+    map.createPane('portals')
+    map.getPane('portals').style.zIndex = 450
     createMyLocationButton()
     initSidebar()
 
@@ -319,6 +325,11 @@ function initMap() { // eslint-disable-line no-unused-vars
     }
 
     updateWeatherOverlay()
+    updateS2Overlay()
+
+    map.on('moveend', function () {
+        updateS2Overlay()
+    })
 
     map.on('click', function (e) {
         if ($('.submit-on-off-button').hasClass('on')) {
@@ -407,11 +418,50 @@ function createLocationMarker() {
     return locationMarker
 }
 
+function showS2Cells(level, style) {
+    const bounds = map.getBounds()
+    const size = L.CRS.Earth.distance(bounds.getSouthWest(), bounds.getNorthEast()) / 10000 + 1 | 0
+    const count = 2 ** level * size >> 11
+
+    function addPoly(cell) {
+        const vertices = cell.getCornerLatLngs()
+        const poly = L.polygon(vertices,
+            Object.assign({color: 'blue', opacity: 0.5, weight: 2, fillOpacity: 0.0}, style))
+        if (cell.level === 13) {
+            exLayerGroup.addLayer(poly)
+        } else if (cell.level === 14) {
+            gymLayerGroup.addLayer(poly)
+        } else if (cell.level === 17) {
+            stopLayerGroup.addLayer(poly)
+        }
+    }
+
+    // add cells spiraling outward
+    let cell = S2.S2Cell.FromLatLng(bounds.getCenter(), level)
+    let steps = 1
+    let direction = 0
+    do {
+        for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < steps; i++) {
+                addPoly(cell)
+                cell = cell.getNeighbors()[direction % 4]
+            }
+            direction++
+        }
+        steps++
+    } while (steps < count)
+}
+
 function initSidebar() {
     $('#gyms-switch').prop('checked', Store.get('showGyms'))
     $('#nests-switch').prop('checked', Store.get('showNests'))
     $('#communities-switch').prop('checked', Store.get('showCommunities'))
     $('#portals-switch').prop('checked', Store.get('showPortals'))
+    $('#s2-switch').prop('checked', Store.get('showCells'))
+    $('#s2-switch-wrapper').toggle(Store.get('showCells'))
+    $('#s2-level13-switch').prop('checked', Store.get('showExCells'))
+    $('#s2-level14-switch').prop('checked', Store.get('showGymCells'))
+    $('#s2-level17-switch').prop('checked', Store.get('showStopCells'))
     $('#new-portals-only-switch').val(Store.get('showNewPortalsOnly'))
     $('#new-portals-only-wrapper').toggle(Store.get('showPortals'))
     $('#gym-sidebar-switch').prop('checked', Store.get('useGymSidebar'))
@@ -462,7 +512,6 @@ function initSidebar() {
             $('#search-places-results li').remove()
             event.preventDefault()
             const results = await searchProvider.search({ query: input.value })
-            console.log(results)
             $.each(results, function (key, val) {
                 $('#search-places-results').append('<li class="place-result" data-lat="' + val.y + '" data-lon="' + val.x + '"><span class="place-result" onclick="centerMapOnCoords(event);">' + val.label + '</span></li>')
             })
@@ -675,6 +724,8 @@ function gymLabel(item) {
     var teamId = item['team_id']
     var latitude = item['latitude']
     var longitude = item['longitude']
+    var lastScanned = item['last_scanned']
+    var lastModified = item['last_modified']
     var name = item['name']
     var url = item['url']
     var members = item['pokemon']
@@ -753,7 +804,7 @@ function gymLabel(item) {
         }
     }
     if (manualRaids) {
-        raidStr += '<div class="raid-container">' + i8ln('Add raid') + '<i class="fa fa-binoculars submit-raid" onclick="openRaidModal(event);" data-id="' + item['gym_id'] + '"></i>' +
+        raidStr += '<div class="raid-container">' + i8ln('Add raid ') + '<i class="fa fa-binoculars submit-raid" onclick="openRaidModal(event);" data-id="' + item['gym_id'] + '"></i>' +
             '</div>'
     }
     if (!noDeleteGyms) {
@@ -764,7 +815,7 @@ function gymLabel(item) {
     }
 
     var park = ''
-    if ((item['park'] !== 'None' && item['park'] !== undefined && item['park']) && (noParkInfo === false)) {
+    if ((item['park'] !== '0' && item['park'] !== 'None' && item['park'] !== undefined && item['park']) && (noParkInfo === false)) {
         if (item['park'] === 1) {
             // RM only stores boolean, so just call it "Park Gym"
             park = i8ln('Park Gym')
@@ -781,6 +832,16 @@ function gymLabel(item) {
             '<span class="cp team-' + teamId + '">' + members[i].pokemon_cp + '</span>' +
             '</span>'
     }
+
+    var lastScannedStr = ''
+    if (lastScanned != null) {
+        lastScannedStr =
+            '<div>' +
+            i8ln('Last Scanned') + ' : ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
+            '</div>'
+    }
+
+    var lastModifiedStr = getDateStr(lastModified) + ' ' + getTimeStr(lastModified)
 
     var nameStr = (name ? '<div>' + name + '</div>' : '')
 
@@ -806,6 +867,13 @@ function gymLabel(item) {
             '</div>' +
             '<div>' +
             i8ln('Location') + ': <a href="javascript:void(0);" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ');" title="' + i8ln('View in Maps') + '">' + latitude.toFixed(6) + ' , ' + longitude.toFixed(7) + '</a> - <a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16">Share link</a>' +
+            '</div>' +
+            '<div>' +
+
+            i8ln('Last Modified') + ' : ' + lastModifiedStr +
+            '</div>' +
+            '<div>' +
+            lastScannedStr +
             '</div>' +
             '</center>' +
             '</div>'
@@ -1171,7 +1239,7 @@ function customizePokemonMarker(marker, item, skipNotification) {
 
 function getGymMarkerIcon(item) {
     var park = item['park']
-    var level = item.raid_level
+    var level = 6 - item['slots_available']
     var raidForm = item['form']
     var formStr = ''
     if (raidForm <= 10 || raidForm == null) {
@@ -1290,7 +1358,7 @@ function getGymMarkerIcon(item) {
 }
 
 function setupGymMarker(item) {
-    var marker = L.marker([item['latitude'], item['longitude']], {icon: getGymMarkerIcon(item)})
+    var marker = L.marker([item['latitude'], item['longitude']], {icon: getGymMarkerIcon(item), zIndexOffset: 1060})
     markers.addLayer(marker)
     updateGymMarker(item, marker)
 
@@ -1508,7 +1576,7 @@ function getPokestopMarkerIcon(item) {
 
 function setupPokestopMarker(item) {
     var pokestopMarkerIcon = getPokestopMarkerIcon(item)
-    var marker = L.marker([item['latitude'], item['longitude']], {icon: pokestopMarkerIcon}).bindPopup(pokestopLabel(item['lure_expiration'], item['latitude'], item['longitude'], item['pokestop_name'], item['url'], item['lure_user'], item['pokestop_id'], item['quest_id'], item['reward_id']), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.marker([item['latitude'], item['longitude']], {icon: pokestopMarkerIcon, zIndexOffset: 1050}).bindPopup(pokestopLabel(item['lure_expiration'], item['latitude'], item['longitude'], item['pokestop_name'], item['url'], item['lure_user'], item['pokestop_id'], item['quest_id'], item['reward_id']), {autoPan: false, closeOnClick: false, autoClose: false})
     markers.addLayer(marker)
 
     if (!marker.rangeCircle && isRangeActive(map)) {
@@ -1538,7 +1606,7 @@ function setupNestMarker(item) {
         className: 'marker-nests',
         html: getNestMarkerIcon
     })
-    var marker = L.marker([item['lat'], item['lon']], {icon: nestMarkerIcon}).bindPopup(nestLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.marker([item['lat'], item['lon']], {icon: nestMarkerIcon, zIndexOffset: 1020}).bindPopup(nestLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
     markers.addLayer(marker)
     addListeners(marker)
 
@@ -1602,7 +1670,7 @@ function setupCommunityMarker(item) {
         html: '<img src="static/images/marker-' + item.type + '.png" style="width:36px;height: auto;"/>'
     })
 
-    var marker = L.marker([item['lat'], item['lon']], {icon: icon}).bindPopup(communityLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.marker([item['lat'], item['lon']], {icon: icon, zIndexOffset: 1030}).bindPopup(communityLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
     markers.addLayer(marker)
 
     addListeners(marker)
@@ -1676,7 +1744,8 @@ function setupPortalMarker(item) {
             radius: 10,
             fillOpacity: 0.4,
             fillColor: '#f00',
-            weight: 1
+            weight: 1,
+            pane: 'portals'
         }
     } else if (item.imported > yesterday) {
         circle = {
@@ -1684,7 +1753,8 @@ function setupPortalMarker(item) {
             radius: 10,
             fillOpacity: 0.4,
             fillColor: '#9f3',
-            weight: 1
+            weight: 1,
+            pane: 'portals'
         }
     } else {
         circle = {
@@ -1692,7 +1762,8 @@ function setupPortalMarker(item) {
             radius: 10,
             fillOpacity: 0.4,
             fillColor: '#00f',
-            weight: 1
+            weight: 1,
+            pane: 'portals'
         }
     }
     var marker = L.circleMarker([item['lat'], item['lon']], circle).bindPopup(portalLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
@@ -1707,9 +1778,11 @@ function portalLabel(item) {
     var updated = formatDate(new Date(item.updated * 1000))
     var imported = formatDate(new Date(item.imported * 1000))
     var str = '<img src="' + item.url + '" align"middle" style="width:175px;height:auto;margin-left:25px;"/>' +
-        '<center><h4><div>' + item.name + '</div></h4></center>' +
-        '<center><div>Convert this portal<i class="fa fa-refresh convert-portal" style="margin-top: 2px; margin-left: 5px; vertical-align: middle; font-size: 1.5em;" onclick="openConvertPortalModal(event);" data-id="' + item.external_id + '"></i></div></center>' +
-        '<center><div>Last updated: ' + updated + '</div></center>' +
+        '<center><h4><div>' + item.name + '</div></h4></center>'
+    if (!noConvertPortal) {
+        str += '<center><div>Convert this portal<i class="fa fa-refresh convert-portal" style="margin-top: 2px; margin-left: 5px; vertical-align: middle; font-size: 1.5em;" onclick="openConvertPortalModal(event);" data-id="' + item.external_id + '"></i></div></center>'
+    }
+    str += '<center><div>Last updated: ' + updated + '</div></center>' +
         '<center><div>Date imported: ' + imported + '</div></center>'
     if (!noDeletePortal) {
         str += '<i class="fa fa-trash-o delete-portal" onclick="deletePortal(event);" data-id="' + item.external_id + '"></i>'
@@ -3530,7 +3603,7 @@ function updateMap() {
                 var currentCell = $('#currentWeather').data('current-cell')
                 if ((currentWeather) && (currentCell !== currentWeather.s2_cell_id)) {
                     $('#currentWeather').data('current-cell', currentWeather.s2_cell_id)
-                    $('#currentWeather').html('<img src="static/weather/' + currentWeather.condition + '.png" alt="">')
+                    $('#currentWeather').html('<img src="static/weather/' + currentWeather.condition + '.png" alt="" height="55px"">')
                 } else if (!currentWeather) {
                     $('#currentWeather').data('current-cell', '')
                     $('#currentWeather').html('')
@@ -3553,9 +3626,9 @@ function updateMap() {
         showInBoundsMarkers(mapData.gyms, 'gym')
         showInBoundsMarkers(mapData.pokestops, 'pokestop')
         showInBoundsMarkers(mapData.scanned, 'scanned')
-        showInBoundsMarkers(mapData.spawnpoints, 'inbound'
-            //      drawScanPath(result.scanned)
-        )
+        showInBoundsMarkers(mapData.spawnpoints, 'inbound')
+        // drawScanPath(result.scanned)
+
         clearStaleMarkers()
 
         updateScanned()
@@ -3610,6 +3683,32 @@ function updateWeatherOverlay() {
     }
 }
 
+function updateS2Overlay() {
+    if ((Store.get('showCells'))) {
+        if (Store.get('showExCells') && (map.getZoom() > 12)) {
+            exLayerGroup.clearLayers()
+            showS2Cells(13, {color: 'red'})
+        } else if (Store.get('showExCells') && (map.getZoom() <= 12)) {
+            exLayerGroup.clearLayers()
+            toastr['error'](i8ln('This is to much zoom.'), i8ln('EX cells are currently hidden'))
+        }
+        if (Store.get('showGymCells') && (map.getZoom() > 13)) {
+            gymLayerGroup.clearLayers()
+            showS2Cells(14, {color: 'green'})
+        } else if (Store.get('showGymCells') && (map.getZoom() <= 13)) {
+            gymLayerGroup.clearLayers()
+            toastr['error'](i8ln('This is to much zoom.'), i8ln('Gym cells are currently hidden'))
+        }
+        if (Store.get('showStopCells') && (map.getZoom() > 16)) {
+            stopLayerGroup.clearLayers()
+            showS2Cells(17, {color: 'blue'})
+        } else if (Store.get('showStopCells') && (map.getZoom() <= 16)) {
+            stopLayerGroup.clearLayers()
+            toastr['error'](i8ln('This is to much zoom.'), i8ln('Pokestop cells are currently hidden'))
+        }
+    }
+}
+
 function drawWeatherOverlay(weather) {
     if (weather) {
         $.each(weather, function (idx, item) {
@@ -3635,16 +3734,14 @@ function drawWeatherOverlay(weather) {
             var marker = L.marker([center.lat, center.lng], {icon})
             weatherPolys.push(poly)
             weatherMarkers.push(marker)
-            poly.addTo(map)
+            weatherLayerGroup.addLayer(poly)
             weatherArray = []
         })
     }
 }
 
 function destroyWeatherOverlay() {
-    $.each(weatherPolys, function (idx, poly) {
-        markers.removeLayer(poly)
-    })
+    weatherLayerGroup.clearLayers()
     $.each(weatherMarkers, function (idx, marker) {
         markers.removeLayer(marker)
     })
@@ -4001,6 +4098,15 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
     })
 
     data.done(function (result) {
+        var lastModifiedStr = getDateStr(result.last_modified) + ' ' + getTimeStr(result.last_modified)
+        var lastScannedStr = ''
+        if (result.last_scanned != null) {
+            lastScannedStr =
+                '<div style="font-size: .7em">' +
+                i8ln('Last Scanned') + ' : ' + getDateStr(result.last_scanned) + ' ' + getTimeStr(result.last_scanned) +
+                '</div>'
+        }
+
         var pokemon = result.pokemon !== undefined ? result.pokemon : []
         var freeSlots = result.slots_available
         var gymLevelStr = ''
@@ -4012,7 +4118,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
         }
 
         var park = ''
-        if (((result['park'] !== 'None' && result['park'] !== undefined && result['park']) && (noParkInfo === false))) {
+        if (((result['park'] !== '0' && result['park'] !== 'None' && result['park'] !== undefined && result['park']) && (noParkInfo === false))) {
             if (result['park'] === 1) {
                 // RM only stores boolean, so just call it "Park Gym"
                 park = i8ln('Park Gym')
@@ -4141,6 +4247,10 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             '<div>' +
             park +
             '</div>' +
+            '<div style="font-size: .7em">' +
+            i8ln('Last Modified') + ' : ' + lastModifiedStr +
+            '</div>' +
+            lastScannedStr +
             '<div>' +
             '<a href=\'javascript:void(0)\' onclick=\'javascript:openMapDirections(' + result.latitude + ',' + result.longitude + ')\' title=\'' + i8ln('View in Maps') + '\'>' + i8ln('Get directions') + '</a> - <a href="./?lat=' + result.latitude + '&lon=' + result.longitude + '&zoom=16">Share link</a>' +
             '</div>' +
@@ -4245,9 +4355,6 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
                 'Gym Leader:<br>' +
                 '<i class="pokemon-sprite-large n' + result.guard_pokemon_id + '"></i><br>' +
                 '<b class="team-' + result.team_id + '-text">' + result.guard_pokemon_name + '</b>' +
-                '<p style="font-size: .75em margin: 5px">' +
-                'No additional gym information is available for this gym. Make sure you are collecting detailed gym info. If you have detailed gym info collection running, this gym\'s Pokemon information may be out of date.' +
-                '</p>' +
                 '</center>'
         }
 
@@ -5055,6 +5162,7 @@ $(function () {
         lastcommunities = false
         buildSwitchChangeListener(mapData, ['communities'], 'showCommunities').bind(this)()
     })
+
     $('#portals-switch').change(function () {
         var options = {
             'duration': 500
@@ -5069,6 +5177,59 @@ $(function () {
         }
         return buildSwitchChangeListener(mapData, ['portals'], 'showPortals').bind(this)()
     })
+
+    $('#s2-switch').change(function () {
+        var options = {
+            'duration': 500
+        }
+        var wrapper = $('#s2-switch-wrapper')
+        if (this.checked) {
+            wrapper.show(options)
+            if (Store.get('showExCells')) {
+                showS2Cells(13, {color: 'red'})
+            }
+            if (Store.get('showGymCells')) {
+                showS2Cells(14, {color: 'green'})
+            }
+            if (Store.get('showStopCells')) {
+                showS2Cells(17, {color: 'blue'})
+            }
+        } else {
+            wrapper.hide(options)
+            exLayerGroup.clearLayers()
+            gymLayerGroup.clearLayers()
+            stopLayerGroup.clearLayers()
+        }
+        return buildSwitchChangeListener(mapData, ['s2cells'], 'showCells').bind(this)()
+    })
+
+    $('#s2-level13-switch').change(function () {
+        Store.set('showExCells', this.checked)
+        if (this.checked) {
+            showS2Cells(13, {color: 'red'})
+        } else {
+            exLayerGroup.clearLayers()
+        }
+    })
+
+    $('#s2-level14-switch').change(function () {
+        Store.set('showGymCells', this.checked)
+        if (this.checked) {
+            showS2Cells(14, {color: 'green'})
+        } else {
+            gymLayerGroup.clearLayers()
+        }
+    })
+
+    $('#s2-level17-switch').change(function () {
+        Store.set('showStopCells', this.checked)
+        if (this.checked) {
+            showS2Cells(17, {color: 'blue'})
+        } else {
+            stopLayerGroup.clearLayers()
+        }
+    })
+
     $('#pokemon-switch').change(function () {
         var options = {
             'duration': 500
