@@ -697,7 +697,7 @@ function pokemonLabel(item) {
             '</div>'
     } else {
         contentstring += '<div>' +
-            i8ln('Disappears at') + ' ' + getTimeStr(disappearTime) +
+            i8ln('Aprox Despawn Time:') + ' ' + getTimeStr(disappearTime) +
             ' <span class="label-countdown" disappears-at="' + disappearTime + '">(00m00s)</span>' +
             '</div>'
     }
@@ -1196,7 +1196,7 @@ function customizePokemonMarker(marker, item, skipNotification) {
         marker.rangeCircle = addRangeCircle(marker, map, 'pokemon')
     }
 
-    marker.bindPopup(pokemonLabel(item))
+    marker.bindPopup(pokemonLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
 
     if (notifiedPokemon.indexOf(item['pokemon_id']) > -1 || notifiedRarity.indexOf(item['pokemon_rarity']) > -1) {
         if (!skipNotification) {
