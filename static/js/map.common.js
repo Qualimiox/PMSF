@@ -1210,7 +1210,8 @@ function getPokemonSprite(index, sprite, displayHeight, weather = 0, encounterFo
     displayHeight = Math.max(displayHeight, 3)
     var scale = displayHeight / sprite.iconHeight
     // Crop icon just a tiny bit to avoid bleedover from neighbor
-    var scaledIconSize = [scale * sprite.iconWidth, scale * sprite.iconHeight]
+    var scaledIconSizeWidth = scale * sprite.iconWidth
+    var scaledWeatherIconSizeWidth = scale * sprite.iconWidth - 10
     var scaledIconCenterOffset = [scale * sprite.iconWidth / 2, scale * sprite.iconHeight / 2]
     var formStr = ''
     if (encounterForm === '0' || encounterForm === null) {
@@ -1228,37 +1229,51 @@ function getPokemonSprite(index, sprite, displayHeight, weather = 0, encounterFo
     } else {
         pokemonIdStr = pokemonId
     }
-    var monSpriteUrl = ''
-    var weatherHtml = ''
+    var html = ''
     if (copyrightSafe === false) {
         if (weather === 0) {
-            monSpriteUrl = 'https://raw.githubusercontent.com/whitewillem/PogoAssets/resized/icons_large/pokemon_icon_' + pokemonIdStr + '_' + formStr + '.png'
+            html = '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_' + formStr + '.png" style="width:' + scaledIconSizeWidth + 'px;height:auto;"/>'
         } else if (boostedMons[weather].indexOf(pokemonId) === -1) {
-            monSpriteUrl = 'https://raw.githubusercontent.com/whitewillem/PogoAssets/resized/icons_large/pokemon_icon_' + pokemonIdStr + '_' + formStr + '.png'
+            html = '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_' + formStr + '.png" style="width:' + scaledIconSizeWidth + 'px;height:auto;"/>'
         } else {
-            monSpriteUrl = 'https://raw.githubusercontent.com/whitewillem/PogoAssets/resized/icons_large/pokemon_icon_' + pokemonIdStr + '_' + formStr + '.png'
-            weatherHtml = '<img src="static/weather/' + weather + '.png" style="width:35px;height:auto;position:absolute;top:0px;right:0px;"/>'
+            html = '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_' + formStr + '.png" style="width:' + scaledIconSizeWidth + 'px;height:auto;"/>' +
+            '<img src="static/weather/i-' + weather + '.png" style="width:' + scaledWeatherIconSizeWidth + 'px;height:auto;position:absolute;top:-' + scaledWeatherIconSizeWidth + 'px;right:0px;"/>'
         }
     } else {
         if (weather === 0) {
-            monSpriteUrl = 'static/icons-safe/' + pokemonId + '.png'
+            html = '<img src="static/icons-safe/pokemon_icon_' + pokemonIdStr + '_00.png" style="width:' + scaledIconSizeWidth + 'px;height:auto;"/>'
         } else if (boostedMons[weather].indexOf(pokemonId) === -1) {
-            monSpriteUrl = 'static/icons-safe/' + pokemonId + '.png'
+            html = '<img src="static/icons-safe/pokemon_icon_' + pokemonIdStr + '_00.png" style="width:' + scaledIconSizeWidth + 'px;height:auto;"/>'
         } else {
-            monSpriteUrl = 'static/icons-safe/' + pokemonId + '.png'
-            weatherHtml = '<img src="static/weather/' + weather + '.png" style="width:35px;height:auto;position:absolute;top:0px;right:0px;"/>'
+            html = '<img src="static/icons-safe/pokemon_icon_' + pokemonIdStr + '_00.png" style="width:' + scaledIconSizeWidth + 'px;height:auto;"/>' +
+            '<img src="static/weather/i-' + weather + '.png" style="width:' + scaledWeatherIconSizeWidth + 'px;height:auto;position:absolute;top:-25px;right:0px;"/>'
         }
     }
-    var pokemonIcon = L.icon({
-        iconUrl: monSpriteUrl,
-        iconSize: scaledIconSize,
+    var pokemonIcon = L.divIcon({
         iconAnchor: scaledIconCenterOffset,
-        popupAnchor: [0, -40]
+        popupAnchor: [0, -40],
+        className: 'pokemon-marker',
+        html: html
     })
     return pokemonIcon
 }
 
 function setupPokemonMarker(item, map, isBounceDisabled) {
+    var latOffset = Math.random() * 0.0002 - 0.0001;
+    if (latOffset >= 0) {
+        latOffset += 0.00005;
+    } else {
+        latOffset -= 0.00005;
+    }
+    var lonOffset = Math.random() * 0.0002 - 0.0001;
+    if (lonOffset >= 0) {
+        lonOffset += 0.00005;
+    } else {
+        lonOffset -= 0.00005;
+    }
+    item['latitude'] += latOffset;
+    item['longitude'] += + lonOffset;
+    
     var iconSize = (12) * (12) * 0.2 + Store.get('iconSizeModifier')
     if (isNotifiedPokemon(item) === true) {
         iconSize += Store.get('iconNotifySizeModifier')
