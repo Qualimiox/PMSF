@@ -374,6 +374,9 @@ var stylesatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/se
 
 var stylewikipedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'}) // eslint-disable-line no-unused-vars
 
+var googlemapssat = L.gridLayer.googleMutant({type: 'satellite'}) // eslint-disable-line no-unused-vars
+var googlemapsroad = L.gridLayer.googleMutant({type: 'roadmap'}) // eslint-disable-line no-unused-vars
+
 function setTileLayer(layername) {
     if (map.hasLayer(window[_oldlayer])) { map.removeLayer(window[_oldlayer]) }
     map.addLayer(window[layername])
@@ -1195,7 +1198,7 @@ function customizePokemonMarker(marker, item, skipNotification) {
 
     var pokemonForm = item['form']
     var formStr = ''
-    if (pokemonForm === '0' || pokemonForm === null) {
+    if (pokemonForm === '0' || pokemonForm === null || pokemonForm === 0) {
         formStr = '00'
     } else if (pokemonForm <= 9) {
         formStr = '0' + pokemonForm
@@ -1415,6 +1418,7 @@ function setupGymMarker(item) {
             } else {
                 pokemonidStr = pokemonid
             }
+
             icon = iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png'
             checkAndCreateSound(item.raid_pokemon_id)
         } else if (raidStarted && copyrightSafe === true) {
@@ -1611,13 +1615,21 @@ function setupPokestopMarker(item) {
 function setupNestMarker(item) {
     var getNestMarkerIcon = ''
     if (item.pokemon_id > 0) {
+        var pokemonIdStr = ''
+        if (item.pokemon_id <= 9) {
+            pokemonIdStr = '00' + item.pokemon_id
+        } else if (item.pokemon_id <= 99) {
+            pokemonIdStr = '0' + item.pokemon_id
+        } else {
+            pokemonIdStr = item.pokemon_id
+        }
         getNestMarkerIcon = '<div class="marker-nests">' +
-            '<img src="static/images/nest-' + item.english_pokemon_types[0].type.toLowerCase() + '.png" style="width:36px;height: auto;"/>' +
-            '<i class="nest-pokemon-sprite n' + item.pokemon_id + '"></i>' +
+            '<img src="static/images/nest-' + item.english_pokemon_types[0].type.toLowerCase() + '.png" style="width:45px;height: auto;"/>' +
+            '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_00.png" style="position:absolute;width:48px;height:48px;top:-8px;left:-5px"/>' +
             '</div>'
     } else {
         getNestMarkerIcon = '<div class="marker-nests">' +
-            '<img src="static/images/nest-empty.png" style="width:36px;height: auto;"/>' +
+            '<img src="static/images/nest-empty.png" style="width:36px;height:auto;"/>' +
             '</div>'
     }
     var nestMarkerIcon = L.divIcon({
@@ -1642,12 +1654,20 @@ function nestLabel(item) {
         $.each(types, function (index, type) {
             typesDisplay += getTypeSpan(type)
         })
+        var pokemonIdStr = ''
+        if (item.pokemon_id <= 9) {
+            pokemonIdStr = '00' + item.pokemon_id
+        } else if (item.pokemon_id <= 99) {
+            pokemonIdStr = '0' + item.pokemon_id
+        } else {
+            pokemonIdStr = item.pokemon_id
+        }
         str += '<center><b>' + item.pokemon_name + '</b></center>' +
                 '</div>' +
                 '<center>' +
                 '<div class="marker-nests">' +
-                '<img src="static/images/nest-' + item.english_pokemon_types[0].type.toLowerCase() + '.png"/>' +
-                '<i class="label-nest-pokemon-sprite n' + item.pokemon_id + '"></i>' +
+                '<img src="static/images/nest-' + item.english_pokemon_types[0].type.toLowerCase() + '.png" style="width:80px;height:auto;"/>' +
+                '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_00.png" style="position:absolute;width:48px;height:48px;top:48px;left:112px;"/>' +
                 '<br>' +
                 '<div>' +
                 typesDisplay +
@@ -2272,7 +2292,7 @@ function searchAjax(field) { // eslint-disable-line no-unused-vars
     }, function (err) {
         if (err) {
             var center = map.getCenter()
-            searchForItem(center.lat(), center.lng(), term, type, field)
+            searchForItem(center.lat, center.lng, term, type, field)
         }
     })
 }
@@ -4198,6 +4218,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
                 } else {
                     pokemonidStr = pokemonid
                 }
+
                 raidIcon = '<img style="width: 80px;" src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png"/>'
             } else if (raidStarted && copyrightSafe === true) {
                 raidIcon = '<i class="pokemon-sprite-large n' + result.raid_pokemon_id + '"></i>'
