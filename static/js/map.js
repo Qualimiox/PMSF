@@ -139,7 +139,7 @@ createjs.Sound.registerSound('static/sounds/ding.mp3', 'ding')
 
 
 var genderType = ['♂', '♀', '⚲']
-var forms = ['unset', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?', i8ln('Normal'), i8ln('Sunny'), i8ln('Rainy'), i8ln('Snowy'), i8ln('Normal'), i8ln('Attack'), i8ln('Defense'), i8ln('Speed')]
+var forms = ['unset', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?', i8ln('Normal'), i8ln('Sunny'), i8ln('Rainy'), i8ln('Snowy'), i8ln('Normal'), i8ln('Attack'), i8ln('Defense'), i8ln('Speed'), i8ln('1'), i8ln('2'), i8ln('3'), i8ln('4'), i8ln('5'), i8ln('6'), i8ln('7'), i8ln('8'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Frost'), i8ln('Fan'), i8ln('Mow'), i8ln('Wash'), i8ln('Heat'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), i8ln('Altered'), i8ln('Origin'), i8ln('Sky'), i8ln('Land'), i8ln('Overcast'), i8ln('Sunny'), i8ln('West sea'), i8ln('East sea'), i8ln('West sea'), i8ln('East sea'), i8ln('Arceus Normal'), i8ln('Archeus Fighting'), i8ln('Archeus Flying'), i8ln('Archeus Poison'), i8ln('Archeus Ground'), i8ln('Archeus Rock'), i8ln('Archeus Bug'), i8ln('Archeus Ghost'), i8ln('Archeus Steel'), i8ln('Archeus Fire'), i8ln('Archeus Water'), i8ln('Archeus Grass'), i8ln('Archeus Electric'), i8ln('Archeus Psychic'), i8ln('Archeus Ice'), i8ln('Archeus Dragon'), i8ln('Archeus Dark'), i8ln('Archeus Fairy')]
 var cpMultiplier = [0.094, 0.16639787, 0.21573247, 0.25572005, 0.29024988, 0.3210876, 0.34921268, 0.37523559, 0.39956728, 0.42250001, 0.44310755, 0.46279839, 0.48168495, 0.49985844, 0.51739395, 0.53435433, 0.55079269, 0.56675452, 0.58227891, 0.59740001, 0.61215729, 0.62656713, 0.64065295, 0.65443563, 0.667934, 0.68116492, 0.69414365, 0.70688421, 0.71939909, 0.7317, 0.73776948, 0.74378943, 0.74976104, 0.75568551, 0.76156384, 0.76739717, 0.7731865, 0.77893275, 0.7846369, 0.79030001]
 
 var weatherLayerGroup = new L.LayerGroup()
@@ -530,8 +530,6 @@ function initSidebar() {
     }
     var path = window.location.protocol + '//' + window.location.hostname + port + window.location.pathname
     var r = new RegExp('^(?:[a-z]+:)?//', 'i')
-    var urlSpriteLarge = r.test(Store.get('spritefileLarge')) ? Store.get('spritefileLarge') : path + Store.get('spritefileLarge')
-    document.body.style.setProperty('--sprite-large', 'url(' + urlSpriteLarge + ')')
     iconpath = r.test(Store.get('icons')) ? Store.get('icons') : path + Store.get('icons')
 }
 
@@ -616,6 +614,20 @@ function pokemonLabel(item) {
     var cpMultiplier = item['cp_multiplier']
     var weatherBoostedCondition = item['weather_boosted_condition']
     var level = item['level']
+    var formStr = ''
+    if (form === 0 || form === '0' || form == null) {
+        formStr = '00'
+    } else {
+        formStr = form
+    }
+    var pokemonidStr = ''
+    if (id <= 9) {
+        pokemonidStr = '00' + id
+    } else if (id <= 99) {
+        pokemonidStr = '0' + id
+    } else {
+        pokemonidStr = id
+    }
 
     $.each(types, function (index, type) {
         typesDisplay += getTypeSpan(type)
@@ -625,9 +637,9 @@ function pokemonLabel(item) {
     if (atk != null && def != null && sta != null) {
         var iv = getIv(atk, def, sta)
         details =
-            '<div>' +
+            '<div><center>' +
             'IV: ' + iv.toFixed(1) + '% (' + atk + '/' + def + '/' + sta + ')' +
-            '</div>'
+            '</center></div>'
 
         if (cp != null && (cpMultiplier != null || level != null)) {
             var pokemonLevel
@@ -637,30 +649,30 @@ function pokemonLabel(item) {
                 pokemonLevel = getPokemonLevel(cpMultiplier)
             }
             details +=
-                '<div>' +
+                '<div><center>' +
                 i8ln('CP') + ' : ' + cp + ' | ' + i8ln('Level') + ' : ' + pokemonLevel +
-                '</div>'
+                '</center></div>'
         }
         details +=
-            '<div>' +
+            '<div><center>' +
             i8ln('Moves') + ' : ' + pMove1 + ' / ' + pMove2 +
-            '</div>'
+            '</center></div>'
     }
     if (login === true && timestamp > expireTimestamp) {
         details +=
-            '<div>' +
+            '<div><center>' +
             '<b>' + i8ln('IV stats is a donator only feature.') + '</b>' +
-            '</div>'
+            '</center></div>'
     }
     if (weatherBoostedCondition !== 0) {
         details +=
-            '<div>' +
-            i8ln('Weather') + ': ' + i8ln(weather[weatherBoostedCondition]) +
-            '</div>'
+            '<div><center>' +
+            i8ln('Weather Boost') + ': ' + i8ln(weather[weatherBoostedCondition]) +
+            '</center></div>'
     }
     if (gender != null) {
         details +=
-            '<div>' +
+            '<div><center>' +
             i8ln('Gender') + ': ' + genderType[gender - 1]
         if (weight != null) {
             details += ' | ' + i8ln('Weight') + ': ' + weight.toFixed(2) + 'kg'
@@ -669,10 +681,10 @@ function pokemonLabel(item) {
             details += ' | ' + i8ln('Height') + ': ' + height.toFixed(2) + 'm'
         }
         details +=
-            '</div>'
+            '</center></div>'
     }
     var contentstring =
-        '<div>' +
+        '<div><center>' +
         '<b>' + name + '</b>'
     if (form !== null && form > 0 && forms.length > form) {
         // todo: check how rocket map handles this (if at all):
@@ -689,36 +701,35 @@ function pokemonLabel(item) {
     contentstring += '<span> - </span>' +
         '<small>' +
         '<a href="https://pokemon.gameinfo.io/' + languageSite + '/pokemon/' + id + '" target="_blank" title="' + i8ln('View in Pokedex') + '">#' + id + '</a>' +
-        '</small>' +
-        '<span> ' + rarityDisplay + '</span>' +
-        '<span> - </span>' +
+        '</small>'
+    if (noRarityDisplay === false) {
+        contentstring += '<span> ' + rarityDisplay + '</span>'
+    }
+    contentstring += '<span> - </span>' +
         '<small>' + typesDisplay + '</small>' +
-        '</div>'
+        '</center></div>' +
+        '<div><center><img src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png" style="width:50px;margin-top:10px;"/></center></div>' +
+        details
     if (pokemonReportTime === true) {
-        contentstring += '<div>' +
+        contentstring += '<div><center><b>' +
             i8ln('Reported at') + ' ' + getTimeStr(reportTime) +
-            '</div>'
+            '</b></center></div>'
     } else {
-        contentstring += '<div>' +
+        contentstring += '<div><center><b>' +
             i8ln('Aprox Despawn Time:') + ' ' + getTimeStr(disappearTime) +
             ' <span class="label-countdown" disappears-at="' + disappearTime + '">(00m00s)</span>' +
-            '</div>'
+            '</b></center></div>'
     }
 
-    contentstring += '<div>' +
+    contentstring += '<div><center>' +
         i8ln('Location') + ': <a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ', ' + longitude + ')" title="' + i8ln('View in Maps') + '">' + coordText + '</a>' +
-        '</div>' +
-        details +
-        '<div>' +
-        '<a href="javascript:excludePokemon(' + id + ')">' + i8ln('Exclude') + '</a>&nbsp&nbsp'
-
-    //if (login === true && timestamp < expireTimestamp) {
-        contentstring += '<a href="javascript:notifyAboutPokemon(' + id + ')">' + i8ln('Notify') + '</a>&nbsp&nbsp'
-    //}
-    contentstring +=
+        '</center></div>' +
+        '<div><center>' +
+        '<a href="javascript:excludePokemon(' + id + ')">' + i8ln('Exclude') + '</a>&nbsp&nbsp' +
+        '<a href="javascript:notifyAboutPokemon(' + id + ')">' + i8ln('Notify') + '</a>&nbsp&nbsp' +
         '<a href="javascript:removePokemonMarker(\'' + encounterId + '\')">' + i8ln('Remove') + '</a>&nbsp&nbsp' +
         '<a href="javascript:void(0);" onclick="javascript:toggleOtherPokemon(' + id + ');" title="' + i8ln('Toggle display of other Pokemon') + '">' + i8ln('Toggle Others') + '</a>' +
-        '</div>'
+        '</center></div>'
     return contentstring
 }
 
@@ -732,6 +743,7 @@ function gymLabel(item) {
     var name = item['name']
     var url = item['url']
     var members = item['pokemon']
+    var form = item['form']
 
     var raidSpawned = item['raid_level'] != null
     var raidStarted = item['raid_pokemon_id'] != null
@@ -750,7 +762,16 @@ function gymLabel(item) {
             if (item.raid_pokemon_cp > 0) {
                 cpStr = ' CP ' + item.raid_pokemon_cp
             }
-            raidStr += '<br>' + item.raid_pokemon_name + cpStr
+            raidStr += '<br>' + item.raid_pokemon_name
+            if (form !== null && form > 0 && forms.length > form) {
+                // todo: check how rocket map handles this (if at all):
+                if (item['raid_pokemon_id'] === 132) {
+                    raidStr += ' (' + idToPokemon[item['form']].name + ')'
+                } else {
+                    raidStr += ' (' + forms[item['form']] + ')'
+                }
+            }
+            raidStr += cpStr
         }
         raidStr += '</h3>'
         if (raidStarted && item.raid_pokemon_move_1 > 0 && item.raid_pokemon_move_1 !== '133' && item.raid_pokemon_move_2 > 0 && item.raid_pokemon_move_2 !== '133') {
@@ -781,10 +802,8 @@ function gymLabel(item) {
             pokemonidStr = pokemonid
         }
 
-        if (raidStarted && copyrightSafe === false) {
+        if (raidStarted) {
             raidIcon = '<img style="width: 80px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(5px 5px 5px #222);" src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png"/>'
-        } else if (raidStarted && copyrightSafe === true) {
-            raidIcon = '<img src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_00.png"/>'
         } else if (item.raid_start <= Date.now()) {
             var hatchedEgg = ''
             if (item['raid_level'] <= 2) {
@@ -963,11 +982,13 @@ function pokestopLabel(expireTime, latitude, longitude, stopName, url, lureUser,
         if (noManualQuests === true || quest === null) {
             str +=
                 '<div><center>' +
+                '<img height="70px" style="padding: 5px;" src="static/forts/LureModule.png">' +
                 stopImage +
                 '</center></div>'
         } else {
             str +=
                 '<div><center>' +
+                '<img height="70px" style="padding: 5px;" src="static/forts/LureModule.png">' +
                 stopImage +
                 '<img height="70px" style="padding: 5px;" src="static/rewards/reward_' + reward + '.png"/>' +
                 '</center></div>'
@@ -1342,7 +1363,7 @@ function getGymMarkerIcon(item) {
         smallExIcon = '<img src="static/images/ex.png" style="width:26px;position:absolute;right:35px;bottom:13px;"/>'
     }
     var html = ''
-    if (item['raid_pokemon_id'] != null && item.raid_end > Date.now() && copyrightSafe === false) {
+    if (item['raid_pokemon_id'] != null && item.raid_end > Date.now()) {
         html = '<div style="position:relative;">' +
             '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:50px;height:auto;"/>' +
             exIcon +
@@ -1353,19 +1374,6 @@ function getGymMarkerIcon(item) {
             iconAnchor: [25, 45],
             popupAnchor: [0, -70],
             className: 'raid-marker',
-            html: html
-        })
-    } else if (item['raid_pokemon_id'] != null && item.raid_end > Date.now() && copyrightSafe === true) {
-        html = '<div style="position:relative;">' +
-            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:50px;height:auto;"/>' +
-            exIcon +
-            '<img src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_00.png" style="width:40px;height:auto;right:12px;position:absolute;"/>' +
-            '</div>'
-        fortMarker = L.divIcon({
-            iconSize: [50, 50],
-            iconAnchor: [25, 45],
-            popupAnchor: [0, -35],
-            className: 'safe-raid-marker',
             html: html
         })
     } else if (item['raid_level'] !== null && item.raid_start <= Date.now() && item.raid_end > Date.now()) {
@@ -1446,7 +1454,7 @@ function setupGymMarker(item) {
 
         var raidStarted = item['raid_pokemon_id'] != null
         var icon
-        if (raidStarted && copyrightSafe === false) {
+        if (raidStarted) {
             var raidForm = item['form']
             var formStr = ''
             if (raidForm <= 10 || raidForm == null) {
@@ -1466,8 +1474,6 @@ function setupGymMarker(item) {
 
             icon = iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png'
             checkAndCreateSound(item.raid_pokemon_id)
-        } else if (raidStarted && copyrightSafe === true) {
-            icon = iconpath + item.raid_pokemon_id + '.png'
         } else if (item.raid_start <= Date.now()) {
             var hatchedEgg = ''
             if (item['raid_level'] <= 2) {
@@ -1540,7 +1546,7 @@ function updateGymMarker(item, marker) {
 
             var raidStarted = item['raid_pokemon_id'] != null
             var icon
-            if (raidStarted && copyrightSafe === false) {
+            if (raidStarted) {
                 var raidForm = item['form']
                 var formStr = ''
                 if (raidForm <= 10 || raidForm == null) {
@@ -1558,9 +1564,6 @@ function updateGymMarker(item, marker) {
                     pokemonidStr = pokemonid
                 }
                 icon = iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png'
-                checkAndCreateSound(item.raid_pokemon_id)
-            } else if (raidStarted && copyrightSafe === false) {
-                icon = iconpath + item.raid_pokemon_id + '.png'
                 checkAndCreateSound(item.raid_pokemon_id)
             } else if (item.raid_start <= Date.now()) {
                 var hatchedEgg = ''
@@ -4223,6 +4226,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
 
         var raidSpawned = result['raid_level'] != null
         var raidStarted = result['raid_pokemon_id'] != null
+        var form = result['form']
 
         var raidStr = ''
         var raidIcon = ''
@@ -4240,7 +4244,16 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
                 if (result.raid_pokemon_cp > 0) {
                     cpStr = ' CP ' + result.raid_pokemon_cp
                 }
-                raidStr += '<br>' + result.raid_pokemon_name + cpStr
+                raidStr += '<br>' + result.raid_pokemon_name
+                if (form !== null && form > 0 && forms.length > form) {
+                    // todo: check how rocket map handles this (if at all):
+                    if (result['raid_pokemon_id'] === 132) {
+                        raidStr += ' (' + idToPokemon[result['form']].name + ')'
+                    } else {
+                        raidStr += ' (' + forms[result['form']] + ')'
+                    }
+                }
+                raidStr += cpStr
             }
             raidStr += '</h3>'
             if (raidStarted && result.raid_pokemon_move_1 > 0 && result.raid_pokemon_move_1 !== '133' && result.raid_pokemon_move_2 > 0 && result.raid_pokemon_move_2 !== '133') {
@@ -4254,7 +4267,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             raidStr += '<div>' + i8ln('Start') + ': <b>' + raidStartStr + '</b> <span class="label-countdown" disappears-at="' + result['raid_start'] + '" start>(00m00s)</span></div>'
             raidStr += '<div>' + i8ln('End') + ': <b>' + raidEndStr + '</b> <span class="label-countdown" disappears-at="' + result['raid_end'] + '" end>(00m00s)</span></div>'
 
-            if (raidStarted && copyrightSafe === false) {
+            if (raidStarted) {
                 var raidForm = result['form']
                 var formStr = ''
                 if (raidForm <= 10 || raidForm == null) {
@@ -4272,9 +4285,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
                     pokemonidStr = pokemonid
                 }
 
-                raidIcon = '<img style="width: 80px;" src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png"/>'
-            } else if (raidStarted && copyrightSafe === true) {
-                raidIcon = '<i class="pokemon-sprite-large n' + result.raid_pokemon_id + '"></i>'
+                raidIcon = '<img style="width: 80px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(5px 5px 5px #222);" src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png"/>'
             } else if (result.raid_start <= Date.now()) {
                 var hatchedEgg = ''
                 if (result['raid_level'] <= 2) {
@@ -4284,7 +4295,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
                 } else {
                     hatchedEgg = 'hatched_legendary'
                 }
-                raidIcon = '<img src="static/raids/egg_' + hatchedEgg + '.png" style="width:60px;height:70px;">'
+                raidIcon = '<img style="width: 80px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(5px 5px 5px #222);" src="static/raids/egg_' + hatchedEgg + '.png">'
             } else {
                 var raidEgg = ''
                 if (result['raid_level'] <= 2) {
@@ -4325,7 +4336,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
         var pokemonHtml = ''
         var gymImage = ''
         if (result.url !== null) {
-            gymImage = '<img height="70px" style="padding: 5px;" src="' + result.url + '">'
+            gymImage = '<img height="140px" style="padding: 5px;" src="' + result.url + '">'
         }
         var headerHtml =
             '<center class="team-' + result.team_id + '-text">' +
@@ -4333,9 +4344,11 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             '<b class="team-' + result.team_id + '-text">' + (result.name || '') + '</b>' +
             '</div>' +
             '<div>' +
+            gymImage +
+            '</div>' +
+            '<div>' +
             '<img height="70px" style="padding: 5px;" src="static/forts/' + gymTypes[result.team_id] + '_large.png">' +
             raidIcon +
-            gymImage +
             '</div>' +
             raidStr +
             gymLevelStr +
@@ -4650,10 +4663,24 @@ $(function () {
         var styleList = []
 
         $.each(data, function (key, value) {
-            styleList.push({
-                id: key,
-                text: i8ln(value)
-            })
+            var googleMaps
+            if (gmapsKey === '') {
+                googleMaps = false
+            } else {
+                googleMaps = true
+            }
+            var googleStyle = value.includes('Google')
+            if (!googleMaps && !googleStyle) {
+                styleList.push({
+                    id: key,
+                    text: i8ln(value)
+                })
+            } else if (googleMaps) {
+                styleList.push({
+                    id: key,
+                    text: i8ln(value)
+                })
+            }
         })
 
         // setup the stylelist

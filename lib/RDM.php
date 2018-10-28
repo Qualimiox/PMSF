@@ -167,8 +167,8 @@ class RDM extends Scanner
             } else {
                 $lasti = 0;
             }
-            $pokemon["latitude"] = $pokemon["latitude"] + 0.0001*cos(deg2rad($lasti*45));
-            $pokemon["longitude"] = $pokemon["longitude"] + 0.0001*sin(deg2rad($lasti*45));
+            $pokemon["latitude"] = $pokemon["latitude"] + 0.0003*cos(deg2rad($lasti*45));
+            $pokemon["longitude"] = $pokemon["longitude"] + 0.0003*sin(deg2rad($lasti*45));
             $pokemon["disappear_time"] = $pokemon["disappear_time"] * 1000;
 
             $pokemon["weight"] = isset($pokemon["weight"]) ? floatval($pokemon["weight"]) : null;
@@ -223,7 +223,7 @@ class RDM extends Scanner
         }
 
         if ($tstamp > 0) {
-            $conds[] = "last_modified_timestamp > :lastUpdated";
+            $conds[] = "updated > :lastUpdated";
             $params[':lastUpdated'] = $tstamp;
         }
         return $this->query_stops($conds, $params);
@@ -258,6 +258,7 @@ class RDM extends Scanner
             $pokestop["lure_user"] = !empty($pokestop["lure_user"]) ? $pokestop["lure_user"] : "henk";
             $pokestop["quest_id"] = !empty($pokestop["quest_id"]) ? $pokestop["quest_id"] : null;
             $pokestop["reward_id"] = !empty($pokestop["reward_id"]) ? $pokestop["reward_id"] : null;
+            $pokestop["url"] = str_replace("http://", "https://images.weserv.nl/?url=", $pokestop["url"]);
             if ($noTrainerName === true) {
                 // trainer names hidden, so don't show trainer who lured
                 unset($pokestop["lure_user"]);
@@ -319,7 +320,7 @@ class RDM extends Scanner
             $params[':oneLng'] = $oNeLng;
         }
         if ($tstamp > 0) {
-            $conds[] = "last_modified_timestamp > :lastUpdated";
+            $conds[] = "updated > :lastUpdated";
             $params[':lastUpdated'] = $tstamp;
         }
         if ($exEligible === "true") {
@@ -385,6 +386,7 @@ class RDM extends Scanner
             $gym["raid_start"] = $gym["raid_start"] * 1000;
             $gym["raid_end"] = $gym["raid_end"] * 1000;
             $gym["sponsor"] = !empty($gym["sponsor"]) ? $gym["sponsor"] : null;
+            $gym["url"] = str_replace("http://", "https://images.weserv.nl/?url=", $gym["url"]);
             $data[] = $gym;
 
             unset($gyms[$i]);
@@ -704,6 +706,7 @@ class RDM extends Scanner
         foreach ($portals as $portal) {
             $portal["lat"] = floatval($portal["lat"]);
             $portal["lon"] = floatval($portal["lon"]);
+            $portal["url"] = str_replace("http://", "https://images.weserv.nl/?url=", $portal["url"]);
             $data[] = $portal;
 
             unset($portals[$i]);
