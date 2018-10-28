@@ -40,10 +40,6 @@
     "name": "Krabby"
   },
   "100": {
-    "cat": "Pokémon:",
-    "name": "Krabby"
-  },  
-  "100": {
     "cat": "Pokémon",
     "name": "Voltobal"
   },
@@ -250,6 +246,5 @@
   "1300": {
     "cat": "Beeren",
     "name": "1 Silberne Sananabeere"
-  }
   }
 }
