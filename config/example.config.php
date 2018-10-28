@@ -117,6 +117,9 @@ $noExcludeMinIV = false;                                        // true/false
 $noMinIV = false;                                               // true/false
 $noMinLevel = false;                                            // true/false
 $noHighLevelData = false;                                       // true/false
+$noRarityDisplay = false;                                       // true/false
+$noWeatherIcons = true;
+$noWeatherShadow = false;
 
 /* Notification Settings */
 $noNotifyPokemon = false;                                       // true/false

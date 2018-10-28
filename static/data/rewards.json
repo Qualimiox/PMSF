@@ -40,10 +40,6 @@
     "name": "Krabby"
   },
   "100": {
-    "cat": "Pokémon:",
-    "name": "Krabby"
-  },  
-  "100": {
     "cat": "Pokémon",
     "name": "Voltobal"
   },
@@ -83,10 +79,18 @@
     "cat": "Pokémon:",
     "name": "Dratini"
   },
+  "200": {
+    "cat": "Pokémon:",
+    "name": "Traunfugil"
+  },  
   "203": {
     "cat": "Pokémon:",
     "name": "Girafarig"
   },
+  "215": {
+    "cat": "Pokémon:",
+    "name": "Sniebel"
+  },  
   "224": {
     "cat": "Pokémon:",
     "name": "Octillery"
@@ -95,6 +99,10 @@
     "cat": "Pokémon:",
     "name": "Larvitar"
   }, 
+  "302": {
+    "cat": "Pokémon:",
+    "name": "Zobiris"
+  },  
   "320": {
     "cat": "Pokémon:",
     "name": "Wailmer"
@@ -115,6 +123,10 @@
     "cat": "Sonderbonbons",
     "name": "1 Sonderbonbon"
   },
+  "1001": {
+    "cat": "Sonderbonbons",
+    "name": "2 Sonderbonbons"
+  },  
   "1004": {
     "cat": "Sonderbonbons",
     "name": "3 Sonderbonbons"

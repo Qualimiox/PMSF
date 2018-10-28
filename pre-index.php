@@ -1545,6 +1545,7 @@ if ( $blockIframe ) {
     var spiderfyOnMaxZoom = <?= $spiderfyOnMaxZoom; ?>;
     var osmTileServer = '<?php echo $osmTileServer; ?>';
     var mapStyle = '<?php echo $mapStyle ?>';
+    var gmapsKey = '<?php echo $gmapsKey ?>';
     var hidePokemon = <?php echo $noHidePokemon ? '[]' : $hidePokemon ?>;
     var excludeMinIV = <?php echo $noExcludeMinIV ? '[]' : $excludeMinIV ?>;
     var minIV = <?php echo $noMinIV ? '""' : $minIV ?>;
@@ -1625,6 +1626,9 @@ if ( $blockIframe ) {
     var noConvertPortal = <?php echo $noConvertPortal === true ? 'true' : 'false' ?>;
     var markPortalsAsNew = <?php echo $markPortalsAsNew ?>;
     var copyrightSafe = <?php echo $copyrightSafe === true ? 'true' : 'false' ?>;
+    var noRarityDisplay = <?php echo $noRarityDisplay === true ? 'true' : 'false' ?>;
+    var noWeatherIcons = <?php echo $noWeatherIcons === true ? 'true' : 'false' ?>;
+    var noWeatherShadow = <?php echo $noWeatherShadow === true ? 'true' : 'false' ?>;
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="static/dist/js/map.common.min.js"></script>

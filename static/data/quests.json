@@ -19,6 +19,10 @@
     "cat": "Arenen/Raids",
     "name": "Setze eine sehr effektive Lade-Attacke in 7 Arenakämpfen ein."
   },
+  "117": {
+    "cat": "Catch",
+    "name": "Catch a Ditto"
+  },
   "118": {
     "cat": "Fangen",
     "name": "Fange 10 Pokémon."
@@ -31,10 +35,6 @@
     "cat": "Fangen",
     "name": "Fange 10 Pokémon vom Typ Psycho."
   },
-  "121": {
-    "cat": "Fangen",
-    "name": "Fange 5 Abra oder Traumato"
-  },
   "122": {
     "cat": "Fangen",
     "name": "Fange ein Pokémon vom Typ Drache."
@@ -43,10 +43,9 @@
     "cat": "Fangen",
     "name": "Fange 5 Pokémon vom Typ Wasser."
   },
-
   "125": {
-    "cat": "Catch",
-    "name": "Use 5 Pinap Berries while catching Pokémon"
+    "cat": "Fangen",
+    "name": "Verwende 5 Sananabeeren beim Fangen von Pokémon"
   },
   "129": {
     "cat": "Fangen",
@@ -55,10 +54,6 @@
   "255": {
     "cat": "Entwickeln",
     "name": "Entwickle ein Pokémon."
-  },
-  "256": {
-    "cat": "Entwickeln",
-    "name": "Entwickle 3 Flegmon oder Owei"
   },  
   "267": {
     "cat": "Entwickeln",
@@ -115,7 +110,7 @@
   "601": {
     "cat": "Verschiedenes",
     "name": "Verwende 5 Power-Ups bei Pokémon."
-  },  
+  },
   "605": {
     "cat": "Verschiedenes",
     "name": "Tausche ein Pokémon."
@@ -127,5 +122,25 @@
   "615": {
     "cat": "Verschiedenes",
     "name": "Erhalte ein Bonbon durch Laufen mit deinem Kumpel."
+  },
+  "700": {
+    "cat": "Halloween Event",
+    "name": "Fange 5 Fiffyen oder Hunduster"
+  },
+  "701": {
+    "cat": "Halloween Event",
+    "name": "Fange 5 Pokémon vom Typ Unlicht."
+  },
+  "702": {
+    "cat": "Halloween Event",
+    "name": "Fange 10 Pokémon vom Typ Geist."
+  },
+  "703": {
+    "cat": "Halloween Event",
+    "name": "Entwickle 3 Zwirrlicht oder Shuppet"    
+  },
+  "704": {
+    "cat": "Halloween Event",
+    "name": "Verschicke 10 Pokémon."
   }
 }
