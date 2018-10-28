@@ -33,21 +33,28 @@
   },
   "121": {
     "cat": "Fangen",
-    "name": "Fange 5 Abra oder Traumato"
+    "name": "Fange 5 Pokémon vom Typ Unlicht."
   },
   "122": {
     "cat": "Fangen",
     "name": "Fange ein Pokémon vom Typ Drache."
   },
+  "123": {
+    "cat": "Fangen",
+    "name": "Fange 10 Pokémon vom Typ Geist."
+  },  
   "124": {
     "cat": "Fangen",
     "name": "Fange 5 Pokémon vom Typ Wasser."
   },
-
   "125": {
-    "cat": "Catch",
-    "name": "Use 5 Pinap Berries while catching Pokémon"
+    "cat": "Fangen",
+    "name": "Verwende 5 Sananabeeren beim Fangen von Pokémon"
   },
+  "126": {
+    "cat": "Fangen",
+    "name": "Fange 5 Fiffyen oder Hunduster"
+  },  
   "129": {
     "cat": "Fangen",
     "name": "Verwende 10 Beeren beim Fangen von Pokémon."
@@ -55,14 +62,14 @@
   "255": {
     "cat": "Entwickeln",
     "name": "Entwickle ein Pokémon."
-  },
-  "256": {
-    "cat": "Entwickeln",
-    "name": "Entwickle 3 Flegmon oder Owei"
   },  
   "267": {
     "cat": "Entwickeln",
     "name": "Entwickle 10 Pokémon vom Typ Wasser."
+  },
+  "268": {
+    "cat": "Entwickeln",
+    "name": "Entwickle 3 Zwirrlicht oder Shuppet"    
   },
   "370": {
     "cat": "Werfen",
@@ -115,7 +122,11 @@
   "601": {
     "cat": "Verschiedenes",
     "name": "Verwende 5 Power-Ups bei Pokémon."
-  },  
+  },
+  "602": {
+    "cat": "Verschiedenes",
+    "name": "Verschicke 10 Pokémon."
+  },    
   "605": {
     "cat": "Verschiedenes",
     "name": "Tausche ein Pokémon."
