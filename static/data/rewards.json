@@ -11,10 +11,22 @@
     "cat": "Pokémon",
     "name": "Schiggy"
   },
+  "7": {
+    "cat": "Pokémon",
+    "name": "Raupy"
+  },  
   "37": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Vulpix"
   },
+  "40": {
+    "cat": "Pokémon",
+    "name": "Knuddeluff"
+  },
+  "42": {
+    "cat": "Pokémon",
+    "name": "Golbat"
+  },    
   "56": {
     "cat": "Pokémon",
     "name": "Menki"
@@ -32,11 +44,11 @@
     "name": "Nebulak"
   },
   "95": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Onix"
   },
   "98": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Krabby"
   },
   "100": {
@@ -66,7 +78,11 @@
   "126": {
     "cat": "Pokémon",
     "name": "Magmar"
-  },  
+  },
+  "127": {
+    "cat": "Pokémon",
+    "name": "Pinsir"
+  },    
   "129": {
     "cat": "Pokémon",
     "name": "Karpador"
@@ -76,35 +92,43 @@
     "name": "Evoli"
   },
   "147": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Dratini"
   },
   "200": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Traunfugil"
   },  
   "203": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Girafarig"
   },
+  "203": {
+    "cat": "Pokémon",
+    "name": "Tannza"
+  },  
   "215": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Sniebel"
   },  
   "224": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Octillery"
   },
   "246": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Larvitar"
-  }, 
+  },
+  "290": {
+    "cat": "Pokémon",
+    "name": "Nincada"
+  },   
   "302": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Zobiris"
   },  
   "320": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Wailmer"
   },
   "327": {
@@ -112,11 +136,11 @@
     "name": "Pandir"
   },
   "349": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "Barschwa"
   },  
   "999": {
-    "cat": "Pokémon:",
+    "cat": "Pokémon",
     "name": "?? Encounter"
   },
   "1000": {

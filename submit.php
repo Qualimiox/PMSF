@@ -267,7 +267,7 @@ if ( $action === "raid" ) {
         }
     }
     //Pandir
-    if ($rewardId == 327) {
+    if ($rewardId == 370) {
         foreach ( $questPandirWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
@@ -279,7 +279,7 @@ if ( $action === "raid" ) {
         }
     }
     //New Shinies
-    if ($rewardId == 98) {
+    if ($rewardId == 10 || $rewardId == ) {
         foreach ( $questShinyWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
