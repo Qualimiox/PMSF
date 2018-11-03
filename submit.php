@@ -267,13 +267,13 @@ if ( $action === "raid" ) {
         }
     }
     //Pandir
-    if ($rewardId == 370) {
+    if ($rewardId == 327) {
         foreach ( $questPandirWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
     }
-	//Feebas
-    if ($rewardId == 349) {
+	//Nincada
+    if ($rewardId == 290) {
         foreach ( $questFeebasWebhookUrl as $url ) {
             sendToWebhook($url, $questwebhook);
         }
