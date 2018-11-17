@@ -1182,5 +1182,18 @@
   "Choose a Quest": "Wähle die Quest aus",
   "Choose a Reward": "Wähle die Belohnung aus",
   "IV stats is a donator only feature.": "",
-  "Reported at": "Gefunden um"  
+  "Reported at": "Gefunden um",
+  "Task:": "Aufgabe:",  
+  "Type(s):": "Typ(en):",
+  "Reward Amount:": "Anzahl Belohnungen:",
+  "Condition:": "Voraussetzung:",
+  "Super Effective Charge": "Super-effektive Lade",
+  "Weather boosted": "Wetter-verstärkt",
+  "Weather Boost": "Wetter-verstärkt",
+  "Aprox Despawn Time:": "Geschätzt bis",
+  "Win raid": "Gewinne Raid",
+  "or higher": "oder höher",
+  "Win gym battle": "Gewinne Arenenkampf",
+  "Super Effective Charge": "Sehr effektive Lade-Attacke",
+  "Aprox Despawn Time:": "Geschätzt bis"
 }
