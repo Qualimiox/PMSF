@@ -1040,6 +1040,11 @@ var StoreOptions = {
             default: enableQuests,
             type: StoreTypes.Boolean
         },
+    'showDustAmount':
+        {
+            default: 500,
+            type: StoreTypes.Number
+        },
     'showWeather':
         {
             default: enableWeatherOverlay,
@@ -1058,6 +1063,11 @@ var StoreOptions = {
     'showRanges':
         {
             default: enableRanges,
+            type: StoreTypes.Boolean
+        },
+    'showScanPolygon':
+        {
+            default: enableScanPolygon,
             type: StoreTypes.Boolean
         },
     'playSound':

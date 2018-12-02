@@ -190,6 +190,9 @@ $enableSpawnPoints = 'false';                                       // true/fals
 $noRanges = false;                                                  // true/false
 $enableRanges = 'false';                                            // true/false
 
+$noScanPolygon = true;
+$enableScanPolygon = 'false';
+$geoJSONfile = 'custom/scannerarea.json';			    // path to geoJSON file create your own on http://geojson.io/ adjust filename
 /* Location & Search Settings */
 
 $noSearchLocation = false;                                          // true/false
@@ -266,15 +269,17 @@ $sendRaidData = false;                                              // Send Raid
 
 //-----------------------------------------------------
 // Manual Submissions
+// In order to make Manual Raids and Quests work you need to have the $geoJSONfile set to a valid geoJSON.json file
 //-----------------------------------------------------
+$noSubmit = true;
 $hideIfManual = false;
-$noManualRaids = true;						   						// Enable/Disable ManualRaids permanently ( Comment this line if you want to use the block below )
-$noDiscordSubmitLogChannel = true;                                  // Send webhooks to discord channel upon submission
+$noManualRaids = true;						 			// Enable/Disable ManualRaids permanently ( Comment this line if you want to use the block below )
+$noDiscordSubmitLogChannel = true;                                  			// Send webhooks to discord channel upon submission
 $submitMapUrl = '';
 $discordSubmitLogChannelUrl = 'https://discordapp.com/api/webhooks/<yourCHANNELhere>';  // Sends gym/pokestop submit & pokestop rename directly to discord
-//$currentTime = (int) date('G');				   					// Uncomment this block to deny Raid submissions over night
+//$currentTime = (int) date('G');				   			/ Uncomment this block to deny Raid submissions over night
 //
-//if ($currentTime >= 6 && $currentTime < 23) {                     // noManualRaids = true between 23:00 and 06:00. Adjust hours if needed
+//if ($currentTime >= 6 && $currentTime < 23) {                     			// noManualRaids = true between 23:00 and 06:00. Adjust hours if needed
 //
 //	        $noManualRaids = false;
 //} else {
@@ -282,7 +287,7 @@ $discordSubmitLogChannelUrl = 'https://discordapp.com/api/webhooks/<yourCHANNELh
 //}
 
 $noManualPokemon = true;
-$pokemonTimer = 900;                                                // Time in seconds before a submitted Pokémon despawns.
+$pokemonTimer = 900;                               // Time in seconds before a submitted Pokémon despawns.
 $noManualGyms = true;
 $noManualPokestops = true;
 $noRenamePokestops = true;
@@ -293,7 +298,7 @@ $noManualQuests = true;
 // Ingress portals
 //-----------------------------------------------------
 $enablePortals = 'false';
-$enableNewPortals = 0;                                                   // O: all, 1: new portals only
+$enableNewPortals = 0;                             // O: all, 1: new portals only
 $noPortals = true;
 $noDeletePortal = true;
 $noConvertPortal = true;
@@ -302,9 +307,9 @@ $enableS2Cells = 'false';
 $enableLevel13Cells = 'false';
 $enableLevel14Cells = 'false';
 $enableLevel17Cells = 'false';
-$markPortalsAsNew = 86400;                                         // Time in seconds to mark new imported portals as new ( 86400 for 1 day )
+$markPortalsAsNew = 86400;                         // Time in seconds to mark new imported portals as new ( 86400 for 1 day )
 
-$pokemonReportTime = true;
+$pokemonReportTime = false;
 $pokemonToExclude = [];
 
 $noDeleteGyms = false;
@@ -429,5 +434,19 @@ $db = new Medoo([// required
     //'port' => 5432,                                               // Comment out if not needed, just add // in front!
     //'socket' => /path/to/socket/,
 ]);
+
+$manualdb = new Medoo([// required
+    'database_type' => 'mysql',                                    
+    'database_name' => 'Monocle',
+    'server' => '127.0.0.1',
+    'username' => 'database_user',
+    'password' => 'database_password',
+    'charset' => 'utf8mb4',
+
+    // [optional]
+    //'port' => 5432,                                               // Comment out if not needed, just add // in front!
+    //'socket' => /path/to/socket/,
+]);
+
 if(file_exists('config/access-config.php'))
     include 'config/access-config.php';

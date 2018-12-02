@@ -158,6 +158,10 @@
     "noWeatherShadow": true,
     "hideQuestsPokemon": true,
     "hideQuestsItem": true,
-    "enableQuests": true
+    "noQuests": true,
+    "enableQuests": true,
+    "enableScanPolygon": true,
+    "turf": true,
+    "geoJSONfile": true
   }
 }
