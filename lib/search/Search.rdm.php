@@ -21,7 +21,7 @@ class RDM extends Search
             if( $p > 493){
                 break;
             }
-            if(strpos(strtolower($preward['name']), strtolower($term)) !== false){
+            if(strpos(strtolower(i8ln($preward['name'])), strtolower($term)) !== false){
                 $presids[] = $p;
             }
         }
@@ -29,7 +29,7 @@ class RDM extends Search
         $irewardsjson = json_decode( $ijson, true );
         $iresids = [];
         foreach($irewardsjson as $i => $ireward){
-            if(strpos(strtolower($ireward['name']), strtolower($term)) !== false){
+            if(strpos(strtolower(i8ln($ireward['name'])), strtolower($term)) !== false){
                 $iresids[] = $i;
             }
         }
@@ -63,6 +63,7 @@ class RDM extends Search
 	    $reward['quest_pokemon_id'] = intval($reward['quest_pokemon_id']);
             $reward['item_name'] = !empty($reward['item_name']) ? $irewardsjson[$reward['quest_item_id']]['name'] : null;
 	    $reward['quest_item_id'] = intval($reward['quest_item_id']);
+	    $reward['url'] = str_replace("http://", "https://images.weserv.nl/?url=", $reward['url']);
             if($defaultUnit === "km"){
                 $reward['distance'] = round($reward['distance'] * 1.60934,2);
 	    }
@@ -82,11 +83,11 @@ class RDM extends Search
             if( $k > 386){
                 break;
             }
-            if(strpos(strtolower($mon['name']), strtolower($term)) !== false){
+            if(strpos(strtolower(i8ln($mon['name'])), strtolower($term)) !== false){
                 $resids[] = $k;
             } else{
                 foreach($mon['types'] as $t){
-                    if(strpos(strtolower($t['type']), strtolower($term)) !== false){
+                    if(strpos(strtolower(i8ln($t['type'])), strtolower($term)) !== false){
                         $resids[] = $k;
                         break;
                     }

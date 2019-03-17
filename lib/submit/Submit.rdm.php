@@ -6,7 +6,7 @@ class RDM extends Submit
 {
 	public function submit_raid($pokemonId, $gymId, $eggTime, $monTime, $loggedUser)
 		{
-			global $db, $noManualRaids, $noRaids, $sendWebhook, $noDiscordSubmitLogChannel;
+			global $db, $noManualRaids, $noRaids, $sendWebhook, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noManualRaids === true || $noRaids === true ) {
 				http_response_code( 401 );
 				die();
@@ -99,7 +99,7 @@ class RDM extends Submit
 		}
 	public function submit_pokemon($lat, $lon, $pokemonId)
 		{
-			global $db, $noManualPokemon, $noPokemon, $pokemonTimer, $sendWebhook, $noDiscordSubmitLogChannel;
+			global $db, $noManualPokemon, $noPokemon, $pokemonTimer, $sendWebhook, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noManualPokemon === true || $noPokemon === true ) {
 				http_response_code( 401 );
 				die();
@@ -158,7 +158,7 @@ class RDM extends Submit
 		}
 	public function submit_gym($lat, $lon, $gymName, $loggedUser)
 		{
-			global $db, $noManualGyms, $noGyms, $noDiscordSubmitLogChannel;
+			global $db, $noManualGyms, $noGyms, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl, $submitMapUrl;
 			if ( $noManualGyms === true || $noGyms === true ) {
 				http_response_code( 401 );
 				die();
@@ -180,7 +180,7 @@ class RDM extends Submit
 		}
 	public function toggle_ex($gymId, $loggedUser)
 		{
-			global $db, $noToggleExGyms, $noGyms, $noDiscordSubmitLogChannel;
+			global $db, $noToggleExGyms, $noGyms, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noToggleExGyms === true || $noGyms === true ) {
 				http_response_code( 401 );
 				die();
@@ -217,7 +217,7 @@ class RDM extends Submit
 		}
 	public function delete_gym($gymId, $loggedUser)
 		{
-			global $db, $noDeleteGyms, $noGyms, $noDiscordSubmitLogChannel;
+			global $db, $noDeleteGyms, $noGyms, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noDeleteGyms === true || $noGyms === true ) {
 				http_response_code( 401 );
 				die();
@@ -237,7 +237,7 @@ class RDM extends Submit
 		}
 	public function submit_pokestop($lat, $lon, $pokestopName, $loggedUser)
 		{
-			global $db, $noManualPokestops, $noPokestops, $noDiscordSubmitLogChannel;
+			global $db, $noManualPokestops, $noPokestops, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl, $submitMapUrl;
 			if ( $noManualPokestops === true || $noPokestops === true ) {
 				http_response_code( 401 );
 				die();
@@ -263,7 +263,7 @@ class RDM extends Submit
 		}
 	public function modify_pokestop($pokestopId, $pokestopName, $loggedUser)
 		{
-			global $db, $noRenamePokestops, $noPokestops, $noDiscordSubmitLogChannel;
+			global $db, $noRenamePokestops, $noPokestops, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noRenamePokestops === true || $noPokestops === true ) {
 				http_response_code( 401 );
 				die();
@@ -285,7 +285,7 @@ class RDM extends Submit
 		}
 	public function delete_pokestop($pokestopId, $loggedUser)
 		{
-			global $db, $noDeletePokestops, $noPokestops, $noDiscordSubmitLogChannel;
+			global $db, $noDeletePokestops, $noPokestops, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noDeletePokestops === true || $noPokestops === true ) {
 				http_response_code( 401 );
 				die();
@@ -305,7 +305,7 @@ class RDM extends Submit
 		}
 	public function convert_pokestop($pokestopId, $loggedUser)
 		{
-			global $db, $noConvertPokestops, $noPokestops, $noDiscordSubmitLogChannel;
+			global $db, $noConvertPokestops, $noPokestops, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noConvertPokestops === true || $noPokestops === true ) {
 				http_response_code( 401 );
 				die();
@@ -333,7 +333,7 @@ class RDM extends Submit
 		}
 	public function submit_quest($pokestopId, $questType, $questTarget, $conditionType, $catchPokemonType, $catchPokemon, $raidLevel, $throwType, $curveThrow, $rewardType, $encounter, $item, $itemAmount, $dust, $loggedUser)
 		{
-			global $db, $noManualQuests, $noPokestops, $noDiscordSubmitLogChannel;
+			global $db, $noManualQuests, $noPokestops, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noManualQuests === true || $noPokestops === true ) {
 				http_response_code( 401 );
 				die();
@@ -446,7 +446,7 @@ class RDM extends Submit
 		}
 	public function convert_portal_pokestop($portalId, $loggedUser)
 		{
-			global $db, $manualdb, $noPortals, $noDiscordSubmitLogChannel;
+			global $db, $manualdb, $noPortals, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noPortals === true ) {
 				http_response_code( 401 );
 				die();
@@ -470,7 +470,7 @@ class RDM extends Submit
 		}
 	public function convert_portal_gym($portalId, $loggedUser)
 		{
-			global $db, $manualdb, $noPortals, $noDiscordSubmitLogChannel;
+			global $db, $manualdb, $noPortals, $noDiscordSubmitLogChannel, $discordSubmitLogChannelUrl;
 			if ( $noPortals === true ) {
 				http_response_code( 401 );
 				die();
@@ -488,308 +488,6 @@ class RDM extends Submit
 				$db->insert( "gym", $cols );
 				if ( $noDiscordSubmitLogChannel === false ) {
 					$data = array("content" => '```Converted portal with id "' . $portalId . '." New Gym: "' . $portal['name'] . '". ```' . $submitMapUrl . '/?lat=' . $portal['lat'] . '&lon=' . $portal['lon'] . '&zoom=18 ', "username" => $loggedUser);
-					sendToWebhook($discordSubmitLogChannelUrl, ($data));
-				}
-			}
-		}
-	public function mark_portal($portalId, $loggedUser)
-		{
-			global $manualdb, $noPortals, $noDiscordSubmitLogChannel;
-			if ( $noPortals === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			$portalName = $manualdb->get( "ingress_portals", [ 'name' ], [ 'external_id' => $portalId ] );
-			if ( ! empty( $portalId ) ) {
-				$cols     = [
-					'updated'      => time(),
-					'checked'      => 1
-				];
-				$where    = [
-					'external_id' => $portalId
-				];
-				$manualdb->update( "ingress_portals", $cols, $where );
-				if ( $noDiscordSubmitLogChannel === false ) {
-					$data = array("content" => '```Marked portal with id "' . $portalId . '." As no Pokestop or Gym. PortalName: "' . $portalName['name'] . '". ```', "username" => $loggedUser);
-					sendToWebhook($discordSubmitLogChannelUrl, ($data));
-				}
-			}
-		}
-	public function delete_portal($portalId, $loggedUser)
-		{
-			global $manualdb, $noPortals, $noDeletePortal, $noDiscordSubmitLogChannel;
-			if ( $noPortals === true || $noDeletePortal === true) {
-				http_response_code( 401 );
-				die();
-			}
-			$portalName = $manualdb->get( "ingress_portals", [ 'name' ], [ 'external_id' => $portalId ] );
-			if ( ! empty( $portalId ) ) {
-				$manualdb->delete( 'ingress_portals', [
-					"AND" => [
-						'external_id' => $portalId
-					]
-				] );
-			}
-			if ( $noDiscordSubmitLogChannel === false ) {
-				$data = array("content" => '```Deleted portal with id "' . $portalId . '" and name: "' . $portalName['name'] . '" . ```', "username" => $loggedUser);
-				sendToWebhook($discordSubmitLogChannelUrl, ($data));
-			}
-		}
-	public function modify_nest($nestId, $pokemonId, $loggedUser)
-		{
-			global $manualdb, $noManualNests, $noNests, $noDiscordSubmitLogChannel;
-			if ( $noManualNests === true || $noNests === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $pokemonId ) && ! empty( $nestId ) ) {
-				$cols  = [
-					'pokemon_id' => $pokemonId,
-					'nest_submitted_by' => $loggedUser
-				];
-				$where = [
-					'nest_id' => $nestId
-				];
-				$manualdb->update( "nests", $cols, $where );
-			}
-		}
-	public function submit_nest($lat, $lon, $pokemonId, $loggedUser)
-		{
-			global $manualdb, $noAddNewNests, $noNests, $noDiscordSubmitLogChannel;
-			if ( $noAddNewNests === true || $noNests === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $lat ) && ! empty( $lon ) && ! empty( $pokemonId ) ) {
-				$cols = [
-					'pokemon_id' 	=> $pokemonId,
-					'lat'        	=> $lat,
-					'lon'        	=> $lon,
-					'type'       	=> 0,
-					'updated'    	=> time(),
-					'nest_submitted_by'	=> $loggedUser
-				];
-				$manualdb->insert( "nests", $cols );
-			}
-		}
-	public function delete_nest($nestId)
-		{
-			global $manualdb, $noDeleteNests, $noNests, $noDiscordSubmitLogChannel;
-			if ( $noDeleteNests === true || $noNests === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $nestId ) ) {
-				$manualdb->delete( 'nests', [
-					"AND" => [
-						'nest_id' => $nestId
-					]
-				] );
-			}
-		}
-	public function submit_community($lat, $lon, $communityName, $communityDescription, $communityInvite, $loggedUser)
-		{
-			global $manualdb, $noCommunity, $noAddNewCommunity, $noDiscordSubmitLogChannel;
-			if ( $noCommunity === true || $noAddNewCommunity === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if (strpos($communityInvite, 'https://discord.gg') !== false) {
-				$communityType = 3;
-			} elseif (strpos($communityInvite, 'https://t.me') !== false) {
-				$communityType = 4;
-			} elseif (strpos($communityInvite, 'https://chat.whatsapp.com') !== false) {
-				$communityType = 5;
-			} elseif (strpos($communityInvite, 'https://m.me/join') !== false) {
-				$communityType = 6;
-			} elseif (strpos($communityInvite, 'https://facebook.com/groups') !== false) {
-				$communityType = 7;
-			} elseif (strpos($communityInvite, 'https://groupme.com/join_group') !== false) {
-				$communityType = 8;
-			} else {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $lat ) && ! empty( $lon ) && ! empty( $communityName ) && ! empty( $communityDescription ) && ! empty( $communityInvite ) ) {
-				$communityId = randomNum();
-				$cols       = [
-					'community_id'        => $communityId,
-					'title'               => $communityName,
-					'description'         => $communityDescription,
-					'type'                => $communityType,
-					'image_url'           => null,
-					'team_instinct'       => 1,
-					'team_mystic'         => 1,
-					'team_valor'          => 1,
-					'has_invite_url'      => 1,
-					'invite_url'          => $communityInvite,
-					'lat'                 => $lat,
-					'lon'                 => $lon,
-					'updated'             => time(),
-					'source'              => 1,
-					'submitted_by'        => $loggedUser 
-				];
-				$manualdb->insert( "communities", $cols );
-				if ( $noDiscordSubmitLogChannel === false ) {
-					$data = array("content" => '```Added community with id "' . $communityId . '" and gave it the new name: "' . $communityName . '"```' . $submitMapUrl . '/?lat=' . $lat . '&lon=' . $lng . '&zoom=18 ', "username" => $loggedUser);
-					sendToWebhook($discordSubmitLogChannelUrl, ($data));
-				}
-			}
-		}
-	public function modify_community($communityId, $communityName, $communityDescription, $communityInvite, $loggedUser)
-		{
-			global $manualdb, $noCommunity, $noEditCommunity, $noDiscordSubmitLogChannel;
-			if ( $noCommunity === true || $noEditCommunity === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if (strpos($communityInvite, 'https://discord.gg') !== false) {
-				$communityType = 3;
-			} elseif (strpos($communityInvite, 'https://t.me') !== false) {
-				$communityType = 4;
-			} elseif (strpos($communityInvite, 'https://chat.whatsapp.com') !== false) {
-				$communityType = 5;
-			} elseif (strpos($communityInvite, 'https://m.me/join') !== false) {
-				$communityType = 6;
-			} elseif (strpos($communityInvite, 'https://facebook.com/groups') !== false) {
-				$communityType = 7;
-			} elseif (strpos($communityInvite, 'https://groupme.com/join_group') !== false) {
-				$communityType = 8;
-			} else {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $communityId ) && ! empty( $communityName ) && ! empty( $communityDescription ) && ! empty( $communityInvite ) ) {
-				$cols       = [
-					'title'               => $communityName,
-					'description'         => $communityDescription,
-					'type'                => $communityType,
-					'team_instinct'       => 1,
-					'team_mystic'         => 1,
-					'team_valor'          => 1,
-					'has_invite_url'      => 1,
-					'invite_url'          => $communityInvite,
-					'updated'             => time(),
-					'source'              => 1,
-					'submitted_by'        => $loggedUser 
-				];
-				$where    = [
-					'community_id' => $communityId
-				];
-				$manualdb->update( "communities", $cols, $where );
-				if ( $noDiscordSubmitLogChannel === false ) {
-					$data = array("content" => '```Updated community with id "' . $communityId . '" and gave it the new name: "' . $communityName . '" . ```', "username" => $loggedUser);
-					sendToWebhook($discordSubmitLogChannelUrl, ($data));
-				}
-			}
-		}
-	public function delete_community($communityId, $loggedUser)
-		{
-			global $manualdb, $noCommunity, $noDeleteCommunity, $noDiscordSubmitLogChannel;
-			if ( $noCommunity === true || $noDeleteCommunity === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $communityId ) ) {
-				$manualdb->delete( 'communities', [
-					"AND" => [
-						'community_id' => $communityId
-					]
-				] );
-			}
-			if ( $noDiscordSubmitLogChannel === false ) {
-				$data = array("content" => '```Deleted community with id "' . $communityId . '" and name: "' . $communityName['title'] . '" . ```', "username" => $loggedUser);
-				sendToWebhook($discordSubmitLogChannelUrl, ($data));
-			}
-		}
-	public function submit_poi($lat, $lon, $poiName, $poiDescription, $loggedUser)
-		{
-			global $manualdb, $noPoi, $noAddPoi, $noDiscordSubmitLogChannel;
-			if ( $noPoi === true || $noAddPoi === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			if ( ! empty( $lat ) && ! empty( $lon ) && ! empty( $poiName ) && ! empty( $poiDescription ) ) {
-				$poiId = randomNum();
-				$cols       = [
-					'poi_id'              => $poiId,
-					'name'                => $poiName,
-					'description'         => $poiDescription,
-					'lat'                 => $lat,
-					'lon'                 => $lon,
-					'status'	      => 1,
-					'updated'             => time(),
-					'submitted_by'        => $loggedUser 
-				];
-				$manualdb->insert( "poi", $cols );
-				if ( $noDiscordSubmitLogChannel === false ) {
-					$data = array("content" => '```Added poi with id "' . $poiId . '" and gave it the new name: "' . $poiName . '".\nDescription: "' . $poiDescription . '".```' . $submitMapUrl . '/?lat=' . $lat . '&lon=' . $lng . '&zoom=18 ', "username" => $loggedUser);
-					sendToWebhook($discordSubmitLogChannelUrl, ($data));
-				}
-			}
-		}
-	public function delete_poi($poiId, $loggedUser)
-		{
-			global $manualdb, $noPoi, $noDeletePoi, $noDiscordSubmitLogChannel;
-			if ( $noPoi === true || $noDeletePoi === true) {
-				http_response_code( 401 );
-				die();
-			}
-			$poiName = $manualdb->get( "poi", [ 'name' ], [ 'poi_id' => $poiId ] );
-			if ( ! empty( $poiId ) ) {
-				$manualdb->delete( 'poi', [
-					"AND" => [
-						'poi_id' => $poiId
-					]
-				] );
-			}
-			if ( $noDiscordSubmitLogChannel === false ) {
-				$data = array("content" => '```Deleted POI with id "' . $poiId . '" and name: "' . $poiName['name'] . '" . ```', "username" => $loggedUser);
-				sendToWebhook($discordSubmitLogChannelUrl, ($data));
-			}
-		}
-	public function mark_poi_submitted($poiId, $loggedUser)
-		{
-			global $manualdb, $noPoi, $noDiscordSubmitLogChannel;
-			if ( $noPoi === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			$poiName = $manualdb->get( "poi", [ 'name' ], [ 'poi_id' => $poiId ] );
-			if ( ! empty( $poiId ) ) {
-				$cols     = [
-					'updated'      => time(),
-					'status'      => 2
-				];
-				$where    = [
-					'poi_id' => $poiId
-				];
-				$manualdb->update( "poi", $cols, $where );
-				if ( $noDiscordSubmitLogChannel === false ) {
-					$data = array("content" => '```Marked poi with id "' . $poiId . '." As submitted. PoiName: "' . $poiName['name'] . '". ```', "username" => $loggedUser);
-					sendToWebhook($discordSubmitLogChannelUrl, ($data));
-				}
-			}
-		}
-	public function mark_poi_declined($poiId, $loggedUser)
-		{
-			global $manualdb, $noPoi, $noDiscordSubmitLogChannel;
-			if ( $noPoi === true ) {
-				http_response_code( 401 );
-				die();
-			}
-			$poiName = $manualdb->get( "poi", [ 'name' ], [ 'poi_id' => $poiId ] );
-			if ( ! empty( $poiId ) ) {
-				$cols     = [
-					'updated'      => time(),
-					'status'      => 3
-				];
-				$where    = [
-					'poi_id' => $poiId
-				];
-				$manualdb->update( "poi", $cols, $where );
-				if ( $noDiscordSubmitLogChannel === false ) {
-					$data = array("content" => '```Marked poi with id "' . $poiId . '." As declined. PoiName: "' . $poiName['name'] . '". ```', "username" => $loggedUser);
 					sendToWebhook($discordSubmitLogChannelUrl, ($data));
 				}
 			}

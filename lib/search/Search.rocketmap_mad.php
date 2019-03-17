@@ -2,7 +2,7 @@
 
 namespace Search;
 
-class Monocle extends Search
+class RocketMap_MAD extends Search
 {
     public function search_reward($lat, $lon, $term)
     {
@@ -21,7 +21,7 @@ class Monocle extends Search
             if( $p > 493){
                 break;
             }
-            if(strpos(strtolower($preward['name']), strtolower($term)) !== false){
+            if(strpos(strtolower(i8ln($preward['name'])), strtolower($term)) !== false){
                 $presids[] = $p;
             }
         }
@@ -29,26 +29,27 @@ class Monocle extends Search
         $irewardsjson = json_decode( $ijson, true );
         $iresids = [];
         foreach($irewardsjson as $i => $ireward){
-            if(strpos(strtolower($ireward['name']), strtolower($term)) !== false){
+            if(strpos(strtolower(i8ln($ireward['name'])), strtolower($term)) !== false){
                 $iresids[] = $i;
             }
         }
 	if (!empty($presids)) {
-		$conds[] = "quest_pokemon_id IN (" . implode(',',$presids) . ")";
+		$conds[] = "tq.quest_pokemon_id IN (" . implode(',',$presids) . ")";
 	}
 	if (!empty($iresids)) {
-		$conds[] = "quest_item_id IN (" . implode(',',$iresids) . ")";
+		$conds[] = "tq.quest_item_id IN (" . implode(',',$iresids) . ")";
 	}
-	$query = "SELECT id,
-        name,
-	lat,
-	lon,
-	url,
-	quest_type,
-	json_extract(json_extract(`quest_rewards`,'$[*].info.pokemon_id'),'$[0]') AS quest_pokemon_id,
-	json_extract(json_extract(`quest_rewards`,'$[*].info.item_id'),'$[0]') AS quest_item_id, 
-	ROUND(( 3959 * acos( cos( radians(:lat) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( lat ) ) ) ),2) AS distance 
-	FROM pokestops
+	$query = "SELECT p.pokestop_id AS id,
+	p.name,
+	p.latitude AS lat,
+	p.longitude AS lon,
+	p.image AS url,
+	tq.quest_type,
+	tq.quest_pokemon_id,
+	tq.quest_item_id,
+	ROUND(( 3959 * acos( cos( radians(:lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( latitude ) ) ) ),2) AS distance 
+	FROM pokestop p
+	LEFT JOIN trs_quest tq ON tq.GUID = p.pokestop_id
 	WHERE :conditions
 	ORDER BY distance LIMIT " . $maxSearchResults . "";
 
@@ -82,11 +83,11 @@ class Monocle extends Search
             if( $k > 386){
                 break;
             }
-            if(strpos(strtolower($mon['name']), strtolower($term)) !== false){
+            if(strpos(strtolower(i8ln($mon['name'])), strtolower($term)) !== false){
                 $resids[] = $k;
             } else{
                 foreach($mon['types'] as $t){
-                    if(strpos(strtolower($t['type']), strtolower($term)) !== false){
+                    if(strpos(strtolower(i8ln($t['type'])), strtolower($term)) !== false){
                         $resids[] = $k;
                         break;
                     }
@@ -137,13 +138,20 @@ class Monocle extends Search
     public function search($dbname, $lat, $lon, $term)
     {
         global $db, $defaultUnit, $maxSearchResults;
-
-        if ( $db->info()['driver'] === 'pgsql' ) {
-            $query = "SELECT id,external_id,name,lat,lon,url, ROUND(cast( 3959 * acos( cos( radians(:lat) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( lat ) ) ) as numeric),2) AS distance FROM " . $dbname . " WHERE LOWER(name) LIKE :name ORDER BY distance LIMIT " . $maxSearchResults . "";
-        } else {
-            $query = "SELECT id,name,lat,lon,url, ROUND(( 3959 * acos( cos( radians(:lat) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( lat ) ) ) ),2) AS distance FROM " . $dbname . " WHERE LOWER(name) LIKE :name ORDER BY distance LIMIT " . $maxSearchResults . "";
-        }
-        $searches = $db->query( $query, [ ':name' => "%" . strtolower( $term ) . "%",  ':lat' => $lat, ':lon' => $lon ] )->fetchAll();
+	if ( $dbname === 'pokestop' ) {
+		if ( $db->info()['driver'] === 'pgsql' ) {
+		    $query = "SELECT pokestop_id,name,latitude AS lat,longitude AS lon,image AS url, ROUND(cast( 3959 * acos( cos( radians(:lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( latitude ) ) ) as numeric),2) AS distance FROM " . $dbname . " WHERE LOWER(name) LIKE :name ORDER BY distance LIMIT " . $maxSearchResults . "";
+		} else {
+		    $query = "SELECT pokestop_id,name,latitude AS lat,longitude AS lon,image AS url, ROUND(( 3959 * acos( cos( radians(:lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( latitude ) ) ) ),2) AS distance FROM " . $dbname . " WHERE LOWER(name) LIKE :name ORDER BY distance LIMIT " . $maxSearchResults . "";
+		}
+	} else if ( $dbname === 'gym' ) {
+		if ( $db->info()['driver'] === 'pgsql' ) {
+		    $query = "SELECT g.gym_id,gd.name,g.latitude AS lat,g.longitude AS lon,gd.url, ROUND(cast( 3959 * acos( cos( radians(:lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( latitude ) ) ) as numeric),2) AS distance FROM " . $dbname . " g LEFT JOIN gymdetails gd ON gd.gym_id = g.gym_id WHERE LOWER(name) LIKE :name ORDER BY distance LIMIT " . $maxSearchResults . "";
+		} else {
+		    $query = "SELECT g.gym_id,gd.name,g.latitude AS lat,g.longitude AS lon,gd.url, ROUND(( 3959 * acos( cos( radians(:lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:lon) ) + sin( radians(:lat) ) * sin( radians( latitude ) ) ) ),2) AS distance FROM " . $dbname . " g LEFT JOIN gymdetails gd ON gd.gym_id = g.gym_id WHERE LOWER(name) LIKE :name ORDER BY distance LIMIT " . $maxSearchResults . "";
+		}
+	}
+	$searches = $db->query( $query, [ ':name' => "%" . strtolower( $term ) . "%",  ':lat' => $lat, ':lon' => $lon ] )->fetchAll();
 
 	$data = array();
 	$i = 0;
