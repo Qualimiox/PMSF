@@ -39,12 +39,16 @@ $itemAmount   		= ! empty( $_POST['itemamount'] ) ? $_POST['itemamount'] : '1';
 $dust			= ! empty( $_POST['dust'] ) ? $_POST['dust'] : '';
 $nestId     		= ! empty( $_POST['nestId'] ) ? $_POST['nestId'] : '';
 $portalId   		= ! empty( $_POST['portalId'] ) ? $_POST['portalId'] : '';
+$innId   		= ! empty( $_POST['innId'] ) ? $_POST['innId'] : '';
+$fortressId   		= ! empty( $_POST['fortressId'] ) ? $_POST['fortressId'] : '';
+$greenhouseId   		= ! empty( $_POST['greenhouseId'] ) ? $_POST['greenhouseId'] : '';
 $communityId   		= ! empty( $_POST['communityId'] ) ? $_POST['communityId'] : '';
 $communityName 		= ! empty( $_POST['communityName'] ) ? $_POST['communityName'] : '';
 $communityDescription 	= ! empty( $_POST['communityDescription'] ) ? $_POST['communityDescription'] : '';
 $communityInvite 	= ! empty( $_POST['communityInvite'] ) ? $_POST['communityInvite'] : '';
 $poiName		= ! empty( $_POST['poiName'] ) ? $_POST['poiName'] : '';
 $poiDescription		= ! empty( $_POST['poiDescription'] ) ? $_POST['poiDescription'] : '';
+$poiNotes		= ! empty( $_POST['poiNotes'] ) ? $_POST['poiNotes'] : '';
 $poiId			= ! empty( $_POST['poiId'] ) ? $_POST['poiId'] : '';
 
 // set content type
@@ -105,11 +109,29 @@ if ( $action === "convertportalpokestop" ) {
 if ( $action === "convertportalgym" ) {
     $submit->convert_portal_gym($portalId, $loggedUser);
 }
+if ( $action === "convertportalinn" ) {
+    $submitManual->convert_portal_inn($portalId, $loggedUser);
+}
+if ( $action === "convertportalfortress" ) {
+    $submitManual->convert_portal_fortress($portalId, $loggedUser);
+}
+if ( $action === "convertportalgreenhouse" ) {
+    $submitManual->convert_portal_greenhouse($portalId, $loggedUser);
+}
 if ( $action === "markportal" ) {
     $submitManual->mark_portal($portalId, $loggedUser);
 }
 if ( $action === "delete-portal" ) {
     $submitManual->delete_portal($portalId, $loggedUser);
+}
+if ( $action === "delete-inn" ) {
+    $submitManual->delete_inn($innId, $loggedUser);
+}
+if ( $action === "delete-fortress" ) {
+    $submitManual->delete_fortress($fortressId, $loggedUser);
+}
+if ( $action === "delete-greenhouse" ) {
+    $submitManual->delete_greenhouse($greenhouseId, $loggedUser);
 }
 if ( $action === "nest" ) {
     $submitManual->modify_nest($nestId, $pokemonId, $loggedUser);
@@ -130,7 +152,10 @@ if ( $action === "delete-community" ) {
     $submitManual->delete_community($communityId, $loggedUser);
 }
 if ( $action === "poi-add" ) {
-    $submitManual->submit_poi($lat, $lon, $poiName, $poiDescription, $loggedUser);
+    $submitManual->submit_poi($lat, $lon, $poiName, $poiDescription, $poiNotes, $loggedUser);
+}
+if ( $action === "edit-poi" ) {
+    $submitManual->modify_poi($poiId, $poiName, $poiDescription, $poiNotes, $loggedUser);
 }
 if ( $action === "delete-poi" ) {
     $submitManual->delete_poi($poiId, $loggedUser);

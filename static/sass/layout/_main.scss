@@ -37,21 +37,6 @@ html, body {
   z-index: 0;
 }
 
-.fab {
-  background: darken(_palette(accent2, bg), 12);
-  color: _palette(accent2, fg);
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  border: none;
-  outline: none;
-  font-size: 18px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transition: .3s;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  text-align: center;
-}
-
 #scan-here {
   @include icon('\f002');
   position: fixed;
@@ -71,12 +56,6 @@ html, body {
   width: 26px;
   line-height: 26px;
   height: 26px;
-  background: #a2d696;
-  background: -webkit-linear-gradient(left, #a2d696 1%, #21cca8 99%);
-  background: -o-linear-gradient(left, #a2d696 1%, #21cca8 99%);
-  background: linear-gradient(to right, #a2d696 1%, #21cca8 99%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a2d696', endColorstr='#21cca8', GradientType=1);
-  color: #e3fede;
   border: none;
   outline: none;
 }
@@ -102,7 +81,7 @@ i.fa.fa-expand {
   .search-result{
     .name{
       max-width: 250px;
-      white-space: nowrap;
+      white-space: normal;
       overflow: hidden;
       text-overflow: ellipsis;
       @media(max-width:768px){
@@ -260,4 +239,5 @@ a.leaflet-popup-close-button {
     font: 21px/16px Tahoma, Verdana, sans-serif !important;
     color: black !important;
     width: 25px !important;
+    height: 25px !important;
 }

@@ -36,6 +36,38 @@ class RocketMap_MAD extends RocketMap
         return $data;
     }
 
+    public function get_gyms($swLat, $swLng, $neLat, $neLng, $exEligible = false, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0)
+    {
+        $conds = array();
+        $params = array();
+
+        $conds[] = "latitude > :swLat AND longitude > :swLng AND latitude < :neLat AND longitude < :neLng";
+        $params[':swLat'] = $swLat;
+        $params[':swLng'] = $swLng;
+        $params[':neLat'] = $neLat;
+        $params[':neLng'] = $neLng;
+
+        if ($oSwLat != 0) {
+            $conds[] = "NOT (latitude > :oswLat AND longitude > :oswLng AND latitude < :oneLat AND longitude < :oneLng)";
+            $params[':oswLat'] = $oSwLat;
+            $params[':oswLng'] = $oSwLng;
+            $params[':oneLat'] = $oNeLat;
+            $params[':oneLng'] = $oNeLng;
+        }
+        if ($tstamp > 0) {
+            $date = new \DateTime();
+            $date->setTimezone(new \DateTimeZone('UTC'));
+            $date->setTimestamp($tstamp);
+            $conds[] = "gym.last_scanned > :lastUpdated";
+            $params[':lastUpdated'] = date_format($date, 'Y-m-d H:i:s');
+        }
+        if ($exEligible === "true") {
+            $conds[] = "(is_ex_raid_eligible = 1)";
+        }
+
+        return $this->query_gyms($conds, $params);
+    }
+
     public function query_gyms($conds, $params)
     {
         global $db;
@@ -43,16 +75,16 @@ class RocketMap_MAD extends RocketMap
         $query = "SELECT gym.gym_id, 
         latitude, 
         longitude, 
-        guard_pokemon_id, 
         slots_available, 
-        total_cp, 
         Unix_timestamp(Convert_tz(last_modified, '+00:00', @@global.time_zone)) AS last_modified, 
         Unix_timestamp(Convert_tz(gym.last_scanned, '+00:00', @@global.time_zone)) AS last_scanned, 
         team_id, 
         name,
         url,
+        is_ex_raid_eligible AS park,
         level AS raid_level, 
-        pokemon_id AS raid_pokemon_id, 
+        raid.pokemon_id AS raid_pokemon_id, 
+        raid.form AS raid_pokemon_form, 
         cp AS raid_pokemon_cp, 
         move_1 AS raid_pokemon_move_1, 
         move_2 AS raid_pokemon_move_2, 
@@ -72,11 +104,6 @@ class RocketMap_MAD extends RocketMap
         $i = 0;
 
         foreach ($gyms as $gym) {
-            $guard_pid = $gym["guard_pokemon_id"];
-            if ($guard_pid == "0") {
-                $guard_pid = null;
-                $gym["guard_pokemon_id"] = null;
-            }
             $raid_pid = $gym["raid_pokemon_id"];
             if ($raid_pid == "0") {
                 $raid_pid = null;
@@ -84,8 +111,8 @@ class RocketMap_MAD extends RocketMap
             }
             $gym["team_id"] = intval($gym["team_id"]);
             $gym["pokemon"] = [];
-            $gym["guard_pokemon_name"] = empty($guard_pid) ? null : i8ln($this->data[$guard_pid]["name"]);
             $gym["raid_pokemon_name"] = empty($raid_pid) ? null : i8ln($this->data[$raid_pid]["name"]);
+            $gym["form"] = intval($gym["raid_pokemon_form"]);
             $gym["latitude"] = floatval($gym["latitude"]);
             $gym["longitude"] = floatval($gym["longitude"]);
             $gym["last_modified"] = $gym["last_modified"] * 1000;
@@ -94,6 +121,7 @@ class RocketMap_MAD extends RocketMap
             $gym["raid_end"] = $gym["raid_end"] * 1000;
             $gym["slots_available"] = intval($gym["slots_available"]);
             $gym["url"] = ! empty($gym["url"]) ? str_replace("http://", "https://images.weserv.nl/?url=", $gym["url"]) : null;
+            $gym["park"] = intval($gym["park"]);
             $data[] = $gym;
 
             unset($gyms[$i]);
@@ -151,7 +179,7 @@ class RocketMap_MAD extends RocketMap
         return $data;
     }
 
-    public function get_stops($qpeids, $qieids, $swLat, $swLng, $neLat, $neLng, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0, $lured = false, $quests, $dustamount)
+    public function get_stops($qpeids, $qieids, $swLat, $swLng, $neLat, $neLng, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0, $lured = false, $rocket = false, $quests, $dustamount)
     {
         $conds = array();
         $params = array();
@@ -171,6 +199,9 @@ class RocketMap_MAD extends RocketMap
         if ($lured == "true") {
             $conds[] = "active_fort_modifier IS NOT NULL";
         }
+        if ($rocket == "true") {
+            $conds[] = "incident_expiration IS NOT NULL";
+        }
 
         if ($tstamp > 0) {
             $date = new \DateTime();
@@ -182,7 +213,7 @@ class RocketMap_MAD extends RocketMap
         return $this->query_stops($conds, $params);
     }
 
-    public function get_stops_quest($qpreids, $qireids, $swLat, $swLng, $neLat, $neLng, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0, $lures, $quests, $dustamount, $reloaddustamount)
+    public function get_stops_quest($qpreids, $qireids, $swLat, $swLng, $neLat, $neLng, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0, $lures, $rocket, $quests, $dustamount, $reloaddustamount)
     {
         $conds = array();
         $params = array();
@@ -193,7 +224,7 @@ class RocketMap_MAD extends RocketMap
         $params[':neLng'] = $neLng;
         if (!empty($quests) && $quests === 'true') {
             $tmpSQL = '';
-	    if (count($qpreids)) {
+        if (count($qpreids)) {
                 $pkmn_in = '';
                 $p = 1;
                 foreach ($qpreids as $qpreid) {
@@ -222,7 +253,7 @@ class RocketMap_MAD extends RocketMap
             if ($reloaddustamount == "true") {
                 $tmpSQL .= "tq.quest_stardust > :amount";
                 $params[':amount'] = intval($dustamount);
-	    } else {
+        } else {
                 $tmpSQL .= "";
             }
             $conds[] = $tmpSQL;
@@ -235,11 +266,13 @@ class RocketMap_MAD extends RocketMap
         global $db;
 
         $query = "SELECT Unix_timestamp(Convert_tz(lure_expiration, '+00:00', @@global.time_zone)) AS lure_expiration,
+        Unix_timestamp(Convert_tz(incident_expiration, '+00:00', @@global.time_zone)) AS incident_expiration,
         pokestop_id,
         latitude,
         name AS pokestop_name,
         image AS url,
         longitude,
+        active_fort_modifier AS lure_id,
         tq.quest_type,
         tq.quest_timestamp,
         tq.quest_target,
@@ -248,7 +281,11 @@ class RocketMap_MAD extends RocketMap
         tq.quest_item_id,
         json_extract(json_extract(`quest_condition`,'$[*].type'),'$[0]') AS quest_condition_type,
         json_extract(json_extract(`quest_condition`,'$[*].type'),'$[1]') AS quest_condition_type_1,
-        json_extract(json_extract(`quest_condition`,'$[*].info'),'$[0]') AS quest_condition_info,
+        json_extract(json_extract(`quest_condition`,'$[*].with_pokemon_category'),'$[0]') AS quest_condition_pokemon_ids,
+        json_extract(json_extract(`quest_condition`,'$[*].with_throw_type'),'$[0]') AS quest_condition_with_throw_type,
+        json_extract(json_extract(`quest_condition`,'$[*].with_pokemon_type'),'$[0]') AS quest_condition_with_pokemon_type,
+        json_extract(json_extract(`quest_condition`,'$[*].with_raid_level'),'$[0]') AS quest_condition_with_raid_level,
+        json_extract(json_extract(`quest_condition`,'$[*].with_item'),'$[0]') AS quest_condition_with_item,
         tq.quest_reward_type,
         json_extract(json_extract(`quest_reward`,'$[*].info'),'$[0]') AS quest_reward_info,
         json_extract(json_extract(`quest_reward`,'$[*].pokemon_encounter.pokemon_display.form_value'),'$[0]') AS quest_pokemon_formid,
@@ -271,7 +308,7 @@ class RocketMap_MAD extends RocketMap
                 $item_pid = null;
                 $pokestop["quest_item_id"] = null;
             }
-			$mon_pid = $pokestop["quest_pokemon_id"];
+            $mon_pid = $pokestop["quest_pokemon_id"];
             if ($mon_pid == "0") {
                 $mon_pid = null;
                 $pokestop["quest_pokemon_id"] = null;
@@ -279,7 +316,9 @@ class RocketMap_MAD extends RocketMap
             $pokestop["latitude"] = floatval($pokestop["latitude"]);
             $pokestop["longitude"] = floatval($pokestop["longitude"]);
             $pokestop["lure_expiration"] = !empty($pokestop["lure_expiration"]) ? $pokestop["lure_expiration"] * 1000 : null;
-            $pokestop["url"] = str_replace("http://", "https://images.weserv.nl/?url=", $pokestop["url"]);
+            $pokestop["incident_expiration"] = !empty($pokestop["incident_expiration"]) ? $pokestop["incident_expiration"] * 1000 : null;
+            $pokestop["lure_id"] = $pokestop["lure_id"] - 500;
+            $pokestop["url"] = ! empty($pokestop["url"]) ? str_replace("http://", "https://images.weserv.nl/?url=", $pokestop["url"]) : null;
             $pokestop["quest_type"] = intval($pokestop["quest_type"]);
             $pokestop["quest_condition_type"] = intval($pokestop["quest_condition_type"]);
             $pokestop["quest_reward_type"] = intval($pokestop["quest_reward_type"]);
@@ -291,6 +330,19 @@ class RocketMap_MAD extends RocketMap
             $pokestop["quest_dust_amount"] = intval($pokestop["quest_dust_amount"]);
             $pokestop["quest_item_name"] = empty($item_pid) ? null : i8ln($this->items[$item_pid]["name"]);
             $pokestop["quest_pokemon_name"] = empty($mon_pid) ? null : i8ln($this->data[$mon_pid]["name"]);
+            if (!empty($pokestop["quest_condition_pokemon_ids"])) {
+                $pokestop["quest_condition_info"] = str_replace('"category_name": "", ',"",$pokestop["quest_condition_pokemon_ids"]);
+            } else if (!empty($pokestop["quest_condition_with_pokemon_type"])) {
+                $pokestop["quest_condition_info"] = str_replace("pokemon_type","pokemon_type_ids",$pokestop["quest_condition_with_pokemon_type"]);
+            } else if (!empty($pokestop["quest_condition_with_throw_type"])) {
+                $pokestop["quest_condition_info"] = str_replace("throw_type","throw_type_id",$pokestop["quest_condition_with_throw_type"]);
+            } else if (!empty($pokestop["quest_condition_with_raid_level"])) {
+                $pokestop["quest_condition_info"] = str_replace("raid_level","raid_levels",$pokestop["quest_condition_with_raid_level"]);
+            } else if (!empty($pokestop["quest_condition_with_item"])) {
+                $pokestop["quest_condition_info"] = str_replace("item","item_id",$pokestop["quest_condition_with_item"]);
+            } else {
+                $pokestop["quest_condition_info"] = null;
+            }
             $data[] = $pokestop;
             unset($pokestops[$i]);
             $i++;
