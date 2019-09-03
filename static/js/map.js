@@ -31,6 +31,7 @@ var $selectDirectionProvider
 var $switchExEligible
 var $questsExcludePokemon
 var $questsExcludeItem
+var $selectIconStyle
 
 var language = document.documentElement.lang === '' ? 'en' : document.documentElement.lang
 var languageSite = 'en'
@@ -78,9 +79,8 @@ var rawDataIsLoading = false
 var locationMarker
 var rangeMarkers = ['pokemon', 'pokestop', 'gym']
 var storeZoom = true
-var scanPath
 var moves
-var weather
+var weather // eslint-disable-line no-unused-vars
 var boostedMons // eslint-disable-line no-unused-vars
 
 var oSwLat
@@ -153,7 +153,7 @@ createjs.Sound.registerSound('static/sounds/ding.mp3', 'ding')
 
 var pokemonTypes = [i8ln('unset'), i8ln('Normal'), i8ln('Fighting'), i8ln('Flying'), i8ln('Poison'), i8ln('Ground'), i8ln('Rock'), i8ln('Bug'), i8ln('Ghost'), i8ln('Steel'), i8ln('Fire'), i8ln('Water'), i8ln('Grass'), i8ln('Electric'), i8ln('Psychic'), i8ln('Ice'), i8ln('Dragon'), i8ln('Dark'), i8ln('Fairy')]
 var genderType = ['♂', '♀', '⚲']
-var forms = ['unset', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?', i8ln('Normal'), i8ln('Sunny'), i8ln('Rainy'), i8ln('Snowy'), i8ln('Normal'), i8ln('Attack'), i8ln('Defense'), i8ln('Speed'), i8ln('1'), i8ln('2'), i8ln('3'), i8ln('4'), i8ln('5'), i8ln('6'), i8ln('7'), i8ln('8'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Frost'), i8ln('Fan'), i8ln('Mow'), i8ln('Wash'), i8ln('Heat'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), i8ln('Altered'), i8ln('Origin'), i8ln('Sky'), i8ln('Land'), i8ln('Overcast'), i8ln('Sunny'), i8ln('West sea'), i8ln('East sea'), i8ln('West sea'), i8ln('East sea'), i8ln('Arceus Normal'), i8ln('Archeus Fighting'), i8ln('Archeus Flying'), i8ln('Archeus Poison'), i8ln('Archeus Ground'), i8ln('Archeus Rock'), i8ln('Archeus Bug'), i8ln('Archeus Ghost'), i8ln('Archeus Steel'), i8ln('Archeus Fire'), i8ln('Archeus Water'), i8ln('Archeus Grass'), i8ln('Archeus Electric'), i8ln('Archeus Psychic'), i8ln('Archeus Ice'), i8ln('Archeus Dragon'), i8ln('Archeus Dark'), i8ln('Archeus Fairy'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), i8ln('8'), i8ln('9'), i8ln('10'), i8ln('11'), i8ln('12'), i8ln('13'), i8ln('14'), i8ln('15'), i8ln('16'), i8ln('17'), i8ln('18'), i8ln('19'), i8ln('Armored'), i8ln('A-intro'), i8ln('Normal'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Shadow'), i8ln('Purified'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Normal'), i8ln('Shadow'), i8ln('Purified'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Unknown'), i8ln('Normal'), i8ln('Evolveless'), i8ln('Normal'), i8ln('Evolveless'), i8ln('Normal'), i8ln('Evolveless'), i8ln('Evolveless'), i8ln('Evolveless'), i8ln('Evolveless'), i8ln('Evolveless'), i8ln('Evolveless'), i8ln('Evolveless')]
+var forms = ['unset', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?', i8ln('Normal'), i8ln('Sunny'), i8ln('Rainy'), i8ln('Snowy'), i8ln('Normal'), i8ln('Attack'), i8ln('Defense'), i8ln('Speed'), i8ln('1'), i8ln('2'), i8ln('3'), i8ln('4'), i8ln('5'), i8ln('6'), i8ln('7'), i8ln('8'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Alola'), i8ln('Normal'), i8ln('Frost'), i8ln('Fan'), i8ln('Mow'), i8ln('Wash'), i8ln('Heat'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), i8ln('Altered'), i8ln('Origin'), i8ln('Sky'), i8ln('Land'), i8ln('Overcast'), i8ln('Sunny'), i8ln('West sea'), i8ln('East sea'), i8ln('West sea'), i8ln('East sea'), i8ln('Arceus Normal'), i8ln('Archeus Fighting'), i8ln('Archeus Flying'), i8ln('Archeus Poison'), i8ln('Archeus Ground'), i8ln('Archeus Rock'), i8ln('Archeus Bug'), i8ln('Archeus Ghost'), i8ln('Archeus Steel'), i8ln('Archeus Fire'), i8ln('Archeus Water'), i8ln('Archeus Grass'), i8ln('Archeus Electric'), i8ln('Archeus Psychic'), i8ln('Archeus Ice'), i8ln('Archeus Dragon'), i8ln('Archeus Dark'), i8ln('Archeus Fairy'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), i8ln('8'), i8ln('9'), i8ln('10'), i8ln('11'), i8ln('12'), i8ln('13'), i8ln('14'), i8ln('15'), i8ln('16'), i8ln('17'), i8ln('18'), i8ln('19'), i8ln('Armored'), i8ln('A-intro'), i8ln('Normal'), '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
 var cpMultiplier = [0.094, 0.16639787, 0.21573247, 0.25572005, 0.29024988, 0.3210876, 0.34921268, 0.37523559, 0.39956728, 0.42250001, 0.44310755, 0.46279839, 0.48168495, 0.49985844, 0.51739395, 0.53435433, 0.55079269, 0.56675452, 0.58227891, 0.59740001, 0.61215729, 0.62656713, 0.64065295, 0.65443563, 0.667934, 0.68116492, 0.69414365, 0.70688421, 0.71939909, 0.7317, 0.73776948, 0.74378943, 0.74976104, 0.75568551, 0.76156384, 0.76739717, 0.7731865, 0.77893275, 0.7846369, 0.79030001]
 var throwType = JSON.parse('{"10": "Nice", "11": "Great", "12": "Excellent"}')
 var weatherLayerGroup = new L.LayerGroup()
@@ -324,6 +324,9 @@ function initMap() { // eslint-disable-line no-unused-vars
         maxZoom: maxZoom,
         zoomControl: false,
         preferCanvas: true,
+        worldCopyJump: true,
+        updateWhenZooming: false,
+        updateWhenIdle: true,
         layers: [weatherLayerGroup, exLayerGroup, gymLayerGroup, stopLayerGroup, scanAreaGroup, nestLayerGroup]
     })
 
@@ -637,8 +640,12 @@ function createLocationMarker() {
 
 function showS2Cells(level, style) {
     const bounds = map.getBounds()
-    const size = L.CRS.Earth.distance(bounds.getSouthWest(), bounds.getNorthEast()) / 10000 + 1 | 0
-    const count = 2 ** level * size >> 11
+    const swPoint = bounds.getSouthWest()
+    const nePoint = bounds.getNorthEast()
+    const swLat = swPoint.lat
+    const swLng = swPoint.lng
+    const neLat = nePoint.lat
+    const neLng = nePoint.lng
 
     function addPoly(cell) {
         const vertices = cell.getCornerLatLngs()
@@ -653,20 +660,35 @@ function showS2Cells(level, style) {
         }
     }
 
-    // add cells spiraling outward
-    let cell = S2.S2Cell.FromLatLng(bounds.getCenter(), level)
-    let steps = 1
-    let direction = 0
-    do {
-        for (let i = 0; i < 2; i++) {
-            for (let i = 0; i < steps; i++) {
-                addPoly(cell)
-                cell = cell.getNeighbors()[direction % 4]
+
+    let processedCells = {}
+    let stack = []
+
+    const centerCell = S2.S2Cell.FromLatLng(bounds.getCenter(), level)
+    processedCells[centerCell.toString()] = true
+    stack.push(centerCell)
+    addPoly(centerCell)
+
+    // Find all cells within view with a slighty modified version of the BFS algorithm.
+    while (stack.length > 0) {
+        const cell = stack.pop()
+        const neighbors = cell.getNeighbors()
+        neighbors.forEach(function (ncell, index) {
+            if (processedCells[ncell.toString()] !== true) {
+                const cornerLatLngs = ncell.getCornerLatLngs()
+                for (let i = 0; i < 4; i++) {
+                    const item = cornerLatLngs[i]
+                    if (item.lat >= swLat && item.lng >= swLng &&
+                            item.lat <= neLat && item.lng <= neLng) {
+                        processedCells[ncell.toString()] = true
+                        stack.push(ncell)
+                        addPoly(ncell)
+                        break
+                    }
+                }
             }
-            direction++
-        }
-        steps++
-    } while (steps < count)
+        })
+    }
 }
 
 function buildScanPolygons() {
@@ -746,7 +768,6 @@ function initSidebar() {
     $('#follow-my-location-switch').prop('checked', Store.get('followMyLocation'))
     $('#spawn-area-switch').prop('checked', Store.get('spawnArea'))
     $('#spawn-area-wrapper').toggle(Store.get('followMyLocation'))
-    $('#scanned-switch').prop('checked', Store.get('showScanned'))
     $('#weather-switch').prop('checked', Store.get('showWeather'))
     $('#spawnpoints-switch').prop('checked', Store.get('showSpawnpoints'))
     $('#direction-provider').val(Store.get('directionProvider'))
@@ -863,6 +884,8 @@ function pokemonLabel(item) {
     var sta = item['individual_stamina']
     var pMove1 = moves[item['move_1']] !== undefined ? i8ln(moves[item['move_1']]['name']) : 'gen/unknown'
     var pMove2 = moves[item['move_2']] !== undefined ? i8ln(moves[item['move_2']]['name']) : 'gen/unknown'
+    var pMoveType1 = ''
+    var pMoveType2 = ''
     var weight = item['weight']
     var height = item['height']
     var gender = item['gender']
@@ -888,66 +911,40 @@ function pokemonLabel(item) {
     }
 
     $.each(types, function (index, type) {
-        typesDisplay += '<div>' + getTypeSpan(type) + '</div>'
+        typesDisplay += '<img src="static/types/' + type['type'] + '.png" style="height:20px;">'
     })
 
     var details = ''
     if (atk != null && def != null && sta != null) {
         var iv = getIv(atk, def, sta)
+        var pokemonLevel
+        if (level != null) {
+            pokemonLevel = level
+        } else {
+            pokemonLevel = getPokemonLevel(cpMultiplier)
+        }
+        if (pMove1 !== 'gen/unknown') {
+            pMoveType1 = '<img style="position:relative;top:3px;left:2px;height:15px;" src="static/types/' + moves[item['move_1']]['type'] + '.png">'
+        }
+        if (pMove2 !== 'gen/unknown') {
+            pMoveType2 = '<img style="position:relative;top:3px;left:2px;height:15px;" src="static/types/' + moves[item['move_2']]['type'] + '.png">'
+        }
         details +=
             '<div style="position:absolute;top:90px;left:80px;"><div>' +
             i8ln('IV') + ': <b>' + iv.toFixed(1) + '%</b> (<b>' + atk + '</b>/<b>' + def + '</b>/<b>' + sta + '</b>)' +
+            '</div>' +
+            '<div>' + i8ln('CP') + ': <b>' + cp + '</b> | ' + i8ln('Level') + ': <b>' + pokemonLevel + '</b></div>' +
+            '</div><br>' +
+            '<div style="position:absolute;top:125px;">' +
+            '<div>' + i8ln('Quick') + ': <b>' + pMove1 + '</b>' + pMoveType1 + '</div>' +
+            '<div>' + i8ln('Charge') + ': <b>' + pMove2 + '</b>' + pMoveType2 + '</div>' +
+            '<div>' + i8ln('Weight') + ': <b>' + weight.toFixed(2) + 'kg</b>' + ' | ' + i8ln('Height') + ': <b>' + height.toFixed(2) + 'm</b></div>' +
             '</div>'
-
-        if (cp != null && (cpMultiplier != null || level != null)) {
-            var pokemonLevel
-            if (level != null) {
-                pokemonLevel = level
-            } else {
-                pokemonLevel = getPokemonLevel(cpMultiplier)
-            }
-            details +=
-                '<div>' +
-                i8ln('CP') + ' : <b>' + cp + '</b> | ' + i8ln('Level') + ' : <b>' + pokemonLevel +
-                '</b></div></div><br>'
-        }
-        details +=
-            '<div style="position:absolute;top:135px;"><div>' +
-            i8ln('Moves') + ' : <b>' + pMove1 + '</b> / <b>' + pMove2 +
-            '</b></div>'
-    } else {
-        details +=
-            '<div style="position:absolute;top:90px;left:80px;"><div>' +
-            i8ln('IV') + ': <b>??%</b> (<b>?</b>/<b>?</b>/<b>?</b>)' +
-            '</div>'
-        details +=
-            '<div>' +
-            i8ln('CP') + ' : <b>??</b> | ' + i8ln('Level') + ' : <b>??' +
-            '</b></div></div><br>'
-        details +=
-            '<div style="position:absolute;top:135px;"><div>' +
-            i8ln('Moves') + ' : <b>?</b> / <b>?</b></div>'
     }
 
     if (weatherBoostedCondition !== 0) {
         details +=
-            '<div>' + i8ln('Weather Boost') + ': <b>' + i8ln(weather[weatherBoostedCondition]) + '</b>' +
-            ' <img style="height:30px;position:absolute;top:-110px;left:-20px;" src="static/weather/i-' + weatherBoostedCondition + '.png" style="height:15px;"></div>'
-    } else {
-        details +=
-            '<div>' + i8ln('Weather Boost') + ': <b>None</b></div>'
-    }
-
-    if (weight != null && height != null) {
-        details += '<div>' +
-            i8ln('Weight') + ': <b>' + weight.toFixed(2) + 'kg</b>' +
-            ' | ' + i8ln('Height') + ': <b>' + height.toFixed(2) + 'm</b>' +
-            '</div></div>'
-    } else {
-        details += '<div>' +
-            i8ln('Weight') + ': <b>?kg</b>' +
-            ' | ' + i8ln('Height') + ': <b>?m</b>' +
-            '</div></div>'
+            '<img style="height:30px;position:absolute;top:25px;left:0px;" src="static/weather/i-' + weatherBoostedCondition + '.png" style="height:15px;"></div>'
     }
 
     var contentstring =
@@ -956,7 +953,7 @@ function pokemonLabel(item) {
     if (form !== null && form > 0 && forms.length > form) {
         if (id === 132) {
             contentstring += ' (' + idToPokemon[item['form']].name + ')'
-        } else {
+        } else if (forms[item['form']] !== '') {
             contentstring += ' (' + forms[item['form']] + ')'
         }
     }
@@ -999,20 +996,30 @@ function pokemonLabel(item) {
             '</b></div>'
     }
 
-    contentstring += '<small>' + typesDisplay + '</small>' + '<br>' +
-        details +
-        '<center><div style="position:relative;top:45px;">' +
-        '<i class="far fa-eye-slash"></i> <a href="javascript:excludePokemon(' + id + ')">' + i8ln('Exclude') + '</a>' +
-        ' | <i class="far fa-bell"></i> <a href="javascript:notifyAboutPokemon(' + id + ')">' + i8ln('Notify') + '</a>' +
-        ' | <i class="far fa-trash-alt"></i> <a href="javascript:removePokemonMarker(\'' + encounterId + '\')">' + i8ln('Remove') + '</a>' +
-        '</div></center>' +
-        '<div style="position:relative;top:45px;"><center>' +
-        '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ', ' + longitude + ')" title="' + i8ln('View in Maps') + '">' +
-        '<i class="fas fa-road"></i> ' + coordText + '</a> - ' +
-        '<a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16">' +
-        '<i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;margin-bottom:10px;font-size:18px;"></i>' +
-        '</a></center></div><br><br>'
-
+    contentstring += '<small>' + typesDisplay + '</small>' + '<br>' + details
+    if (atk != null && def != null && sta != null) {
+        contentstring += '<center><div style="position:relative;top:55px;">'
+    } else {
+        contentstring += '<center><div style="position:relative;">'
+    }
+    contentstring += '<a href="javascript:excludePokemon(' + id + ')">' + i8ln('Exclude') + '</a>' +
+    ' | <a href="javascript:notifyAboutPokemon(' + id + ')">' + i8ln('Notify') + '</a>' +
+    ' | <a href="javascript:removePokemonMarker(\'' + encounterId + '\')">' + i8ln('Remove') + '</a>' +
+    '</div></center>'
+    if (atk != null && def != null && sta != null) {
+        contentstring += '<div style="position:relative;top:55px;"><center>'
+    } else {
+        contentstring += '<div style="position:relative;"><center>'
+    }
+    contentstring +=
+    '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ', ' + longitude + ')" title="' + i8ln('View in Maps') + '">' +
+    '<i class="fas fa-road"></i> ' + coordText + '</a> - ' +
+    '<a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16">' +
+    '<i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;margin-bottom:10px;font-size:18px;"></i>' +
+    '</a></center></div>'
+    if (atk != null && def != null && sta != null) {
+        contentstring += '<br><br><br>'
+    }
     return contentstring
 }
 
@@ -1049,7 +1056,7 @@ function gymLabel(item) {
             if (form !== null && form > 0 && forms.length > form) {
                 if (item['raid_pokemon_id'] === 132) {
                     raidStr += ' (' + idToPokemon[item['form']].name + ')'
-                } else {
+                } else if (forms[item['form']] !== '') {
                     raidStr += ' (' + forms[item['form']] + ')'
                 }
             }
@@ -1124,7 +1131,7 @@ function gymLabel(item) {
     if (lastScanned != null) {
         lastScannedStr =
             '<div>' +
-            i8ln('Last Scanned') + ' : ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
+            i8ln('Last Scanned') + ': ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
             '</div>'
     }
 
@@ -1150,6 +1157,10 @@ function gymLabel(item) {
     } else if ((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) {
         whatsappLink = '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20egg%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share"><i class="fab fa-whatsapp" style="position:relative;top:3px;left:5px;color:#26c300;font-size:20px;"></i></a>'
     }
+    var coordText = latitude.toFixed(6) + ', ' + longitude.toFixed(7)
+    if (hideGymCoords === true) {
+        coordText = i8ln('Directions')
+    }
     str =
         '<div class="gym-label">' +
         '<center>' +
@@ -1164,11 +1175,11 @@ function gymLabel(item) {
         '<div><b>' + freeSlots + ' ' + i8ln('Free Slots') + '</b></div>' +
         raidStr +
         '<div>' +
-        '<a href="javascript:void(0);" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ');" title="' + i8ln('View in Maps') + '"><i class="fas fa-road"></i> ' + latitude.toFixed(6) + ' , ' + longitude.toFixed(7) + '</a> - <a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16"><i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;font-size:20px;"></i></a>' +
+        '<a href="javascript:void(0);" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ');" title="' + i8ln('View in Maps') + '"><i class="fas fa-road"></i> ' + coordText + '</a> - <a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16"><i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;font-size:20px;"></i></a>' +
         whatsappLink +
         '</div>' +
         '<div>' +
-        i8ln('Last Modified') + ' : ' + lastModifiedStr +
+        i8ln('Last Modified') + ': ' + lastModifiedStr +
         '</div>' +
         '<div>' +
         lastScannedStr +
@@ -1184,6 +1195,14 @@ function getReward(item) {
     var pokemonIdStr = ''
     var formStr = ''
     var shinyStr = ''
+    var styleStr = ''
+    if (!noTeamRocket && item['incident_expiration'] > Date.now()) {
+        styleStr = 'position:absolute;height:50px;top:60px;'
+    } else if (item['quest_reward_type'] === 2) {
+        styleStr = 'position:absolute;height:35px;right:55%;top:85px;filter:drop-shadow(1px 0 0 black)drop-shadow(-1px 0 0 black);'
+    } else {
+        styleStr = 'position:absolute;height:35px;right:55%;top:85px;'
+    }
     if (item['quest_reward_type'] === 7) {
         if (item['quest_pokemon_id'] <= 9) {
             pokemonIdStr = '00' + item['quest_pokemon_id']
@@ -1200,11 +1219,11 @@ function getReward(item) {
         if (item['quest_pokemon_shiny'] === 'true') {
             shinyStr = '_shiny'
         }
-        rewardImage = '<img height="70px" style="padding: 5px;" src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_' + formStr + shinyStr + '.png"/>'
+        rewardImage = '<img style="' + styleStr + '" src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_' + formStr + shinyStr + '.png"/>'
     } else if (item['quest_reward_type'] === 3) {
-        rewardImage = '<img height="70px" style="padding: 5px;" src="' + iconpath + 'rewards/reward_stardust_' + item['quest_dust_amount'] + '.png"/>'
+        rewardImage = '<img style="' + styleStr + '" src="' + iconpath + 'rewards/reward_stardust_' + item['quest_dust_amount'] + '.png"/>'
     } else if (item['quest_reward_type'] === 2) {
-        rewardImage = '<img height="70px" style="padding: 5px;" src="' + iconpath + 'rewards/reward_' + item['quest_item_id'] + '_' + item['quest_reward_amount'] + '.png"/>'
+        rewardImage = '<img style="' + styleStr + '" src="' + iconpath + 'rewards/reward_' + item['quest_item_id'] + '_' + item['quest_reward_amount'] + '.png"/>'
     }
     return rewardImage
 }
@@ -1213,33 +1232,9 @@ function getQuest(item) {
     var str
     var raidLevel
     var questinfo = JSON.parse(item['quest_condition_info'])
-    var questStr = i8ln(questtypeList[item['quest_type']])
+    var questStr = questtypeList[item['quest_type']]
 
-    str = '<div><b>' +
-    i8ln('Quest') + ': ' +
-    questStr.replace('{0}', item['quest_target']) +
-    '</b></div>' +
-    '<div>'
-
-    if (item['quest_reward_type'] === 2) {
-        str += '<div><b>' +
-        i8ln('Reward') + ': ' +
-        item['quest_reward_amount'] + ' ' +
-        item['quest_item_name'] +
-        '</b></div>'
-    } else if (item['quest_reward_type'] === 3) {
-        str += '<div><b>' +
-        i8ln('Reward') + ': ' +
-        item['quest_dust_amount'] + ' ' +
-        i8ln('Stardust') +
-        '</b></div>'
-    } else if (item['quest_reward_type'] === 7) {
-        str += '<div><b>' +
-        i8ln('Reward') + ': ' +
-        item['quest_pokemon_name'] +
-        '</b></div>'
-    }
-    str += '</div>'
+    str = questStr.replace('{0}', item['quest_target'])
 
     if (item['quest_condition_type'] > 0) {
         switch (item['quest_condition_type']) {
@@ -1259,6 +1254,7 @@ function getQuest(item) {
                     tstr = pokemonTypes[questinfo['pokemon_type_ids']]
                 }
                 str = str.replace('pokémon', tstr + '-type Pokémon')
+                str = str.replace('Snapshot(s)', 'Snapshot(s) of ' + tstr + '-type Pokémon')
                 break
             case 2:
                 var pstr = ''
@@ -1276,6 +1272,7 @@ function getQuest(item) {
                     pstr = idToPokemon[questinfo['pokemon_ids']].name
                 }
                 str = str.replace('pokémon', pstr)
+                str = str.replace('Snapshot(s)', 'Snapshot(s) of ' + pstr)
                 break
             case 3:
                 str = str.replace('pokémon', 'Pokémon with weather boost')
@@ -1294,7 +1291,7 @@ function getQuest(item) {
                 break
             case 8:
                 str = str.replace('Land', 'Make')
-                str = str.replace('throw(s)', i8ln(throwType[questinfo['throw_type_id']] + ' Throw(s)'))
+                str = str.replace('throw(s)', throwType[questinfo['throw_type_id']] + ' Throw(s)')
                 if (item['quest_condition_type_1'] === 15) {
                     str = str.replace('Throw(s)', 'Curveball Throw(s)')
                 }
@@ -1310,7 +1307,7 @@ function getQuest(item) {
                     str = str.replace('Catch', 'Use').replace('pokémon with berrie(s)', 'berrie(s) to help catch Pokémon')
                 }
                 if (questinfo !== null) {
-                    str = str.replace('berrie(s)', i8ln(idToItem[questinfo['item_id']].name))
+                    str = str.replace('berrie(s)', idToItem[questinfo['item_id']].name)
                 } else {
                     str = str.replace('Evolve', 'Use a item to evolve')
                 }
@@ -1324,7 +1321,7 @@ function getQuest(item) {
                 if (typeof questinfo['throw_type_id'] === 'undefined') {
                     str = str.replace('throw(s)', 'Throw(s) in a row')
                 } else {
-                    str = str.replace('throw(s)', i8ln(throwType[questinfo['throw_type_id']] + ' Throw(s) in a row'))
+                    str = str.replace('throw(s)', throwType[questinfo['throw_type_id']] + ' Throw(s) in a row')
                 }
                 if (item['quest_condition_type_1'] === 15) {
                     str = str.replace('Throw(s)', 'Curveball Throw(s)')
@@ -1358,34 +1355,45 @@ function getQuest(item) {
 
 function pokestopLabel(item) {
     var str
+    var stopImage = ''
+    var lureEndStr = ''
+    var incidentEndStr = ''
+    var stopName = ''
+    var gruntReward = ''
+    var lastMidnight = ''
     if (item['pokestop_name'] === null) {
         item['pokestop_name'] = 'Pokéstop'
     }
     var d = new Date()
-    var lastMidnight = d.setHours(0, 0, 0, 0) / 1000
-    var stopName = ''
+    if (mapFork === 'mad') {
+        lastMidnight = d.setHours(0, 0, 0, 0) / 1000
+    } else {
+        lastMidnight = 0
+    }
     if (!noTeamRocket && item['incident_expiration'] > Date.now()) {
         stopName = '<b class="pokestop-rocket-name">' + item['pokestop_name'] + '</b>'
+        if (item['url'] !== null) {
+            stopImage = '<img class="pokestop-rocket-image" src="' + item['url'] + '">' +
+            '<img src="static/forts/teamRocket.png" style="position:absolute;height:30px;left:55%;">' +
+            '<img src="static/grunttype/' + item['grunt_type'] + '.png" style="position:absolute;height:35px;right:55%;top:85px;">'
+        }
     } else if (!noQuests && item['quest_type'] !== 0 && lastMidnight < Number(item['quest_timestamp'])) {
         stopName = '<b class="pokestop-quest-name">' + item['pokestop_name'] + '</b>'
+        if (item['url'] !== null) {
+            stopImage = '<img class="pokestop-quest-image" src="' + item['url'] + '">' +
+            '<img src="static/images/reward.png" style="position:absolute;height:30px;left:55%;">'
+        }
     } else if (!noLures && item['lure_expiration'] > Date.now()) {
         stopName = '<b class="pokestop-lure-name">' + item['pokestop_name'] + '</b>'
+        if (item['url'] !== null) {
+            stopImage = '<img class="pokestop-lure-image" src="' + item['url'] + '">'
+        }
     } else {
         stopName = '<b class="pokestop-name">' + item['pokestop_name'] + '</b>'
+        if (item['url'] !== null) {
+            stopImage = '<img class="pokestop-image" src="' + item['url'] + '">'
+        }
     }
-    var stopImage = ''
-    var lureEndStr = ''
-    var incidentEndStr = ''
-    if (!noTeamRocket && item['incident_expiration'] > Date.now() && item['url'] !== null) {
-        stopImage = '<img class="pokestop-rocket-image" src="' + item['url'] + '">'
-    } else if (!noQuests && item['quest_type'] !== 0 && lastMidnight < Number(item['quest_timestamp']) && item['url'] !== null) {
-        stopImage = '<img class="pokestop-quest-image" src="' + item['url'] + '">'
-    } else if (!noLures && item['lure_expiration'] > Date.now() && item['url'] !== null) {
-        stopImage = '<img class="pokestop-lure-image" src="' + item['url'] + '">'
-    } else if (item['url'] !== null) {
-        stopImage = '<img class="pokestop-image" src="' + item['url'] + '">'
-    }
-
     str =
         '<div class="pokestop-label">' +
         '<center>' +
@@ -1393,9 +1401,30 @@ function pokestopLabel(item) {
         '<div>' + stopImage
 
     if (!noQuests && item['quest_type'] !== null && lastMidnight < Number(item['quest_timestamp'])) {
-        str +=
-            getReward(item) + '</div>' +
-            getQuest(item)
+        var questStr = getQuest(item)
+        str += getReward(item) + '</div>' +
+            '<div>' +
+            i8ln('Quest') + ': <b>' +
+            i8ln(questStr) +
+            '</b></div>'
+        if (item['quest_reward_type'] === 2) {
+            str += '<div>' +
+            i8ln('Reward') + ': <b>' +
+            item['quest_reward_amount'] + ' ' +
+            item['quest_item_name'] +
+            '</b></div>'
+        } else if (item['quest_reward_type'] === 3) {
+            str += '<div>' +
+            i8ln('Reward') + ': <b>' +
+            item['quest_dust_amount'] + ' ' +
+            i8ln('Stardust') +
+            '</b></div>'
+        } else if (item['quest_reward_type'] === 7) {
+            str += '<div>' +
+            i8ln('Reward') + ': <b>' +
+            item['quest_pokemon_name'] +
+            '</b></div>'
+        }
     } else {
         str += '</div>'
     }
@@ -1412,8 +1441,8 @@ function pokestopLabel(item) {
         }
         lureEndStr = getTimeStr(item['lure_expiration'])
         str +=
-        '<div><b>' + i8ln('Lure Type') + ': ' + lureType + '</b></div>' +
-        '<div><b>' + i8ln('Lure expiration') + ': ' + lureEndStr +
+        '<div>' + i8ln('Lure Type') + ': <b>' + lureType + '</b></div>' +
+        '<div>' + i8ln('Lure expiration') + ': <b>' + lureEndStr +
         ' <span class="label-countdown" disappears-at="' + item['lure_expiration'] + '">(00m00s)</span>' +
         '</b></div>'
     }
@@ -1421,14 +1450,40 @@ function pokestopLabel(item) {
         str += '<br><div><b>' + i8ln('Team Rocket') + ':</b></div>'
         if (item['grunt_type'] > 0) {
             if (item['grunt_type_name'] !== '') {
-                str += '<div><b>' + i8ln('Grunt-Type') + ': ' + item['grunt_type_name'] + '</b></div>'
+                str += '<div>' + i8ln('Grunt-Type') + ': <b>' + item['grunt_type_name'] + '</b></div>'
             }
-            str += '<div><b>' + i8ln('Grunt-Gender') + ': ' + item['grunt_type_gender'] + '</b></div>'
+            str += '<div>' + i8ln('Grunt-Gender') + ': <b>' + item['grunt_type_gender'] + '</b></div>'
         }
         incidentEndStr = getTimeStr(item['incident_expiration'])
-        str += '<div><b>' + i8ln('Expiration Time') + ': ' + incidentEndStr +
+        str += '<div>' + i8ln('Expiration Time') + ': <b>' + incidentEndStr +
         ' <span class="label-countdown" disappears-at="' + item['incident_expiration'] + '">(00m00s)</span>' +
         '</b></div>'
+        if (!noInvasionEncounterData && item['encounters'] !== null) {
+            gruntReward +=
+            '<input class="button" name="button" type="button" onclick="showHideGruntEncounter()" value="' + i8ln('Show / Hide Possible Rewards') + '" style="margin-top:2px;outline:none;font-size:9pt">' +
+            '<div class="grunt-encounter-wrapper" style="display:none;background-color:#ccc;border-radius:10px;border:1px solid black">'
+            if (item['second_reward'] === 'false') {
+                gruntReward += '<center>' +
+                '<div>100% ' + i8ln('encounter chance for') + ':<br>'
+                item['encounters']['first'].forEach(function (data) {
+                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;"/>'
+                })
+                gruntReward += '</div></div></center>'
+            } else if (item['second_reward'] === 'true') {
+                gruntReward += '<center>' +
+                '<div>85% ' + i8ln('encounter chance for') + ':<br>'
+                item['encounters']['first'].forEach(function (data) {
+                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;"/>'
+                })
+                gruntReward += '</div>' +
+                '<div>15% ' + i8ln('encounter chance for') + ':<br>'
+                item['encounters']['second'].forEach(function (data) {
+                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;"/>'
+                })
+                gruntReward += '</div></div><center>'
+            }
+            str += '<center>' + gruntReward + '</center>'
+        }
     }
     str += '</center></div>'
     if (!noDeletePokestops) {
@@ -1443,8 +1498,12 @@ function pokestopLabel(item) {
     if (!noConvertPokestops) {
         str += '<center><div><i class="fas fa-sync-alt convert-pokestop" onclick="openConvertPokestopModal(event);" data-id="' + item['pokestop_id'] + '">' + i8ln('Convert to Gym') + '</i></div></center>'
     }
+    var coordText = item['latitude'] + ', ' + item['longitude']
+    if (hidePokestopCoords === true) {
+        coordText = i8ln('Directions')
+    }
     str += '<div><center>' +
-        '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + item['latitude'] + ',' + item['longitude'] + ')" title="' + i8ln('View in Maps') + '"><i class="fas fa-road"></i> ' + item['latitude'] + ', ' + item['longitude'] + '</a> - <a href="./?lat=' + item['latitude'] + '&lon=' + item['longitude'] + '&zoom=16"><i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;font-size:20px;"></i></a>' +
+        '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + item['latitude'] + ',' + item['longitude'] + ')" title="' + i8ln('View in Maps') + '"><i class="fas fa-road"></i> ' + coordText + '</a> - <a href="./?lat=' + item['latitude'] + '&lon=' + item['longitude'] + '&zoom=16"><i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;font-size:20px;"></i></a>' +
         '</center></div>'
     if ((!noWhatsappLink) && (item['quest_id'] && item['reward_id'] !== null)) {
         str += '<div>' +
@@ -1454,6 +1513,18 @@ function pokestopLabel(item) {
             '</div>'
     }
     return str
+}
+
+function showHideGruntEncounter() { // eslint-disable-line no-unused-vars
+    var x = document.getElementsByClassName('grunt-encounter-wrapper')
+    var i
+    for (i = 0; i < x.length; i++) {
+        if (x[i].style.display === 'none') {
+            x[i].style.display = 'block'
+        } else {
+            x[i].style.display = 'none'
+        }
+    }
 }
 
 function formatSpawnTime(seconds) {
@@ -1739,7 +1810,7 @@ function getGymMarkerIcon(item) {
             '<img src="' + iconpath + 'pokemon_icon_' + pokemonidStr + '_' + formStr + '.png" style="width:50px;height:auto;position:absolute;top:-15px;right:0px;"/>' +
             '</div>'
         if (noRaidTimer === false && Store.get(['showRaidTimer'])) {
-            html += '<div><span class="raid-countdown gym-icon-countdown" disappears-at="' + item['raid_end'] + '" end>00m00s</span></div>'
+            html += '<div><span class="raid-countdown gym-icon-countdown" disappears-at="' + item['raid_end'] + '" end>' + generateRemainingTimer(item['raid_end'], 'end') + '</span></div>'
         }
         fortMarker = L.divIcon({
             iconSize: [50, 50],
@@ -1763,7 +1834,7 @@ function getGymMarkerIcon(item) {
             '<img src="static/raids/egg_' + hatchedEgg + '.png" style="width:35px;height:auto;position:absolute;top:-11px;right:18px;"/>' +
             '</div>'
         if (noRaidTimer === false && Store.get(['showRaidTimer'])) {
-            html += '<div><span class="raid-countdown gym-icon-countdown" disappears-at="' + item['raid_end'] + '" end>00m00s</span></div>'
+            html += '<div><span class="raid-countdown gym-icon-countdown" disappears-at="' + item['raid_end'] + '" end>' + generateRemainingTimer(item['raid_end'], 'end') + '</span></div>'
         }
         fortMarker = L.divIcon({
             iconSize: [50, 50],
@@ -1787,7 +1858,7 @@ function getGymMarkerIcon(item) {
             '<img src="static/raids/egg_' + raidEgg + '.png" style="width:25px;height:auto;position:absolute;top:6px;right:18px;"/>' +
             '</div>'
         if (noRaidTimer === false && Store.get(['showRaidTimer'])) {
-            html += '<div><span class="raid-countdown gym-icon-countdown" disappears-at="' + item['raid_start'] + '" end>00m00s</span></div>'
+            html += '<div><span class="raid-countdown gym-icon-countdown" disappears-at="' + item['raid_start'] + '" end>' + generateRemainingTimer(item['raid_start'], 'end') + '</span></div>'
         }
         fortMarker = L.divIcon({
             iconSize: [50, 50],
@@ -1952,7 +2023,12 @@ function getPokestopMarkerIcon(item) {
     var stopMarker = ''
     var html = ''
     var d = new Date()
-    var lastMidnight = d.setHours(0, 0, 0, 0) / 1000
+    var lastMidnight = ''
+    if (mapFork === 'mad') {
+        lastMidnight = d.setHours(0, 0, 0, 0) / 1000
+    } else {
+        lastMidnight = 0
+    }
     if (!noTeamRocket && item['incident_expiration'] > Date.now()) {
         var lureStr = ''
         if (!noLures && item['lure_expiration'] > Date.now()) {
@@ -2653,36 +2729,6 @@ function deletePoi(event) { // eslint-disable-line no-unused-vars
     }
 }
 
-function getColorByDate(value) {
-    // Changes the color from red to green over 15 mins
-    var diff = (Date.now() - value) / 1000 / 60 / 15
-
-    if (diff > 1) {
-        diff = 1
-    }
-
-    // value from 0 to 1 - Green to Red
-    var hue = ((1 - diff) * 120).toString(10)
-    return ['hsl(', hue, ',100%,50%)'].join('')
-}
-
-function setupScannedMarker(item) {
-    var circleCenter = new google.maps.LatLng(item['latitude'], item['longitude'])
-
-    var marker = new google.maps.Circle({
-        map: map,
-        clickable: false,
-        center: circleCenter,
-        radius: 70, // metres
-        fillColor: getColorByDate(item['last_modified']),
-        fillOpacity: 0.1,
-        strokeWeight: 1,
-        strokeOpacity: 0.5
-    })
-
-    return marker
-}
-
 function getColorBySpawnTime(value) {
     var now = new Date()
     var seconds = now.getMinutes() * 60 + now.getSeconds()
@@ -2844,15 +2890,6 @@ function clearStaleMarkers() {
             delete mapData.lurePokemons[key]
         }
     })
-
-    $.each(mapData.scanned, function (key, value) {
-        // If older than 15mins remove
-        if (mapData.scanned[key]['last_modified'] < new Date().getTime() - 15 * 60 * 1000) {
-            markers.removeLayer(mapData.scanned[key].marker)
-            markersnotify.removeLayer(mapData.scanned[key].marker)
-            delete mapData.scanned[key]
-        }
-    })
 }
 
 function showInBoundsMarkers(markersInput, type) {
@@ -2905,7 +2942,6 @@ function loadRawData() {
     var loadGreenhouses = Store.get('showGreenhouses')
     var loadPois = Store.get('showPoi')
     var loadNewPortalsOnly = Store.get('showNewPortalsOnly')
-    var loadScanned = Store.get('showScanned')
     var loadSpawnpoints = Store.get('showSpawnpoints')
     var loadMinIV = Store.get('remember_text_min_iv')
     var loadMinLevel = Store.get('remember_text_min_level')
@@ -2952,7 +2988,6 @@ function loadRawData() {
             'gyms': loadGyms,
             'lastgyms': lastgyms,
             'exEligible': exEligible,
-            'scanned': loadScanned,
             'lastslocs': lastslocs,
             'spawnpoints': loadSpawnpoints,
             'lastspawns': lastspawns,
@@ -4954,7 +4989,12 @@ function updatePokestops() {
     var removeStops = []
     var currentTime = Math.round(new Date().getTime())
     var d = new Date()
-    var lastMidnight = d.setHours(0, 0, 0, 0) / 1000
+    var lastMidnight = ''
+    if (mapFork === 'mad') {
+        lastMidnight = d.setHours(0, 0, 0, 0) / 1000
+    } else {
+        lastMidnight = 0
+    }
 
     $.each(mapData.pokestops, function (key, value) {
         // change lured pokestop marker to unlured when expired.
@@ -5167,39 +5207,6 @@ function setTimeOut(id, item, time) {
     }, time + 1000)
 }
 
-function processScanned(i, item) {
-    if (!Store.get('showScanned')) {
-        return false
-    }
-
-    var scanId = item['latitude'] + '|' + item['longitude']
-
-    if (!(scanId in mapData.scanned)) {
-        // add marker to map and item to dict
-        if (item.marker) {
-            item.marker.setMap(null)
-        }
-        item.marker = setupScannedMarker(item)
-        mapData.scanned[scanId] = item
-    } else {
-        mapData.scanned[scanId].last_modified = item['last_modified']
-    }
-}
-
-function updateScanned() {
-    if (!Store.get('showScanned')) {
-        return false
-    }
-
-    $.each(mapData.scanned, function (key, value) {
-        if (map.getBounds().intersects(value.marker.getBounds())) {
-            value.marker.setOptions({
-                fillColor: getColorByDate(value['last_modified'])
-            })
-        }
-    })
-}
-
 function processSpawnpoints(i, item) {
     if (!Store.get('showSpawnpoints')) {
         return false
@@ -5258,7 +5265,6 @@ function updateMap() {
         $.each(result.pokemons, processPokemons)
         $.each(result.pokestops, processPokestops)
         $.each(result.gyms, processGyms)
-        $.each(result.scanned, processScanned)
         $.each(result.spawnpoints, processSpawnpoints)
         $.each(result.nests, processNests)
         $.each(result.communities, processCommunities)
@@ -5271,13 +5277,10 @@ function updateMap() {
         showInBoundsMarkers(mapData.lurePokemons, 'pokemon')
         showInBoundsMarkers(mapData.gyms, 'gym')
         showInBoundsMarkers(mapData.pokestops, 'pokestop')
-        showInBoundsMarkers(mapData.scanned, 'scanned')
         showInBoundsMarkers(mapData.spawnpoints, 'inbound')
-        // drawScanPath(result.scanned)
 
         clearStaleMarkers()
 
-        updateScanned()
         updateSpawnPoints()
         updatePokestops()
         updatePortals()
@@ -5348,28 +5351,28 @@ function updateWeatherOverlay() {
 
 function updateS2Overlay() {
     if ((Store.get('showCells'))) {
-        if (Store.get('showExCells') && (map.getZoom() > 12)) {
+        if (Store.get('showExCells') && (map.getZoom() > 10)) {
             exLayerGroup.clearLayers()
             showS2Cells(13, {color: 'red', weight: 6, dashOffset: '8'})
-        } else if (Store.get('showExCells') && (map.getZoom() <= 12)) {
+        } else if (Store.get('showExCells') && (map.getZoom() <= 10)) {
             exLayerGroup.clearLayers()
-            toastr['error'](i8ln('This is to much zoom.'), i8ln('EX cells are currently hidden'))
+            toastr['error'](i8ln('Zoom in more to show them.'), i8ln('EX trigger cells are currently hidden'))
             toastr.options = toastrOptions
         }
-        if (Store.get('showGymCells') && (map.getZoom() > 13)) {
+        if (Store.get('showGymCells') && (map.getZoom() > 11)) {
             gymLayerGroup.clearLayers()
             showS2Cells(14, {color: 'green', weight: 4, dashOffset: '4'})
-        } else if (Store.get('showGymCells') && (map.getZoom() <= 13)) {
+        } else if (Store.get('showGymCells') && (map.getZoom() <= 11)) {
             gymLayerGroup.clearLayers()
-            toastr['error'](i8ln('This is to much zoom.'), i8ln('Gym cells are currently hidden'))
+            toastr['error'](i8ln('Zoom in more to show them.'), i8ln('Gym cells are currently hidden'))
             toastr.options = toastrOptions
         }
-        if (Store.get('showStopCells') && (map.getZoom() > 16)) {
+        if (Store.get('showStopCells') && (map.getZoom() > 14)) {
             stopLayerGroup.clearLayers()
             showS2Cells(17, {color: 'blue'})
-        } else if (Store.get('showStopCells') && (map.getZoom() <= 16)) {
+        } else if (Store.get('showStopCells') && (map.getZoom() <= 14)) {
             stopLayerGroup.clearLayers()
-            toastr['error'](i8ln('This is to much zoom.'), i8ln('Pokestop cells are currently hidden'))
+            toastr['error'](i8ln('Zoom in more to show them.'), i8ln('Pokestop cells are currently hidden'))
             toastr.options = toastrOptions
         }
     }
@@ -5415,27 +5418,6 @@ function destroyWeatherOverlay() {
     weatherMarkers = []
 }
 
-function drawScanPath(points) { // eslint-disable-line no-unused-vars
-    var scanPathPoints = []
-    $.each(points, function (idx, point) {
-        scanPathPoints.push({
-            lat: point['latitude'],
-            lng: point['longitude']
-        })
-    })
-    if (scanPath) {
-        scanPath.setMap(null)
-    }
-    scanPath = new google.maps.Polyline({
-        path: scanPathPoints,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-        map: map
-    })
-}
-
 function redrawPokemon(pokemonList) {
     var skipNotification = true
     $.each(pokemonList, function (key, value) {
@@ -5454,12 +5436,10 @@ function redrawPokemon(pokemonList) {
 var updateLabelDiffTime = function updateLabelDiffTime() {
     $('.label-countdown').each(function (index, element) {
         var disappearsAt = getTimeUntil(parseInt(element.getAttribute('disappears-at')))
-
         var hours = disappearsAt.hour
         var minutes = disappearsAt.min
         var seconds = disappearsAt.sec
         var timestring = ''
-
         if (disappearsAt.time < disappearsAt.now) {
             if (element.hasAttribute('start')) {
                 timestring = '(' + i8ln('started') + ')'
@@ -5473,43 +5453,59 @@ var updateLabelDiffTime = function updateLabelDiffTime() {
             if (hours > 0) {
                 timestring += hours + 'h'
             }
-
             timestring += lpad(minutes, 2, 0) + 'm'
             timestring += lpad(seconds, 2, 0) + 's'
             timestring += ')'
         }
-
         $(element).text(timestring)
     })
     $('.raid-countdown').each(function (index, element) {
         var disappearsAt = getTimeUntil(parseInt(element.getAttribute('disappears-at')))
-
         var hours = disappearsAt.hour
         var minutes = disappearsAt.min
         var seconds = disappearsAt.sec
         var timestring = ''
-
         if (disappearsAt.time < disappearsAt.now) {
             if (element.hasAttribute('start')) {
-                timestring = '\xa0' + i8ln('started') + '\xa0'
+                timestring = i8ln('started')
             } else if (element.hasAttribute('end')) {
-                timestring = '\xa0' + i8ln('ended') + '\xa0'
+                timestring = i8ln('ended')
             } else {
-                timestring = '\xa0' + i8ln('expired') + '\xa0'
+                timestring = i8ln('expired')
             }
         } else {
-            timestring = '\xa0'
             if (hours > 0) {
                 timestring += hours + 'h'
             }
-
             timestring += lpad(minutes, 2, 0) + 'm'
             timestring += lpad(seconds, 2, 0) + 's'
-            timestring += '\xa0'
         }
-
         $(element).text(timestring)
     })
+}
+
+function generateRemainingTimer(timestamp, type) {
+    var disappearsAt = getTimeUntil(parseInt(timestamp))
+    var hours = disappearsAt.hour
+    var minutes = disappearsAt.min
+    var seconds = disappearsAt.sec
+    var timestring = ''
+    if (disappearsAt.time < disappearsAt.now) {
+        if (type === 'start') {
+            timestring = i8ln('started')
+        } else if (type === 'end') {
+            timestring = i8ln('ended')
+        } else {
+            timestring = i8ln('expired')
+        }
+    } else {
+        if (hours > 0) {
+            timestring += hours + 'h'
+        }
+        timestring += lpad(minutes, 2, 0) + 'm'
+        timestring += lpad(seconds, 2, 0) + 's'
+    }
+    return timestring
 }
 
 function sendNotification(title, text, icon, lat, lon) {
@@ -6071,6 +6067,31 @@ $(function () {
     })
 
     $selectGymMarkerStyle.val(Store.get('gymMarkerStyle')).trigger('change')
+
+    $selectIconStyle = $('#icon-style')
+
+    $selectIconStyle.select2({
+        placeholder: 'Select Style',
+        minimumResultsForSearch: Infinity
+    })
+    $selectIconStyle.on('change', function (e) {
+        Store.set('icons', this.value)
+        var port = ''
+        if (window.location.port.length > 0) {
+            port = ':' + window.location.port
+        }
+        var path = window.location.protocol + '//' + window.location.hostname + port + window.location.pathname
+        var r = new RegExp('^(?:[a-z]+:)?//', 'i')
+        iconpath = r.test(Store.get('icons')) ? Store.get('icons') : path + Store.get('icons')
+
+        redrawPokemon(mapData.pokemons)
+        redrawPokemon(mapData.lurePokemons)
+        jQuery('label[for="pokestops-switch"]').click()
+        jQuery('label[for="pokestops-switch"]').click()
+        jQuery('label[for="raids-switch"]').click()
+        jQuery('label[for="raids-switch"]').click()
+    })
+    $selectIconStyle.val(Store.get('icons')).trigger('change')
     pokemonSpritesFilter()
     itemSpritesFilter()
 })
@@ -6420,8 +6441,6 @@ $(function () {
                     lastpokestops = false
                 } else if (storageKey === 'showPortals') {
                     lastportals = false
-                } else if (storageKey === 'showScanned') {
-                    lastslocs = false
                 } else if (storageKey === 'showSpawnpoints') {
                     lastspawns = false
                 }
@@ -6602,9 +6621,6 @@ $(function () {
             wrapper.hide(options)
         }
         buildSwitchChangeListener(mapData, ['pokemons'], 'showPokemon').bind(this)()
-    })
-    $('#scanned-switch').change(function () {
-        buildSwitchChangeListener(mapData, ['scanned'], 'showScanned').bind(this)()
     })
 
     $('#weather-switch').change(function () {
