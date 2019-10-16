@@ -153,7 +153,6 @@ createjs.Sound.registerSound('static/sounds/ding.mp3', 'ding')
 
 var pokemonTypes = [i8ln('unset'), i8ln('Normal'), i8ln('Fighting'), i8ln('Flying'), i8ln('Poison'), i8ln('Ground'), i8ln('Rock'), i8ln('Bug'), i8ln('Ghost'), i8ln('Steel'), i8ln('Fire'), i8ln('Water'), i8ln('Grass'), i8ln('Electric'), i8ln('Psychic'), i8ln('Ice'), i8ln('Dragon'), i8ln('Dark'), i8ln('Fairy')]
 var genderType = ['♂', '♀', '⚲']
-var forms = ['unset', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?', i8ln('Normal'), i8ln('Sunny'), i8ln('Rainy'), i8ln('Snowy'), i8ln('Normal'), i8ln('Attack'), i8ln('Defense'), i8ln('Speed'), '1', '2', '3', '4', '5', '6', '7', '8', '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Alola'), '', i8ln('Frost'), i8ln('Fan'), i8ln('Mow'), i8ln('Wash'), i8ln('Heat'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), i8ln('Altered'), i8ln('Origin'), i8ln('Sky'), i8ln('Land'), i8ln('Overcast'), i8ln('Sunny'), i8ln('West sea'), i8ln('East sea'), i8ln('West sea'), i8ln('East sea'), i8ln('Normal'), i8ln('Fighting'), i8ln('Flying'), i8ln('Poison'), i8ln('Ground'), i8ln('Rock'), i8ln('Bug'), i8ln('Ghost'), i8ln('Steel'), i8ln('Fire'), i8ln('Water'), i8ln('Grass'), i8ln('Electric'), i8ln('Psychic'), i8ln('Ice'), i8ln('Dragon'), i8ln('Dark'), i8ln('Fairy'), i8ln('Plant'), i8ln('Sandy'), i8ln('Trash'), '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', i8ln('Armored'), i8ln('A-intro'), '', i8ln('Red Striped'), i8ln('Blue Striped'), i8ln('Standard'), i8ln('Zen'), i8ln('Incarnate'), i8ln('Therian'), i8ln('Incarnate'), i8ln('Therian'), i8ln('Incarnate'), i8ln('Therian'), i8ln('Normal'), i8ln('Black'), i8ln('White'), i8ln('Ordinary'), i8ln('Resolute'), i8ln('Aria'), i8ln('Pirouette'), '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', i8ln('Spring'), i8ln('Summer'), i8ln('Autumn'), i8ln('Winter'), i8ln('Spring'), i8ln('Summer'), i8ln('Autumn'), i8ln('Winter'), i8ln('Normal'), i8ln('Shock'), i8ln('Burn'), i8ln('Chill'), i8ln('Douse'), '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
 var cpMultiplier = [0.094, 0.16639787, 0.21573247, 0.25572005, 0.29024988, 0.3210876, 0.34921268, 0.37523559, 0.39956728, 0.42250001, 0.44310755, 0.46279839, 0.48168495, 0.49985844, 0.51739395, 0.53435433, 0.55079269, 0.56675452, 0.58227891, 0.59740001, 0.61215729, 0.62656713, 0.64065295, 0.65443563, 0.667934, 0.68116492, 0.69414365, 0.70688421, 0.71939909, 0.7317, 0.73776948, 0.74378943, 0.74976104, 0.75568551, 0.76156384, 0.76739717, 0.7731865, 0.77893275, 0.7846369, 0.79030001]
 var throwType = JSON.parse('{"10": "Nice", "11": "Great", "12": "Excellent"}')
 var weatherLayerGroup = new L.LayerGroup()
@@ -329,6 +328,15 @@ function removePokemonMarker(encounterId) { // eslint-disable-line no-unused-var
     mapData.pokemons[encounterId].hidden = true
 }
 
+function removePokestopMarker(pokestopId) { // eslint-disable-line no-unused-vars
+    if (mapData.pokestops[pokestopId].marker.rangeCircle) {
+        markers.removeLayer(mapData.pokestops[pokestopId].marker.rangeCircle)
+        delete mapData.pokestops[pokestopId].marker.rangeCircle
+    }
+    markers.removeLayer(mapData.pokestops[pokestopId].marker)
+    mapData.pokestops[pokestopId].hidden = true
+}
+
 function createServiceWorkerReceiver() {
     navigator.serviceWorker.addEventListener('message', function (event) {
         const data = JSON.parse(event.data)
@@ -364,6 +372,20 @@ function initMap() { // eslint-disable-line no-unused-vars
     L.control.zoom({
         position: 'bottomright'
     }).addTo(map)
+
+    // If you see this: Don't tell anyone.
+    var d = new Date()
+    if (d.getMonth() === 11 && d.getDate() >= 24) {
+        const snow = '<div class="winter-is-coming">\n' +
+            '<div class="snow snow--near"></div>\n' +
+            '<div class="snow snow--near snow--alt"></div>\n' +
+            '<div class="snow snow--mid"></div>\n' +
+            '<div class="snow snow--mid snow--alt"></div>\n' +
+            '<div class="snow snow--far"></div>\n' +
+            '<div class="snow snow--far snow--alt"></div>\n' +
+            '</div>'
+        $('#map').append(snow)
+    }
 
     map.addLayer(markers)
     markersnotify = L.layerGroup().addTo(map)
@@ -598,7 +620,6 @@ function toggleFullscreenMap() { // eslint-disable-line no-unused-vars
 }
 var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}) // eslint-disable-line no-unused-vars
 var darkmatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://carto.com/">Carto</a>'}) // eslint-disable-line no-unused-vars
-var styleblackandwhite = L.tileLayer('https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}) // eslint-disable-line no-unused-vars
 var styletopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}) // eslint-disable-line no-unused-vars
 var stylesatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'}) // eslint-disable-line no-unused-vars
 var stylewikipedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'}) // eslint-disable-line no-unused-vars
@@ -894,12 +915,12 @@ function pokemonLabel(item) {
     var atk = item['individual_attack']
     var def = item['individual_defense']
     var sta = item['individual_stamina']
-    var pMove1 = moves[item['move_1']] !== undefined ? i8ln(moves[item['move_1']]['name']) : 'gen/unknown'
-    var pMove2 = moves[item['move_2']] !== undefined ? i8ln(moves[item['move_2']]['name']) : 'gen/unknown'
+    var pMove1 = moves[item['move_1']] !== undefined ? i8ln(moves[item['move_1']]['name']) : 'unknown'
+    var pMove2 = moves[item['move_2']] !== undefined ? i8ln(moves[item['move_2']]['name']) : 'unknown'
     var pMoveType1 = ''
     var pMoveType2 = ''
-    var weight = item['weight']
-    var height = item['height']
+    var weight = item['weight'] !== null ? item['weight'].toFixed(2) + 'kg' : '??'
+    var height = item['height'] !== null ? item['height'].toFixed(2) + 'm' : '??'
     var gender = item['gender']
     var form = item['form']
     var cp = item['cp']
@@ -922,9 +943,13 @@ function pokemonLabel(item) {
         pokemonidStr = id
     }
 
-    $.each(types, function (index, type) {
-        typesDisplay += '<img src="static/types/' + type['type'] + '.png" style="height:20px;">'
-    })
+    if (id !== 132) {
+        $.each(types, function (index, type) {
+            typesDisplay += '<img src="static/types/' + type['type'] + '.png" style="height:20px;">'
+        })
+    } else {
+        typesDisplay += '<img src="static/types/Normal.png" style="height:20px;">'
+    }
 
     var details = ''
     if (atk != null && def != null && sta != null) {
@@ -935,10 +960,10 @@ function pokemonLabel(item) {
         } else {
             pokemonLevel = getPokemonLevel(cpMultiplier)
         }
-        if (pMove1 !== 'gen/unknown') {
+        if (pMove1 !== 'unknown') {
             pMoveType1 = '<img style="position:relative;top:3px;left:2px;height:15px;" src="static/types/' + moves[item['move_1']]['type'] + '.png">'
         }
-        if (pMove2 !== 'gen/unknown') {
+        if (pMove2 !== 'unknown') {
             pMoveType2 = '<img style="position:relative;top:3px;left:2px;height:15px;" src="static/types/' + moves[item['move_2']]['type'] + '.png">'
         }
         details +=
@@ -950,25 +975,22 @@ function pokemonLabel(item) {
             '<div style="position:absolute;top:125px;">' +
             '<div>' + i8ln('Quick') + ': <b>' + pMove1 + '</b>' + pMoveType1 + '</div>' +
             '<div>' + i8ln('Charge') + ': <b>' + pMove2 + '</b>' + pMoveType2 + '</div>' +
-            '<div>' + i8ln('Weight') + ': <b>' + weight.toFixed(2) + 'kg</b>' + ' | ' + i8ln('Height') + ': <b>' + height.toFixed(2) + 'm</b></div>' +
+            '<div>' + i8ln('Weight') + ': <b>' + weight + '</b>' + ' | ' + i8ln('Height') + ': <b>' + height + '</b></div>' +
             '</div>'
     }
 
     if (weatherBoostedCondition !== 0) {
         details +=
-            '<img style="height:30px;position:absolute;top:25px;left:0px;" src="static/weather/i-' + weatherBoostedCondition + '.png" style="height:15px;"></div>'
+            '<img style="height:25px;position:absolute;top:25px;left:5px;" src="static/weather/a-' + weatherBoostedCondition + '.png"></div>'
     }
 
     var contentstring =
         '<div><center>' +
         '<b>' + name + '</b>'
-    if (form !== null && form > 0 && forms.length > form) {
-        if (id === 132) {
-            contentstring += ' (' + idToPokemon[item['form']].name + ')'
-        } else if (forms[item['form']] !== '') {
-            contentstring += ' (' + forms[item['form']] + ')'
-        }
+    if (form !== null && form > 0 && item['form_name'] !== 'Normal') {
+        contentstring += ' (' + i8ln(item['form_name']) + ')'
     }
+
     if (gender != null) {
         contentstring += ' ' + genderType[gender - 1]
     }
@@ -1067,12 +1089,8 @@ function gymLabel(item) {
                 cpStr = ' CP ' + item.raid_pokemon_cp
             }
             raidStr += '<br>' + item.raid_pokemon_name
-            if (form !== null && form > 0 && forms.length > form) {
-                if (item['raid_pokemon_id'] === 132) {
-                    raidStr += ' (' + idToPokemon[item['form']].name + ')'
-                } else if (forms[item['form']] !== '') {
-                    raidStr += ' (' + forms[item['form']] + ')'
-                }
+            if (form !== null && form > 0 && item['form_name'] !== 'Normal') {
+                raidStr += ' (' + i8ln(item['form_name']) + ')'
             }
             raidStr += cpStr
         }
@@ -1170,7 +1188,7 @@ function gymLabel(item) {
     }
     var whatsappLink = ''
     if (((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) && (item.raid_pokemon_id > 1 && item.raid_pokemon_id < numberOfPokemon)) {
-        whatsappLink = '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20' + item.raid_pokemon_name + '%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0AStats:%0Ahttps://pokemongo.gamepress.gg/pokemon/' + item.raid_pokemon_id + '%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share"><i class="fab fa-whatsapp" style="position:relative;top:3px;left:5px;color:#26c300;font-size:20px;"></i></a>'
+        whatsappLink = '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20' + item.raid_pokemon_name + '%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0AStats:%0Ahttps://pokemongo.gamepress.gg/pokemon/' + item.raid_pokemon_id + '%0AMoves:%0A' + pMove1 + ' / ' + pMove2 + '%0A%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share"><i class="fab fa-whatsapp" style="position:relative;top:3px;left:5px;color:#26c300;font-size:20px;"></i></a>'
     } else if ((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) {
         whatsappLink = '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20egg%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share"><i class="fab fa-whatsapp" style="position:relative;top:3px;left:5px;color:#26c300;font-size:20px;"></i></a>'
     }
@@ -1248,135 +1266,139 @@ function getReward(item) {
 function getQuest(item) {
     var str
     var raidLevel
-    var questinfo = JSON.parse(item['quest_condition_info'])
-    var questStr = questtypeList[item['quest_type']]
-
-    str = questStr
-
-    if (item['quest_condition_type'] > 0) {
-        switch (item['quest_condition_type']) {
-            case 1:
-                var tstr = ''
-                if (questinfo['pokemon_type_ids'].length > 1) {
-                    $.each(questinfo['pokemon_type_ids'], function (index, typeId) {
-                        if (index === questinfo['pokemon_type_ids'].length - 2) {
-                            tstr += pokemonTypes[typeId] + ' or '
-                        } else if (index === questinfo['pokemon_type_ids'].length - 1) {
-                            tstr += pokemonTypes[typeId]
-                        } else {
-                            tstr += pokemonTypes[typeId] + ', '
-                        }
-                    })
-                } else {
-                    tstr = pokemonTypes[questinfo['pokemon_type_ids']]
-                }
-                if (item['quest_condition_type_1'] === 21) {
-                    str = str.replace('Catch {0}', 'Catch {0} different species of')
-                }
-                str = str.replace('pokémon', tstr + '-type Pokémon')
-                str = str.replace('Snapshot(s)', 'Snapshot(s) of ' + tstr + '-type Pokémon')
-                break
-            case 2:
-                var pstr = ''
-                if (questinfo['pokemon_ids'].length > 1) {
-                    $.each(questinfo['pokemon_ids'], function (index, id) {
-                        if (index === questinfo['pokemon_ids'].length - 2) {
-                            pstr += idToPokemon[id].name + ' or '
-                        } else if (index === questinfo['pokemon_ids'].length - 1) {
-                            pstr += idToPokemon[id].name
-                        } else {
-                            pstr += idToPokemon[id].name + ', '
-                        }
-                    })
-                } else {
-                    pstr = idToPokemon[questinfo['pokemon_ids']].name
-                }
-                str = str.replace('pokémon', pstr)
-                str = str.replace('Snapshot(s)', 'Snapshot(s) of ' + pstr)
-                break
-            case 3:
-                str = str.replace('pokémon', 'Pokémon with weather boost')
-                break
-            case 6:
-                str = str.replace('Complete', 'Win')
-                break
-            case 7:
-                raidLevel = Math.min.apply(null, questinfo['raid_levels'])
-                if (raidLevel > 1) {
-                    str = str.replace('raid battle(s)', 'level ' + raidLevel + ' or higher raid')
-                }
-                if (item['quest_condition_type_1'] === 6) {
-                    str = str.replace('Complete', 'Win')
-                }
-                break
-            case 8:
-                str = str.replace('Land', 'Make')
-                str = str.replace('throw(s)', throwType[questinfo['throw_type_id']] + ' Throw(s)')
-                if (item['quest_condition_type_1'] === 15) {
-                    str = str.replace('Throw(s)', 'Curveball Throw(s)')
-                }
-                break
-            case 9:
-                str = str.replace('Complete', 'Win')
-                break
-            case 10:
-                str = str.replace('Complete', 'Use a super effective charged attack in')
-                break
-            case 11:
-                if (item['quest_type'] === 13) {
-                    str = str.replace('Catch', 'Use').replace('pokémon with berrie(s)', 'berrie(s) to help catch Pokémon')
-                }
-                if (questinfo !== null) {
-                    str = str.replace('berrie(s)', idToItem[questinfo['item_id']].name)
-                } else {
-                    str = str.replace('Evolve', 'Use a item to evolve')
-                }
-
-                break
-            case 12:
-                str = str.replace('pokéstop(s)', "pokéstop(s) you haven't visited before")
-                break
-            case 14:
-                str = str.replace('Land', 'Make')
-                if (typeof questinfo['throw_type_id'] === 'undefined') {
-                    str = str.replace('throw(s)', 'Throw(s) in a row')
-                } else {
-                    str = str.replace('throw(s)', throwType[questinfo['throw_type_id']] + ' Throw(s) in a row')
-                }
-                if (item['quest_condition_type_1'] === 15) {
-                    str = str.replace('Throw(s)', 'Curveball Throw(s)')
-                }
-                break
-            case 22:
-                str = str.replace('Win', 'Battle a Team Leader').replace('pvp battle(s)', 'times')
-                break
-            case 23:
-                str = str.replace('Win', 'Battle Another Trainer').replace('pvp battle(s)', 'times')
-                break
-        }
-    } else if (item['quest_type'] > 0) {
-        switch (item['quest_type']) {
-            case 7:
-                str = str.replace('Complete', 'Battle in a gym').replace('gym battle(s)', 'times')
-                break
-            case 8:
-                str = str.replace('Complete', 'Battle in a raid').replace('raid battle(s)', 'times')
-                break
-            case 13:
-                str = str.replace('Catch', 'Use').replace('pokémon with berrie(s)', 'berries to help catch Pokémon')
-                break
-            case 17:
-                str = str.replace('Walk your buddy to earn', 'Earn').replace('candy', 'candy walking with your buddy')
-                break
-        }
-    }
-    str = str.replace('{0}', item['quest_target'])
-    if (item['quest_target'] === 1) {
-        str = str.replace('(s)', '').replace('1', 'a').replace(' a times', '')
+    if (mapFork === 'mad') {
+        str = item['quest_task']
     } else {
-        str = str.replace('(s)', 's')
+        var questinfo = JSON.parse(item['quest_condition_info'])
+        var questStr = questtypeList[item['quest_type']]
+        str = questStr
+        if (item['quest_condition_type'] > 0) {
+            switch (item['quest_condition_type']) {
+                case 1:
+                    var tstr = ''
+                    if (questinfo['pokemon_type_ids'].length > 1) {
+                        $.each(questinfo['pokemon_type_ids'], function (index, typeId) {
+                            if (index === questinfo['pokemon_type_ids'].length - 2) {
+                                tstr += pokemonTypes[typeId] + ' or '
+                            } else if (index === questinfo['pokemon_type_ids'].length - 1) {
+                                tstr += pokemonTypes[typeId]
+                            } else {
+                                tstr += pokemonTypes[typeId] + ', '
+                            }
+                        })
+                    } else {
+                        tstr = pokemonTypes[questinfo['pokemon_type_ids']]
+                    }
+                    if (item['quest_condition_type_1'] === 21) {
+                        str = str.replace('Catch {0}', 'Catch {0} different species of')
+                    }
+                    str = str.replace('pokémon', tstr + '-type Pokémon')
+                    str = str.replace('Snapshot(s)', 'Snapshot(s) of ' + tstr + '-type Pokémon')
+                    break
+                case 2:
+                    var pstr = ''
+                    if (questinfo['pokemon_ids'].length > 1) {
+                        $.each(questinfo['pokemon_ids'], function (index, id) {
+                            if (index === questinfo['pokemon_ids'].length - 2) {
+                                pstr += idToPokemon[id].name + ' or '
+                            } else if (index === questinfo['pokemon_ids'].length - 1) {
+                                pstr += idToPokemon[id].name
+                            } else {
+                                pstr += idToPokemon[id].name + ', '
+                            }
+                        })
+                    } else {
+                        pstr = idToPokemon[questinfo['pokemon_ids']].name
+                    }
+                    str = str.replace('pokémon', pstr)
+                    str = str.replace('Snapshot(s)', 'Snapshot(s) of ' + pstr)
+                    break
+                case 3:
+                    str = str.replace('pokémon', 'Pokémon with weather boost')
+                    break
+                case 6:
+                    str = str.replace('Complete', 'Win')
+                    break
+                case 7:
+                    raidLevel = Math.min.apply(null, questinfo['raid_levels'])
+                    if (raidLevel > 1) {
+                        str = str.replace('raid battle(s)', 'level ' + raidLevel + ' or higher raid')
+                    }
+                    if (item['quest_condition_type_1'] === 6) {
+                        str = str.replace('Complete', 'Win')
+                    }
+                    break
+                case 8:
+                    str = str.replace('Land', 'Make')
+                    str = str.replace('throw(s)', throwType[questinfo['throw_type_id']] + ' Throw(s)')
+                    if (item['quest_condition_type_1'] === 15) {
+                        str = str.replace('Throw(s)', 'Curveball Throw(s)')
+                    }
+                    break
+                case 9:
+                    str = str.replace('Complete', 'Win')
+                    break
+                case 10:
+                    str = str.replace('Complete', 'Use a super effective charged attack in')
+                    break
+                case 11:
+                    if (item['quest_type'] === 13) {
+                        str = str.replace('Catch', 'Use').replace('pokémon with berrie(s)', 'berrie(s) to help catch Pokémon')
+                    }
+                    if (questinfo !== null) {
+                        str = str.replace('berrie(s)', idToItem[questinfo['item_id']].name)
+                    } else {
+                        str = str.replace('Evolve', 'Use a item to evolve')
+                    }
+                    break
+                case 12:
+                    str = str.replace('pokéstop(s)', "pokéstop(s) you haven't visited before")
+                    break
+                case 14:
+                    str = str.replace('Land', 'Make')
+                    if (typeof questinfo['throw_type_id'] === 'undefined') {
+                        str = str.replace('throw(s)', 'Throw(s) in a row')
+                    } else {
+                        str = str.replace('throw(s)', throwType[questinfo['throw_type_id']] + ' Throw(s) in a row')
+                    }
+                    if (item['quest_condition_type_1'] === 15) {
+                        str = str.replace('Throw(s)', 'Curveball Throw(s)')
+                    }
+                    break
+                case 22:
+                    str = str.replace('Win', 'Battle a Team Leader').replace('pvp battle(s)', 'times')
+                    break
+                case 23:
+                    str = str.replace('Win', 'Battle Another Trainer').replace('pvp battle(s)', 'times')
+                    break
+                case 25:
+                    str = str.replace('{0} pokémon', 'pokémon caught ' + questinfo['distance'] + 'km apart')
+                    break
+            }
+        } else if (item['quest_type'] > 0) {
+            switch (item['quest_type']) {
+                case 7:
+                    str = str.replace('Complete', 'Battle in a gym').replace('gym battle(s)', 'times')
+                    break
+                case 8:
+                    str = str.replace('Complete', 'Battle in a raid').replace('raid battle(s)', 'times')
+                    break
+                case 13:
+                    str = str.replace('Catch', 'Use').replace('pokémon with berrie(s)', 'berries to help catch Pokémon')
+                    break
+                case 17:
+                    str = str.replace('Walk your buddy to earn', 'Earn').replace('candy', 'candy walking with your buddy')
+                    break
+            }
+        }
+        str = str.replace('{0}', item['quest_target'])
+        if (item['quest_target'] === 1) {
+            str = str.replace('(s)', '').replace('1 ', 'a ').replace(' a times', '').replace('friends', 'friend')
+        } else {
+            str = str.replace('(s)', 's')
+        }
+        str = str.replace('pokémon', 'Pokémon')
     }
-    str = str.replace('pokémon', 'Pokémon')
     return str
 }
 
@@ -1452,6 +1474,7 @@ function pokestopLabel(item) {
             item['quest_pokemon_name'] +
             '</b></div>'
         }
+        str += '<a href="javascript:removePokestopMarker(\'' + item['pokestop_id'] + '\')" title="' + i8ln('Hide this Pokéstop') + '"><i class="fas fa-trash-alt" style="font-size:15px;"></i></a>'
     } else {
         str += '</div>'
     }
@@ -1497,19 +1520,22 @@ function pokestopLabel(item) {
                 gruntReward += '<center>' +
                 '<div>100% ' + i8ln('encounter chance for') + ':<br>'
                 item['encounters']['first'].forEach(function (data) {
-                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;"/>'
+                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;position:absolute;"/>' +
+                    '<img src="static/images/shadow_icon.png" style="width:30px;height:30px;"/>'
                 })
                 gruntReward += '</div></div></center>'
             } else if (item['second_reward'] === 'true') {
                 gruntReward += '<center>' +
                 '<div>85% ' + i8ln('encounter chance for') + ':<br>'
                 item['encounters']['first'].forEach(function (data) {
-                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;"/>'
+                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;position:absolute;"/>' +
+                    '<img src="static/images/shadow_icon.png" style="width:30px;height:30px;"/>'
                 })
                 gruntReward += '</div>' +
                 '<div>15% ' + i8ln('encounter chance for') + ':<br>'
                 item['encounters']['second'].forEach(function (data) {
-                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;"/>'
+                    gruntReward += '<img src="' + iconpath + 'pokemon_icon_' + data + '.png" style="width:30px;height:auto;position:absolute;"/>' +
+                    '<img src="static/images/shadow_icon.png" style="width:30px;height:30px;"/>'
                 })
                 gruntReward += '</div></div><center>'
             }
@@ -1559,45 +1585,24 @@ function showHideGruntEncounter() { // eslint-disable-line no-unused-vars
 }
 
 function formatSpawnTime(seconds) {
-    var results = 0
-    if (mapType !== 'rdm' && mapFork !== 'beta') {
-        return ('0' + Math.floor((seconds + 3600) % 3600 / 60)).substr(-2) + ':' + ('0' + seconds % 60).substr(-2)
-    } else {
-        var d = new Date()
-        if (seconds >= 1800) {
-            d.setMinutes(d.getMinutes() - 30)
-            d.setMinutes(0)
-            d.setSeconds(0)
-            d.setSeconds(d.getSeconds() + seconds)
-        } else {
-            d.setMinutes(d.getMinutes() + 30)
-            d.setMinutes(0)
-            d.setSeconds(0)
-            d.setSeconds(d.getSeconds() + seconds)
-        }
-        var Min = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes()
-        var Sec = (d.getSeconds() < 10 ? '0' : '') + d.getSeconds()
-        results = Min + ':' + Sec
-    }
-    return results
+    return ('0' + Math.floor((seconds + 3600) % 3600 / 60)).substr(-2) + ':' + ('0' + seconds % 60).substr(-2)
 }
 
 function spawnpointLabel(item) {
-    var str =
-        '<div>' +
-        '<b>' + i8ln('Spawn Point') + '</b>' +
-        '</div>' +
-        '<div>' +
-        i8ln('Every hour from') + ' ' + formatSpawnTime(item.time + 1800) + ' ' + i8ln('to') + ' ' + formatSpawnTime(item.time) +
-        '</div>'
-    if (item.duration === 60 || item.kind === 'ssss') {
-        str =
-            '<div>' +
-            '<b>' + i8ln('Spawn Point') + '</b>' +
-            '</div>' +
-            '<div>' +
-            i8ln('Every hour from') + ' ' + formatSpawnTime(item.time) +
-            '</div>'
+    var str = ''
+
+    // 60 minute
+    if (item.time > 1800) {
+        str += '<div><b>' + i8ln('Spawn Point (60)') + '</b></div>' +
+            '<div>' + i8ln('Spawn time') + ': xx:' + formatSpawnTime(item.time) + '</div>' +
+            '<div>' + i8ln('Despawn time') + ': xx:' + formatSpawnTime(item.time) + '</div>'
+    // 30 minute
+    } else if (item.time > 0) {
+        str += '<div><b>' + i8ln('Spawn Point (30)') + '</b></div>' +
+        '<div>' + i8ln('Spawn time') + ': xx:' + formatSpawnTime(item.time + 1800) + '</div>' +
+        '<div>' + i8ln('Despawn time') + ': xx:' + formatSpawnTime(item.time) + '</div>'
+    } else {
+        str += '<div>' + i8ln('Unknown spawnpoint info') + '</div>'
     }
     return str
 }
@@ -2076,7 +2081,7 @@ function getPokestopMarkerIcon(item) {
         }
         stopMarker = L.divIcon({
             iconSize: [31, 31],
-            iconAnchor: [24, 38],
+            iconAnchor: [25, 45],
             popupAnchor: [0, -35],
             className: 'stop-rocket-marker',
             html: html
@@ -2111,7 +2116,7 @@ function getPokestopMarkerIcon(item) {
                 '</div>'
             stopMarker = L.divIcon({
                 iconSize: [31, 31],
-                iconAnchor: [24, 38],
+                iconAnchor: [25, 45],
                 popupAnchor: [0, -35],
                 className: 'stop-quest-marker',
                 html: html
@@ -2123,7 +2128,7 @@ function getPokestopMarkerIcon(item) {
                 '</div>'
             stopMarker = L.divIcon({
                 iconSize: [31, 31],
-                iconAnchor: [24, 38],
+                iconAnchor: [25, 45],
                 popupAnchor: [0, -35],
                 className: 'stop-quest-marker',
                 html: html
@@ -2135,7 +2140,7 @@ function getPokestopMarkerIcon(item) {
                 '</div>'
             stopMarker = L.divIcon({
                 iconSize: [31, 31],
-                iconAnchor: [24, 38],
+                iconAnchor: [25, 45],
                 popupAnchor: [0, -35],
                 className: 'stop-quest-marker',
                 html: html
@@ -2145,7 +2150,7 @@ function getPokestopMarkerIcon(item) {
         html = '<div><img src="static/forts/PstopLured_' + item['lure_id'] + '.png" style="width:50px;height:72;top:-35px;right:10px;"/><div>'
         stopMarker = L.divIcon({
             iconSize: [31, 31],
-            iconAnchor: [24, 38],
+            iconAnchor: [25, 45],
             popupAnchor: [0, -35],
             className: 'stop-lured-marker',
             html: html
@@ -2153,10 +2158,10 @@ function getPokestopMarkerIcon(item) {
     } else {
         stopMarker = L.divIcon({
             iconSize: [31, 31],
-            iconAnchor: [15, 28],
+            iconAnchor: [25, 45],
             popupAnchor: [0, -35],
             className: 'stop-marker',
-            html: '<div><img src="static/forts/Pstop.png"></div>'
+            html: '<div><img src="static/forts/Pstop.png" style="width:50px;height:72;top:-35px;right:10px;"/></div>'
         })
     }
     return stopMarker
@@ -2245,8 +2250,7 @@ function nestLabel(item) {
             '</div>' +
             nestName + '<br />' +
             '<div>' +
-            '<img src="static/images/nest-' + item.english_pokemon_types[0].type.toLowerCase() + '.png" style="width:70px;height:auto;"/>' +
-            '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_00.png" style="position:absolute;width:65px;height:65px;top:53px;left:85px;"/>' +
+            '<img src="' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_00.png" style="width:65px;height:65px;"/>' +
             '</div>' +
             pokemonAvg +
             '</center>'
@@ -2265,9 +2269,9 @@ function nestLabel(item) {
     if (!noManualNests) {
         str += '<center><div>' + i8ln('Add Nest') + ' <i class="fas fa-binoculars submit-nest" onclick="openNestModal(event);" data-id="' + item['nest_id'] + '"></i></div></center>'
     }
-    str += '<div>' +
+    str += '<center><div>' +
         '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + item.lat + ',' + item.lon + ')" title="' + i8ln('View in Maps') + '"><i class="fas fa-road"></i> ' + item.lat.toFixed(6) + ', ' + item.lon.toFixed(7) + '</a> - <a href="./?lat=' + item.lat + '&lon=' + item.lon + '&zoom=16"><i class="far fa-share-square" aria-hidden="true" style="position:relative;top:3px;left:0px;color:#26c300;font-size:20px;"></i></a>' +
-        '</div>'
+        '</div></center>'
     if ((!noWhatsappLink) && (item.pokemon_id > 0)) {
         str += '<div>' +
             '<center>' +
@@ -2773,96 +2777,23 @@ function deletePoi(event) { // eslint-disable-line no-unused-vars
     }
 }
 
-function getColorBySpawnTime(value) {
-    var now = new Date()
-    var seconds = now.getMinutes() * 60 + now.getSeconds()
-    // account for hour roll-over
-    if (seconds < 900 && value > 2700) {
-        seconds += 3600
-    } else if (seconds > 2700 && value < 900) {
-        value += 3600
-    }
-
-    var diff = seconds - value
-    var hue = 275 // light purple when spawn is neither about to spawn nor active
-    if (diff >= 0 && diff <= 900) {
-        // green to red over 15 minutes of active spawn
-        hue = (1 - diff / 60 / 15) * 120
-    } else if (diff < 0 && diff > -300) {
-        // light blue to dark blue over 5 minutes til spawn
-        hue = (1 - -diff / 60 / 5) * 50 + 200
-    }
-
-    hue = Math.round(hue / 5) * 5
-
-    return colourConversion.hsvToHex(hue, 1.0, 1.0)
-}
-var colourConversion = (function () {
-    var self = {}
-    self.hsvToHex = function (hue, sat, val) {
-        if (hue > 360 || hue < 0 || sat > 1 || sat < 0 || val > 1 || val < 0) {
-            console.log('{colourConverion.hsvToHex} illegal input')
-            return '#000000'
-        }
-        let rgbArray = hsvToRgb(hue, sat, val)
-        return rgbArrayToHexString(rgbArray)
-    }
-    function rgbArrayToHexString(rgbArray) {
-        let hexString = '#'
-        for (var i = 0; i < rgbArray.length; i++) {
-            let hexOfNumber = rgbArray[i].toString(16)
-            if (hexOfNumber.length === 1) {
-                hexOfNumber = '0' + hexOfNumber
-            }
-            hexString += hexOfNumber
-        }
-        if (hexString.length !== 7) {
-            console.log('Hexstring not complete for colours...')
-        }
-        return hexString
-    }
-    function hsvToRgb(hue, sat, val) {
-        let hder = Math.floor(hue / 60)
-        let f = hue / 60 - hder
-        let p = val * (1 - sat)
-        let q = val * (1 - sat * f)
-        let t = val * (1 - sat * (1 - f))
-        var rgb
-        if (sat === 0) {
-            rgb = [val, val, val]
-        } else if (hder === 0 || hder === 6) {
-            rgb = [val, t, p]
-        } else if (hder === 1) {
-            rgb = [q, val, p]
-        } else if (hder === 2) {
-            rgb = [p, val, t]
-        } else if (hder === 3) {
-            rgb = [p, q, val]
-        } else if (hder === 4) {
-            rgb = [t, p, val]
-        } else if (hder === 5) {
-            rgb = [val, p, q]
-        } else {
-            console.log('Failed converting HSV to RGB')
-        }
-        for (var i = 0; i < rgb.length; i++) {
-            rgb[i] = Math.round(rgb[i] * 255)
-        }
-        return rgb
-    }
-    return self
-})()
-
 function setupSpawnpointMarker(item) {
-    var hue = getColorBySpawnTime(item.time)
+    var color = ''
+    if (item['time'] > 1800) {
+        color = 'green'
+    } else if (item['time'] > 0) {
+        color = 'lightgreen'
+    } else {
+        color = 'red'
+    }
 
     var rangeCircleOpts = {
         radius: 4,
         weight: 1,
-        color: hue,
+        color: color,
         opacity: 1,
         center: [item['latitude'], item['longitude']],
-        fillColor: hue,
+        fillColor: color,
         fillOpacity: 0.4
     }
     var circle = L.circle([item['latitude'], item['longitude']], rangeCircleOpts).bindPopup(spawnpointLabel(item), {autoPan: false, closeOnclick: false, autoClose: false})
@@ -2894,7 +2825,6 @@ function addListeners(marker) {
             marker.infoWindowIsOpen = false
         }
     })
-
 
     if (!isMobileDevice() && !isTouchDevice()) {
         marker.on('mouseover', function () {
@@ -5365,8 +5295,15 @@ function updateSpawnPoints() {
 
     $.each(mapData.spawnpoints, function (key, value) {
         if (map.getBounds().contains(value.marker.getLatLng())) {
-            var hue = getColorBySpawnTime(value['time'])
-            value.marker.setStyle({color: hue, fillColor: hue})
+            var color = ''
+            if (value['time'] > 1800) {
+                color = 'green'
+            } else if (value['time'] > 0) {
+                color = 'lightgreen'
+            } else {
+                color = 'red'
+            }
+            value.marker.setStyle({color: color, fillColor: color})
         }
     })
 }
