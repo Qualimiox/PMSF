@@ -1802,6 +1802,11 @@
   "Max amount reached":"Maximale Anzahl erreicht",
   "Gyms in cell":"Arenen",
   "Pokéstops in cell":"Pokéstops",
-  "Total":"Insgesamt"
+  "Total":"Insgesamt",
+  "Unova Stone": "Einall-Stein",
+  "Mossy Lure Module": "Moos-Lockmodul",
+  "Magnetic Lure Module": "Magnet-Lockmodul",
+  "Glacial Lure Module": "Gletscher-Lockmodul"
+  
 }
 
